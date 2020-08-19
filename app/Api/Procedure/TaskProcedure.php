@@ -93,7 +93,7 @@ class TaskProcedure extends BaseProcedure
                                $date_due = '', $description = '', $category_id = 0, $score = 0, $swimlane_id = null, $priority = 0,
                                $recurrence_status = 0, $recurrence_trigger = 0, $recurrence_factor = 0, $recurrence_timeframe = 0,
                                $recurrence_basedate = 0, $reference = '', array $tags = array(), $date_started = '',
-                               $time_spent = null, $time_estimated = null)
+                               $time_spent = null, $time_estimated = null, $category = '', $swimlane = '')
     {
         ProjectAuthorization::getInstance($this->container)->check($this->getClassName(), 'createTask', $project_id);
 
@@ -104,6 +104,12 @@ class TaskProcedure extends BaseProcedure
         if ($this->userSession->isLogged()) {
             $creator_id = $this->userSession->getId();
         }
+
+        if ($category !== '')
+            $category_id = $this->categoryModel->getIdByName($project_id, $category);
+
+        if ($swimlane !== '')
+            $swimlane_id = $this->swimlaneModel->getIdByName($project_id, $swimlane);            
 
         $values = array(
             'title' => $title,
