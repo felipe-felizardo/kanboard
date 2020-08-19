@@ -107,7 +107,7 @@ class TaskProcedure extends BaseProcedure
 
         $values = array(
             'title' => $title,
-            'project_id' => $project_id,
+            'project_id' => 1,
             'color_id' => $color_id,
             'column_id' => $column_id,
             'owner_id' => $owner_id,
@@ -131,8 +131,14 @@ class TaskProcedure extends BaseProcedure
         );
 
         list($valid, ) = $this->taskValidator->validateCreation($values);
-
-        return $valid ? $this->taskCreationModel->create($values) : false;
+        if ($valid)
+        {
+            $task_id = $this->taskCreationModel->create($values);
+            $this->moveTaskToProject($task_id, $project_id);
+            return $task_id;
+        }
+        else       
+            return $valid;
     }
 
     public function updateTask($id, $title = null, $color_id = null, $owner_id = null,
