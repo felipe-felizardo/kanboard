@@ -8,7 +8,12 @@ use Kanboard\Core\Security\Token;
 use Kanboard\Core\Security\Role;
 use PDO;
 
-const VERSION = 124;
+const VERSION = 125;
+
+function version_125(PDO $pdo)
+{
+    $pdo->exec('ALTER TABLE projects ADD COLUMN hour_budget INTEGER DEFAULT 0');
+}
 
 function version_124(PDO $pdo)
 {
