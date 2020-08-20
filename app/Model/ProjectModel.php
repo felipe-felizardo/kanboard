@@ -394,7 +394,7 @@ class ProjectModel extends Base
             $values['identifier'] = strtoupper($values['identifier']);
         }
 
-        $this->helper->model->convertIntegerFields($values, array('priority_default', 'priority_start', 'priority_end', 'task_limit'));
+        $this->helper->model->convertIntegerFields($values, array('priority_default', 'priority_start', 'priority_end', 'task_limit', 'hour_budget'));
 
         if (! $this->db->table(self::TABLE)->save($values)) {
             $this->db->cancelTransaction();

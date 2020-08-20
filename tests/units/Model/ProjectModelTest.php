@@ -49,6 +49,7 @@ class ProjectModelTest extends Base
         $this->assertEmpty($project['token']);
         $this->assertEmpty($project['start_date']);
         $this->assertEmpty($project['end_date']);
+        $this->assertEquals(0, $project['hour_budget']);
     }
 
     public function testCreationWithUserId()
@@ -76,6 +77,17 @@ class ProjectModelTest extends Base
         $this->assertNotEmpty($project);
         $this->assertEquals(3, $project['task_limit']);
     }
+
+    public function testCreationWithHourBudget()
+    {
+        $projectModel = new ProjectModel($this->container);
+
+        $this->assertEquals(1, $projectModel->create(array('name' => 'UnitTest', 'hour_budget' => 5)));
+
+        $project = $projectModel->getById(1);
+        $this->assertNotEmpty($project);
+        $this->assertEquals(5, $project['hour_budget']);
+    } 
 
     public function testProjectDate()
     {
@@ -248,6 +260,20 @@ class ProjectModelTest extends Base
         $project = $projectModel->getById(1);
         $this->assertEquals(1, $project['task_limit']);
     }
+
+    public function testUpdateHourBudget()
+    {
+        $projectModel = new ProjectModel($this->container);
+        $this->assertEquals(1, $projectModel->create(array('name' => 'UnitTest')));
+
+        $project = $projectModel->getById(1);
+        $this->assertEquals(0, $project['hour_budget']);
+
+        $this->assertTrue($projectModel->update(array('id'=> 1, 'hour_budget' => 1)));
+
+        $project = $projectModel->getById(1);
+        $this->assertEquals(1, $project['hour_budget']);
+    } 
 
     public function testGetAllIds()
     {

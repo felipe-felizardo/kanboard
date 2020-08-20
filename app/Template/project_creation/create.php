@@ -14,6 +14,9 @@
         <?= $this->form->text('identifier', $values, $errors, array('autofocus')) ?>
         <p class="form-help"><?= t('The project identifier is optional and must be alphanumeric, example: MYPROJECT.') ?></p>
 
+        <?= $this->form->label(t('Programming hours budget'), 'hour_budget') ?>
+        <?= $this->form->numeric('hour_budget', $values, $errors, array('autofocus', 'required')) ?>        
+
         <?= $this->form->checkbox('per_swimlane_task_limits', t('Column task limits apply to each swimlane individually'), 1, false) ?>
 
         <?= $this->form->label(t('Task limit'), 'task_limit') ?>
