@@ -85,14 +85,15 @@ class ProjectDuplicationModel extends Base
      * @param  string     $name                 Name of the project
      * @param  boolean    $private              Force the project to be private
      * @param  string     $identifier           Identifier of the project
+     * @param  integer    $hour_budget          Project programming hours limit
      * @return integer                          Cloned Project Id
      */
-    public function duplicate($src_project_id, $selection = array('projectPermissionModel', 'categoryModel', 'actionModel'), $owner_id = 0, $name = null, $private = null, $identifier = null)
+    public function duplicate($src_project_id, $selection = array('projectPermissionModel', 'categoryModel', 'actionModel'), $owner_id = 0, $name = null, $private = null, $identifier = null, $hour_budget = null)
     {
         $this->db->startTransaction();
 
         // Get the cloned project Id
-        $dst_project_id = $this->copy($src_project_id, $owner_id, $name, $private, $identifier);
+        $dst_project_id = $this->copy($src_project_id, $owner_id, $name, $private, $identifier, $hour_budget);
 
         if ($dst_project_id === false) {
             $this->db->cancelTransaction();
@@ -137,9 +138,10 @@ class ProjectDuplicationModel extends Base
      * @param  string     $name
      * @param  boolean    $private
      * @param  string     $identifier
+     * @param  integer    $hour_budget
      * @return integer
      */
-    private function copy($src_project_id, $owner_id = 0, $name = null, $private = null, $identifier = null)
+    private function copy($src_project_id, $owner_id = 0, $name = null, $private = null, $identifier = null, $hour_budget = null)
     {
         $project = $this->projectModel->getById($src_project_id);
         $is_private = empty($project['is_private']) ? 0 : 1;
@@ -162,6 +164,7 @@ class ProjectDuplicationModel extends Base
             'per_swimlane_task_limits' => empty($project['per_swimlane_task_limits']) ? 0 : 1,
             'task_limit' => $project['task_limit'],
             'identifier' => $identifier,
+            'hour_budget' => $hour_budget,
         );
 
         return $this->db->table(ProjectModel::TABLE)->persist($values);

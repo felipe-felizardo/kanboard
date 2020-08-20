@@ -99,6 +99,7 @@ class ProjectCreationController extends BaseController
             'identifier' => $values['identifier'],
             'per_swimlane_task_limits' => array_key_exists('per_swimlane_task_limits', $values) ? $values['per_swimlane_task_limits'] : 0,
             'task_limit' => $values['task_limit'],
+            'hour_budget' => $values['hour_budget'],
         );
 
         return $this->projectModel->create($project, $this->userSession->getId(), true);
@@ -127,7 +128,8 @@ class ProjectCreationController extends BaseController
             $this->userSession->getId(),
             $values['name'],
             $values['is_private'] == 1,
-            $values['identifier']
+            $values['identifier'],
+            $values['hour_budget'],
         );
     }
 }
