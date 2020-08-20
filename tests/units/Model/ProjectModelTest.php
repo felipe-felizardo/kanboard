@@ -82,11 +82,11 @@ class ProjectModelTest extends Base
     {
         $projectModel = new ProjectModel($this->container);
 
-        $this->assertEquals(1, $projectModel->create(array('name' => 'UnitTest', 'hour_Budget' => 5)));
+        $this->assertEquals(1, $projectModel->create(array('name' => 'UnitTest', 'hour_budget' => 5)));
 
         $project = $projectModel->getById(1);
         $this->assertNotEmpty($project);
-        $this->assertEquals(5, $project['hour_Budget']);
+        $this->assertEquals(5, $project['hour_budget']);
     } 
 
     public function testProjectDate()
