@@ -414,6 +414,49 @@ class ProjectModelTest extends Base
         $this->assertFalse($projectModel->enable(1234567));
     }
 
+    public function testOpenScope()
+    {
+        $projectModel = new ProjectModel($this->container);
+
+        $this->assertEquals(1, $projectModel->create(array('name' => 'UnitTest')));
+        $this->assertTrue($projectModel->openScope(1));
+
+        $project = $projectModel->getById(1);
+        $this->assertNotEmpty($project);
+        $this->assertEquals(1, $project['scope_is_open']);
+
+        $this->assertFalse($projectModel->disable(1111));
+    }   
+
+    public function testCloseScope()
+    {
+        $projectModel = new ProjectModel($this->container);
+
+        $this->assertEquals(1, $projectModel->create(array('name' => 'UnitTest', 'hour_budget' => 1)));
+        $this->assertTrue($projectModel->closeScope(1));
+
+        $project = $projectModel->getById(1);
+        $this->assertNotEmpty($project);
+        $this->assertEquals(0, $project['scope_is_open']);
+
+        $this->assertFalse($projectModel->disable(1111));   
+
+        //Provisioned hours > budget hours
+
+        $taskModel = new TaskModel($this->container);
+        $this->assertEquals(2, $projectModel->create(array('name' => 'UnitTest', 'hour_budget' => 1)));   
+        $this->assertEquals(1, $taskCreationModel->create(array(
+            'title' => 'test',
+            'project_id' => 2,
+            'time_spent' => 1.5,
+        )));            
+        $this->assertFalse($projectModel->closeScope(2));
+
+        $project = $projectModel->getById(2);
+        $this->assertNotEmpty($project);
+        $this->assertEquals(1, $project['scope_is_open']);
+    }       
+
     public function testEnablePublicAccess()
     {
         $projectModel = new ProjectModel($this->container);
