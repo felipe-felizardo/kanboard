@@ -1426,4 +1426,12 @@ return array(
     'The project scope is CLOSED' => 'O escopo do projeto está FECHADO',
     'Programming hours provision: ' => 'Provisão de horas de programação: ',
     'Provisioned programming hours: ' => 'Horas de programação provisionadas: ',
+    'Project\'s scope opened successfully.' => 'Escopo do projeto aberto com sucesso.',
+    'Unable to open project\'s scope.' => 'Não foi possível abrir o escopo do projeto',
+    'Project\'s scope closed successfully.' => 'Escopo do projeto fechado com sucesso',
+    'Unable to close project\'s scope.' => 'Não foi possível fechar o escopo do projeto',
+    'Close project\'s scope' => 'Fechar o escopo do projeto',
+    'Reopen project\'s scope' => 'Reabrir o escopo do projeto',
+    'Do you really want to close the project\'s scope: "%s"?' => 'Tem certeza que quer fechar o escopo do projeto: "%s"?',
+    'Do you really want to reopen the project\'s scope: "%s"?' => 'Tem certeza que quer reabrir o escopo do projeto: "%s"?',
 );

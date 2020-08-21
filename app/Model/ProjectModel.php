@@ -560,6 +560,38 @@ class ProjectModel extends Base
     }
 
     /**
+     * Open a project's scope
+     *
+     * @access public
+     * @param  integer   $project_id    Project id
+     * @return bool
+     */
+    public function openScope($project_id)
+    {
+        return $this->exists($project_id) &&
+               $this->db
+                    ->table(self::TABLE)
+                    ->eq('id', $project_id)
+                    ->update(array('scope_is_open' => 1));
+    }    
+
+    /**
+     * Close a project's scope
+     *
+     * @access public
+     * @param  integer   $project_id   Project id
+     * @return bool
+     */
+    public function closeScope($project_id)
+    {
+        return $this->exists($project_id) &&
+               $this->db
+                    ->table(self::TABLE)
+                    ->eq('id', $project_id)
+                    ->update(array('scope_is_open' => 0));
+    }    
+
+    /**
      * Enable public access for a project
      *
      * @access public
