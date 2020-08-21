@@ -607,6 +607,26 @@ class ProjectModel extends Base
     }
 
     /**
+     * Return the sum of estimated hours of all tasks for a project
+     *
+     * @access public
+     * @param  integer    $project_id   Project id
+     * @return float
+     */
+    public function tasksEstimatedHours($project_id)
+    {
+        $rows = $this->db->table(TaskModel::TABLE)
+            ->columns('SUM(time_estimated) AS time_estimated')
+            ->eq('project_id', $project_id)
+            ->findAll();
+
+        foreach ($rows as $row)
+            $estimatedHours += (float) $row['time_estimated'];          
+
+        return $estimatedHours;
+    }    
+
+    /**
      * Change usage of global tags
      *
      * @param  integer $project_id  Project id
@@ -621,4 +641,6 @@ class ProjectModel extends Base
                     ->eq('id', $project_id)
                     ->save(array('enable_global_tags' => $global_tags));
     }
+
+
 }
