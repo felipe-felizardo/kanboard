@@ -13,6 +13,7 @@ const VERSION = 116;
 function version_116(PDO $pdo)
 {
     $pdo->exec('ALTER TABLE "projects" ADD COLUMN hour_budget INTEGER DEFAULT 0');
+    $pdo->exec('ALTER TABLE "projects" ADD COLUMN scope_is_open BOOLEAN DEFAULT TRUE');
 }
 
 function version_115(PDO $pdo)

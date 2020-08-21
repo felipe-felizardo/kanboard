@@ -13,6 +13,7 @@ const VERSION = 138;
 function version_138(PDO $pdo)
 {
     $pdo->exec('ALTER TABLE `projects` ADD COLUMN `hour_budget` INTEGER DEFAULT 0');
+    $pdo->exec('ALTER TABLE `projects` ADD COLUMN `scope_is_open` TINYINT(1) DEFAULT 1 NOT NULL');
 }
 
 function version_137(PDO $pdo)
