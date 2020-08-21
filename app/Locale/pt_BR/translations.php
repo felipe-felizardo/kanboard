@@ -1422,4 +1422,8 @@ return array(
     'Subtask creation or modification' => 'Subtarefa criada ou modificada',
     'Assign the task to a specific user when the task is moved to a specific swimlane' => 'Atribuir a tarefa a um usuário específico quando a tarefa é movida para uma raia específica',
     'Programming hours budget' => 'Orçamento de horas de programação',
+    'The project scope is OPEN' => 'O escopo do projeto está ABERTO',
+    'The project scope is CLOSED' => 'O escopo do projeto está FECHADO',
+    'Programming hours provision: ' => 'Provisão de horas de programação: ',
+    'Provisioned programming hours: ' => 'Horas de programação provisionadas: ',
 );
