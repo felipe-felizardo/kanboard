@@ -620,6 +620,7 @@ class ProjectModel extends Base
             ->eq('project_id', $project_id)
             ->findAll();
 
+        $estimatedHours = 0;
         foreach ($rows as $row)
             $estimatedHours += (float) $row['time_estimated'];          
 
