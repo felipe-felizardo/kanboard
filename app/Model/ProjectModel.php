@@ -584,6 +584,10 @@ class ProjectModel extends Base
      */
     public function closeScope($project_id)
     {
+        $project = $this->getById($project_id);
+        if ($this->tasksEstimatedHours($project_id) > $project['hour_budget'])
+            return false;
+            
         return $this->exists($project_id) &&
                $this->db
                     ->table(self::TABLE)

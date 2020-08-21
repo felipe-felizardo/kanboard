@@ -58,12 +58,16 @@ class ProjectScopeController extends BaseController
     {
         $project = $this->getProject();
         $this->checkCSRFParam();
-
-        if ($this->projectModel->closeScope($project['id'])) {
-            $this->flash->success(t('Project\'s scope closed successfully.'));
+        if ($this->projectModel->tasksEstimatedHours($project['id']) <= $project['hour_budget'])
+        {
+            if ($this->projectModel->closeScope($project['id'])) {
+                $this->flash->success(t('Project\'s scope closed successfully.'));
+            } else {
+                $this->flash->failure(t('Unable to close project\'s scope.'));
+            }
         } else {
-            $this->flash->failure(t('Unable to close project\'s scope.'));
-        }
+            $this->flash->failure(t('Project\'s scope cannot close because the provisioned programming hours is greater than provision hours.'));
+        }        
 
         $this->response->redirect($this->helper->url->to('ProjectViewController', 'show', array('project_id' => $project['id'])), true);
     }

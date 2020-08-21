@@ -190,7 +190,7 @@ class AppHelper extends Base
         }
 
         if (! empty($failure_message)) {
-            return '<div class="alert alert-error">'.$this->helper->text->e($failure_message).'</div>';
+            return '<div class="alert alert-error alert-fade-out">'.$this->helper->text->e($failure_message).'</div>';
         }
 
         return '';

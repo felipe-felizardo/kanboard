@@ -1434,4 +1434,5 @@ return array(
     'Reopen project\'s scope' => 'Reabrir o escopo do projeto',
     'Do you really want to close the project\'s scope: "%s"?' => 'Tem certeza que quer fechar o escopo do projeto: "%s"?',
     'Do you really want to reopen the project\'s scope: "%s"?' => 'Tem certeza que quer reabrir o escopo do projeto: "%s"?',
+    'Project\'s scope cannot close because the provisioned programming hours is greater than provision hours.' => 'Escopo do projeto não pode ser fechado pois as horas de programação provisionadas ultrapassaram a provisão de horas',
 );
