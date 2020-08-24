@@ -89,7 +89,7 @@ class TaskProcedure extends BaseProcedure
         return $this->taskProjectDuplicationModel->duplicateToProject($task_id, $project_id, $swimlane_id, $column_id, $category_id, $owner_id);
     }
 
-    public function createTask($title, $project_id, $color_id = '', $column_id = 0, $owner_id = 0, $creator_id = 0,
+    public function createTask($title, $project_id, $creator_id, $color_id = '', $column_id = 0, $owner_id = 0,
                                $date_due = '', $description = '', $category_id = 0, $score = 0, $swimlane_id = null, $priority = 0,
                                $recurrence_status = 0, $recurrence_trigger = 0, $recurrence_factor = 0, $recurrence_timeframe = 0,
                                $recurrence_basedate = 0, $reference = '', array $tags = array(), $date_started = '',
@@ -98,6 +98,10 @@ class TaskProcedure extends BaseProcedure
         ProjectAuthorization::getInstance($this->container)->check($this->getClassName(), 'createTask', $project_id);
 
         if ($owner_id !== 0 && ! $this->projectPermissionModel->isAssignable($project_id, $owner_id)) {
+            return false;
+        }
+
+        if ($creator_id !== 0 && ! $this->projectPermissionModel->isUserAllowedToCreateTask($project_id, $creator_id)) {
             return false;
         }
 

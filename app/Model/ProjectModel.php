@@ -593,7 +593,20 @@ class ProjectModel extends Base
                     ->table(self::TABLE)
                     ->eq('id', $project_id)
                     ->update(array('scope_is_open' => 0));
-    }    
+    }   
+    
+    /**
+     * Check if project's scope is open
+     *
+     * @access public
+     * @param  integer   $project_id   Project id
+     * @return bool
+     */
+    public function scopeIsOpen($project_id)
+    {
+        $project = $this->getById($project_id);
+        return $project['scope_is_open'];
+    }      
 
     /**
      * Enable public access for a project
