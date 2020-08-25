@@ -158,7 +158,7 @@ class ProjectPermissionModel extends Base
      */
     public function isUserAllowedToCreateTask($project_id, $user_id)
     {
-        if ($this->userSession->isAdmin()) {
+        if ($this->userModel->isAdmin($user_id)) {
             return true;
         }
 
