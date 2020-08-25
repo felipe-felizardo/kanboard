@@ -449,7 +449,7 @@ class ProjectModelTest extends Base
         $this->assertEquals(1, $taskCreationModel->create(array(
             'title' => 'test',
             'project_id' => 2,
-            'time_spent' => 1.5,
+            'time_estimated' => 1.5,
         )));            
         $this->assertFalse($projectModel->closeScope(2));
 
