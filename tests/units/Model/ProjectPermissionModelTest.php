@@ -157,6 +157,50 @@ class ProjectPermissionModelTest extends Base
         $this->assertFalse($projectPermission->isUserAllowed(2, 5));
     }
 
+    public function testIsUserAllowedToCreateTask()
+    {
+        $userModel = new UserModel($this->container);
+        $projectModel = new ProjectModel($this->container);
+        $groupModel = new GroupModel($this->container);
+        $groupRoleModel = new ProjectGroupRoleModel($this->container);
+        $groupMemberModel = new GroupMemberModel($this->container);
+        $userRoleModel = new ProjectUserRoleModel($this->container);
+        $projectPermission = new ProjectPermissionModel($this->container);
+
+        $this->assertEquals(2, $userModel->create(array('username' => 'user 1')));
+        $this->assertEquals(3, $userModel->create(array('username' => 'user 2')));
+        $this->assertEquals(4, $userModel->create(array('username' => 'user 3')));
+        $this->assertEquals(5, $userModel->create(array('username' => 'user 4')));
+
+        $this->assertEquals(1, $projectModel->create(array('name' => 'Project 1')));
+        $this->assertEquals(2, $projectModel->create(array('name' => 'Project 2')));
+
+        $this->assertEquals(1, $groupModel->create('Group A'));
+
+        $this->assertTrue($groupMemberModel->addUser(1, 2));
+        $this->assertTrue($groupRoleModel->addGroup(1, 1, Role::PROJECT_VIEWER));
+
+        $this->assertTrue($userRoleModel->addUser(1, 3, Role::PROJECT_MEMBER));
+        $this->assertTrue($userRoleModel->addUser(1, 4, Role::PROJECT_MANAGER));
+
+        $this->assertFalse($projectPermission->isUserAllowedToCreateTask(1, 5));
+        $this->assertTrue($projectPermission->isUserAllowedToCreateTask(1, 4));
+        $this->assertTrue($projectPermission->isUserAllowedToCreateTask(1, 3));
+        $this->assertFalse($projectPermission->isUserAllowedToCreateTask(1, 2));
+
+        $this->assertTrue($projectModel->closeScope(1));
+
+        $this->assertFalse($projectPermission->isUserAllowedToCreateTask(1, 5));
+        $this->assertTrue($projectPermission->isUserAllowedToCreateTask(1, 4));
+        $this->assertFalse($projectPermission->isUserAllowedToCreateTask(1, 3));
+        $this->assertFalse($projectPermission->isUserAllowedToCreateTask(1, 2));        
+
+        $this->assertFalse($projectPermission->isUserAllowedToCreateTask(2, 5));
+        $this->assertFalse($projectPermission->isUserAllowedToCreateTask(2, 4));
+        $this->assertFalse($projectPermission->isUserAllowedToCreateTask(2, 3));
+        $this->assertFalse($projectPermission->isUserAllowedToCreateTask(2, 2));
+    }    
+
     public function testIsAssignable()
     {
         $userModel = new UserModel($this->container);
