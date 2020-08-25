@@ -443,7 +443,8 @@ class ProjectModelTest extends Base
 
         //Provisioned hours > budget hours
 
-        $taskModel = new TaskModel($this->container);
+        $taskCreationModel = new TaskCreationModel($this->container);
+        
         $this->assertEquals(2, $projectModel->create(array('name' => 'UnitTest', 'hour_budget' => 1)));   
         $this->assertEquals(1, $taskCreationModel->create(array(
             'title' => 'test',
