@@ -37,9 +37,11 @@
             <?= $this->modal->medium('refresh fa-rotate-90', t('Edit recurrence'), 'TaskRecurrenceController', 'edit', array('task_id' => $task['id'], 'project_id' => $task['project_id'])) ?>
         </li>
         <?php endif ?>
+        <?php if ($this->user->hasProjectAccess('SubtaskController', 'create', $task['project_id'])): ?>
         <li>
             <?= $this->modal->medium('plus', t('Add a sub-task'), 'SubtaskController', 'create', array('task_id' => $task['id'], 'project_id' => $task['project_id'])) ?>
         </li>
+        <?php endif ?>
         <li>
             <?= $this->modal->medium('code-fork', t('Add internal link'), 'TaskInternalLinkController', 'create', array('task_id' => $task['id'], 'project_id' => $task['project_id'])) ?>
         </li>

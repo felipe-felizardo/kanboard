@@ -71,7 +71,7 @@ class SubtaskStatusController extends BaseController
         return $this->template->render('subtask/table', array(
             'task'     => $task,
             'subtasks' => $this->subtaskModel->getAll($task['id']),
-            'editable' => true,
+            'editable' => $this->helper->user->hasProjectAccess('SubtaskController', 'edit', $task['project_id']),
         ));
     }
 
