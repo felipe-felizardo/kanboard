@@ -560,6 +560,55 @@ class ProjectModel extends Base
     }
 
     /**
+     * Open a project's scope
+     *
+     * @access public
+     * @param  integer   $project_id    Project id
+     * @return bool
+     */
+    public function openScope($project_id)
+    {
+        return $this->exists($project_id) &&
+               $this->db
+                    ->table(self::TABLE)
+                    ->eq('id', $project_id)
+                    ->update(array('scope_is_open' => 1));
+    }    
+
+    /**
+     * Close a project's scope
+     *
+     * @access public
+     * @param  integer   $project_id   Project id
+     * @return bool
+     */
+    public function closeScope($project_id)
+    {
+        $project = $this->getById($project_id);
+        if ($this->tasksEstimatedHours($project_id) > $project['hour_budget'])
+            return false;
+            
+        return $this->exists($project_id) &&
+               $this->db
+                    ->table(self::TABLE)
+                    ->eq('id', $project_id)
+                    ->update(array('scope_is_open' => 0));
+    }   
+    
+    /**
+     * Check if project's scope is open
+     *
+     * @access public
+     * @param  integer   $project_id   Project id
+     * @return bool
+     */
+    public function scopeIsOpen($project_id)
+    {
+        $project = $this->getById($project_id);
+        return $project['scope_is_open'];
+    }      
+
+    /**
      * Enable public access for a project
      *
      * @access public
@@ -607,6 +656,27 @@ class ProjectModel extends Base
     }
 
     /**
+     * Return the sum of estimated hours of all tasks for a project
+     *
+     * @access public
+     * @param  integer    $project_id   Project id
+     * @return float
+     */
+    public function tasksEstimatedHours($project_id)
+    {
+        $rows = $this->db->table(TaskModel::TABLE)
+            ->columns('SUM(time_estimated) AS time_estimated')
+            ->eq('project_id', $project_id)
+            ->findAll();
+
+        $estimatedHours = 0;
+        foreach ($rows as $row)
+            $estimatedHours += (float) $row['time_estimated'];          
+
+        return $estimatedHours;
+    }    
+
+    /**
      * Change usage of global tags
      *
      * @param  integer $project_id  Project id
@@ -621,4 +691,6 @@ class ProjectModel extends Base
                     ->eq('id', $project_id)
                     ->save(array('enable_global_tags' => $global_tags));
     }
+
+
 }

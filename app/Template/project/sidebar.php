@@ -51,6 +51,14 @@
             <li <?= $this->app->checkMenuSelection('ProjectViewController', 'duplicate') ?>>
                 <?= $this->url->link(t('Duplicate'), 'ProjectViewController', 'duplicate', array('project_id' => $project['id'])) ?>
             </li>
+                <?php if ($project['scope_is_open']): ?>
+                    <li>
+                    <?= $this->modal->confirmLink(t('Close project\'s scope'), 'ProjectScopeController', 'confirmClose', array('project_id' => $project['id'])) ?>
+                <?php else: ?>
+                    <li>
+                    <?= $this->modal->confirmLink(t('Reopen project\'s scope'), 'ProjectScopeController', 'confirmOpen', array('project_id' => $project['id'])) ?>
+                <?php endif ?>
+            </li>     
                 <?php if ($project['is_active']): ?>
                     <li>
                     <?= $this->modal->confirmLink(t('Close this project'), 'ProjectStatusController', 'confirmDisable', array('project_id' => $project['id'])) ?>

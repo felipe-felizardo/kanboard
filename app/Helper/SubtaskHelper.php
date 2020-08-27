@@ -54,7 +54,7 @@ class SubtaskHelper extends Base
      */
     public function renderToggleStatus(array $task, array $subtask, $fragment = '', $userId = 0)
     {
-        if (! $this->helper->user->hasProjectAccess('SubtaskController', 'edit', $task['project_id'])) {
+        if (! $this->helper->user->hasProjectAccess('SubtaskStatusController', 'change', $task['project_id'])) {
             $html = $this->renderTitle($subtask);
         } else {
             $title = $this->renderTitle($subtask);

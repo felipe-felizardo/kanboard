@@ -101,8 +101,12 @@ class TaskProcedure extends BaseProcedure
             return false;
         }
 
-        if ($this->userSession->isLogged()) {
+        if ($this->userSession->isLogged()) {            
             $creator_id = $this->userSession->getId();
+        }
+
+        if ($creator_id !== 0 && ! $this->projectPermissionModel->isUserAllowedToCreateTask($project_id, $creator_id)) {
+            return false;
         }
 
         if ($category !== '')

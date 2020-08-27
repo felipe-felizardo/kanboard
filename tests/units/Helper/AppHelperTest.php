@@ -31,7 +31,7 @@ class AppHelperTest extends Base
         $this->assertEmpty($h->flashMessage());
 
         $f->failure('test & test');
-        $this->assertEquals('<div class="alert alert-error">test &amp; test</div>', $h->flashMessage());
+        $this->assertEquals('<div class="alert alert-error alert-fade-out">test &amp; test</div>', $h->flashMessage());
         $this->assertEmpty($h->flashMessage());
     }
 }

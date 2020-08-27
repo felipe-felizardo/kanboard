@@ -150,6 +150,37 @@ class ProjectPermissionModel extends Base
     }
 
     /**
+     * Return true if the user is allowed to create a task in the project
+     *
+     * @param integer $project_id
+     * @param integer $user_id
+     * @return boolean
+     */
+    public function isUserAllowedToCreateTask($project_id, $user_id)
+    {
+        if ($this->userModel->isAdmin($user_id)) {
+            return true;
+        }
+
+        if ($this->userModel->isActive($user_id)) {
+            $role = $this->projectUserRoleModel->getUserRole($project_id, $user_id);
+
+            if (! empty($role))
+            {
+                if ($role === Role::PROJECT_MANAGER) {
+                    return true;
+                }
+    
+                if ($this->projectModel->scopeIsOpen($project_id)) {
+                    return $role !== Role::PROJECT_VIEWER;
+                }           
+            }
+        }
+
+        return false;
+    }    
+
+    /**
      * Return true if the user is member
      *
      * @access public

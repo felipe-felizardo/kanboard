@@ -39,6 +39,14 @@
     <?php endif ?>
 
     <li><?= t('Task limit: ') ?><?= $project['task_limit'] ? $project['task_limit'] : '∞' ?></li>
+    
+    <br>
+
+    <li><strong><?= $project['scope_is_open'] ? t('The project scope is OPEN') : t('The project scope is CLOSED') ?></strong></li>
+
+    <li><?= t('Programming hours provision: ') ?><?= $project['hour_budget'] ? $project['hour_budget'] : '∞' ?></li>
+
+    <li><?= t('Provisioned programming hours: ') ?><?= $estimatedHours ?></li>
 </ul>
 
 <?php if (! empty($project['description'])): ?>

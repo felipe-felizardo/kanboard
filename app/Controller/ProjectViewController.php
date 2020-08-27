@@ -21,9 +21,10 @@ class ProjectViewController extends BaseController
         $columns = $this->columnModel->getAllWithTaskCount($project['id']);
 
         $this->response->html($this->helper->layout->project('project_view/show', array(
-            'project' => $project,
-            'columns' => $columns,
-            'title'   => $project['name'],
+            'project'        => $project,
+            'columns'        => $columns,
+            'title'          => $project['name'],
+            'estimatedHours' => $this->projectModel->tasksEstimatedHours($project['id']),
         )));
     }
 
