@@ -24,6 +24,9 @@
         <?= $this->form->text('identifier', $values, $errors, array('maxlength="50"', 'tabindex="3"')) ?>
         <p class="form-help"><?= t('The project identifier is optional and must be alphanumeric, example: MYPROJECT.') ?></p>
 
+        <?= $this->form->label(t('Programming hours budget'), 'hour_budget') ?>
+        <?= $this->form->number('hour_budget', $values, $errors, array('autofocus', 'required')) ?>  
+
         <?= $this->form->label(t('Description'), 'description') ?>
         <?= $this->form->textEditor('description', $values, $errors, array('tabindex' => 4)) ?>
 
