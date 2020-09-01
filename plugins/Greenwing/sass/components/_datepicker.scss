@@ -1,0 +1,18 @@
+.ui-widget-content {
+    border: 1px solid #ddd;
+    background: $default-bg-color-5;
+    color: #fff;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+    border: 1px solid $default-bg-color-10;
+    background: $default-bg-color-5;
+    font-weight: normal;
+    color: #fff;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
+    background: $primary-color;
+    font-weight: normal;
+    color: $default-bg-color-10;
+}

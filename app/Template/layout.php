@@ -26,11 +26,13 @@
         <?= $this->hook->asset('css', 'template:layout:css') ?>
         <?= $this->hook->asset('js', 'template:layout:js') ?>
 
-        <link rel="icon" type="image/png" href="<?= $this->url->dir() ?>assets/img/favicon.png">
-        <link rel="apple-touch-icon" href="<?= $this->url->dir() ?>assets/img/touch-icon-iphone.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="<?= $this->url->dir() ?>assets/img/touch-icon-ipad.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="<?= $this->url->dir() ?>assets/img/touch-icon-iphone-retina.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="<?= $this->url->dir() ?>assets/img/touch-icon-ipad-retina.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="<?= $this->url->dir() ?>assets/img/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="<?= $this->url->dir() ?>assets/img/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="<?= $this->url->dir() ?>assets/img/favicon-16x16.png">
+        <link rel="manifest" href="<?= $this->url->dir() ?>assets/img/site.webmanifest">
+        <link rel="mask-icon" href="<?= $this->url->dir() ?>assets/img/safari-pinned-tab.svg" color="#2d3560">
+        <meta name="msapplication-TileColor" content="#2d3560">
+        <meta name="theme-color" content="#ffffff">
 
         <title>
             <?php if (isset($page_title)): ?>
