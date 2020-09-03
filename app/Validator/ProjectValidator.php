@@ -55,7 +55,6 @@ class ProjectValidator extends BaseValidator
 
         $rules = array(
             new Validators\Required('name', t('The project name is required')),
-            new Validators\Required('hour_budget', t('The hour budget is required')),
         );
 
         $v = new Validator($values, array_merge($rules, $this->commonValidationRules()));
