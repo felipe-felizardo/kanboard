@@ -53,7 +53,7 @@ class ProjectRoleHelperTest extends Base
         $this->assertEquals(1, $projectModel->create(array('name' => 'Test')));
         $this->assertTrue($projectUserRole->addUser(1, 2, Role::PROJECT_MEMBER));
 
-        $this->assertTrue($projectRoleHelper->canCreateTaskInColumn(1, 1));
+        $this->assertFalse($projectRoleHelper->canCreateTaskInColumn(1, 1));
     }
 
     public function testCanCreateTaskInColumnWithCustomProjectRole()

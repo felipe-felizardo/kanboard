@@ -273,7 +273,7 @@ class ProcedureAuthorizationTest extends BaseProcedureTest
         ));
 
         $this->assertNotFalse($projectId);
-        $this->assertTrue($this->manager->addProjectUser($projectId, $this->userUserId, 'project-viewer'));
+        $this->assertTrue($this->manager->addProjectUser($projectId, $this->userUserId, 'project-member'));
 
         $taskId = $this->manager->createTask('My Task', $projectId);
         $this->assertNotFalse($taskId);
@@ -293,7 +293,7 @@ class ProcedureAuthorizationTest extends BaseProcedureTest
         ));
 
         $this->assertNotFalse($projectId);
-        $this->assertTrue($this->manager->addProjectUser($projectId, $this->userUserId, 'project-member'));
+        $this->assertTrue($this->manager->addProjectUser($projectId, $this->userUserId, 'project-manager'));
 
         $taskId = $this->user->createTask('My Task', $projectId);
         $this->assertNotFalse($taskId);
