@@ -158,7 +158,7 @@ class ProjectRoleHelperTest extends Base
         $this->assertTrue($projectUserRole->addUser(1, 2, 'Custom Role'));
 
         $task = $taskFinderModel->getById(1);
-        $this->assertFalse($projectRoleHelper->canRemoveTask($task));
+        $this->assertTrue($projectRoleHelper->canRemoveTask($task));
     }
 
     public function testCanChangeAssigneeWithCustomProjectRoleAndRestriction()
