@@ -53,7 +53,7 @@ class ProjectRoleHelperTest extends Base
         $this->assertEquals(1, $projectModel->create(array('name' => 'Test')));
         $this->assertTrue($projectUserRole->addUser(1, 2, Role::PROJECT_MEMBER));
 
-        $this->assertTrue($projectRoleHelper->canCreateTaskInColumn(1, 1));
+        $this->assertFalse($projectRoleHelper->canCreateTaskInColumn(1, 1));
     }
 
     public function testCanCreateTaskInColumnWithCustomProjectRole()
@@ -75,7 +75,7 @@ class ProjectRoleHelperTest extends Base
         $this->assertEquals(1, $projectRoleModel->create(1, 'Custom Role'));
         $this->assertTrue($projectUserRole->addUser(1, 2, 'Custom Role'));
 
-        $this->assertTrue($projectRoleHelper->canCreateTaskInColumn(1, 1));
+        $this->assertFalse($projectRoleHelper->canCreateTaskInColumn(1, 1));
     }
 
     public function testCanCreateTaskInColumnWithCustomProjectRoleAndRestrictions()
@@ -102,7 +102,7 @@ class ProjectRoleHelperTest extends Base
         $this->assertEquals(1, $projectRoleRestrictionModel->create(1, 1, ProjectRoleRestrictionModel::RULE_TASK_CREATION));
         $this->assertEquals(1, $columnRestrictionModel->create(1, 1, 1, ColumnRestrictionModel::RULE_ALLOW_TASK_CREATION));
 
-        $this->assertTrue($projectRoleHelper->canCreateTaskInColumn(1, 1));
+        $this->assertFalse($projectRoleHelper->canCreateTaskInColumn(1, 1));
         $this->assertFalse($projectRoleHelper->canCreateTaskInColumn(1, 2));
     }
 
@@ -251,7 +251,7 @@ class ProjectRoleHelperTest extends Base
         $this->assertEquals(1, $projectModel->create(array('name' => 'Test')));
         $this->assertTrue($projectUserRole->addUser(1, 2, Role::PROJECT_MEMBER));
 
-        $this->assertTrue($projectRoleHelper->canChangeTaskStatusInColumn(1, 1));
+        $this->assertFalse($projectRoleHelper->canChangeTaskStatusInColumn(1, 1));
     }
 
     public function testCanChangeTaskStatusInColumnWithCustomProjectRole()
@@ -273,7 +273,7 @@ class ProjectRoleHelperTest extends Base
         $this->assertEquals(1, $projectRoleModel->create(1, 'Custom Role'));
         $this->assertTrue($projectUserRole->addUser(1, 2, 'Custom Role'));
 
-        $this->assertTrue($projectRoleHelper->canChangeTaskStatusInColumn(1, 1));
+        $this->assertFalse($projectRoleHelper->canChangeTaskStatusInColumn(1, 1));
     }
 
     public function testCanChangeTaskStatusInColumnWithCustomProjectRoleAndRestrictions()
@@ -300,7 +300,7 @@ class ProjectRoleHelperTest extends Base
         $this->assertEquals(1, $projectRoleRestrictionModel->create(1, 1, ProjectRoleRestrictionModel::RULE_TASK_OPEN_CLOSE));
         $this->assertEquals(1, $columnRestrictionModel->create(1, 1, 1, ColumnRestrictionModel::RULE_ALLOW_TASK_OPEN_CLOSE));
 
-        $this->assertTrue($projectRoleHelper->canChangeTaskStatusInColumn(1, 1));
+        $this->assertFalse($projectRoleHelper->canChangeTaskStatusInColumn(1, 1));
         $this->assertFalse($projectRoleHelper->canChangeTaskStatusInColumn(1, 2));
     }
 
