@@ -106,6 +106,7 @@ return array(
     'The id is required' => 'O ID é obrigatório',
     'The project id is required' => 'O ID do projeto é obrigatório',
     'The project name is required' => 'O nome do projeto é obrigatório',
+    'The hour budget is required' => 'O orçamento de horas do projeto é obrigatório',
     'The title is required' => 'O título é obrigatório',
     'Settings saved successfully.' => 'Configurações salvas com sucesso.',
     'Unable to save your settings.' => 'Não é possível salvar suas configurações.',
