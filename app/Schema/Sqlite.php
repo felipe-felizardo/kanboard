@@ -8,7 +8,13 @@ use Kanboard\Core\Security\Token;
 use Kanboard\Core\Security\Role;
 use PDO;
 
-const VERSION = 125;
+const VERSION = 126;
+
+function version_126(PDO $pdo)
+{
+    $pdo->exec('ALTER TABLE subtask_time_tracking ADD COLUMN work INTEGER DEFAULT 0');
+    $pdo->exec('ALTER TABLE subtasks ADD COLUMN description TEXT');
+}
 
 function version_125(PDO $pdo)
 {
