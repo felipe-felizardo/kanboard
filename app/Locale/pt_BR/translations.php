@@ -1363,6 +1363,7 @@ return array(
     'Stop the timer of all subtasks when moving a task to another column' => 'Parar o temporizador de todas as subtarefas quando mover a tarefa para outra coluna',
     'Subtask Title' => 'Título da subtarefa',
     'Add a subtask and activate the timer when moving a task to another column' => 'Adicionar uma subtarefa e ativar o temporizador quando mover a tarefa para outra coluna',
+    'Add a subtask when creating a task in a column' => 'Adicionar uma subtarefa quando uma tarefa for criada em uma determinada coluna',
     'days' => 'dias',
     'minutes' => 'minutos',
     'seconds' => 'segundos',
