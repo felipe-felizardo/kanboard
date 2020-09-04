@@ -21,6 +21,14 @@ class SubtaskTimeTrackingModel extends Base
     const TABLE = 'subtask_time_tracking';
 
     /**
+     * Indicates the type of work that time is being tracked
+     *
+     * @var integer
+     */
+    const TYPE_DEVELOPMENT = 0;
+    const TYPE_TEST = 1;
+
+    /**
      * Get query to check if a timer is started for the given user and subtask
      *
      * @access public
