@@ -28,6 +28,8 @@ class SubtaskModel extends Base
     const STATUS_TODO = 0;
     const STATUS_INPROGRESS = 1;
     const STATUS_DONE = 2;
+    const STATUS_STOPPED = 3;
+    const STATUS_FAILED = 4;
 
     /**
      * Events
