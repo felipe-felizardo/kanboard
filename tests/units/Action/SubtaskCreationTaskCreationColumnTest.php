@@ -3,6 +3,7 @@
 use Kanboard\Action\SubtaskCreationTaskCreationColumn;
 use Kanboard\EventBuilder\TaskEventBuilder;
 use Kanboard\Model\ProjectModel;
+use Kanboard\Model\SubtaskModel;
 use Kanboard\Model\TaskCreationModel;
 use Kanboard\Model\TaskFinderModel;
 use Kanboard\Model\TaskModel;
