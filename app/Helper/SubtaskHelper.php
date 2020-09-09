@@ -154,10 +154,48 @@ class SubtaskHelper extends Base
         switch ($subtask['status']) {
             case SubtaskModel::STATUS_TODO:
                 return t('Subtask not started');
+            case SubtaskModel::STATUS_DEV_INPROGRESS:
+                return t('Under development');
+            case SubtaskModel::STATUS_DEV_STOPPED:
+                return t('Development stopped');
+            case SubtaskModel::STATUS_DEV_DONE: 
+                return t('Development done');
+            case SubtaskModel::STATUS_TEST_INPROGRESS:
+                return t('Test in progress');
+            case SubtaskModel::STATUS_TEST_STOPPED: 
+                return t('Test stopped');
+            case SubtaskModel::STATUS_TEST_FAILED;
+                return t('Test failed');
+            case SubtaskModel::STATUS_TEST_OK;
+                return t('Homologated');
             case SubtaskModel::STATUS_INPROGRESS:
                 return t('Subtask currently in progress');
             case SubtaskModel::STATUS_DONE:
                 return t('Subtask completed');
+        }
+
+        return '';
+    }
+
+    public function getSubtaskActionStatusChange(int $newStatus)
+    {
+        switch ($newStatus) {
+            case SubtaskModel::STATUS_TODO:
+                return t('Set as todo');
+            case SubtaskModel::STATUS_DEV_INPROGRESS:
+                return t('Start development');
+            case SubtaskModel::STATUS_DEV_STOPPED:
+                return t('Stop development');
+            case SubtaskModel::STATUS_DEV_DONE: 
+                return t('Finish development');
+            case SubtaskModel::STATUS_TEST_INPROGRESS:
+                return t('Start test');
+            case SubtaskModel::STATUS_TEST_STOPPED: 
+                return t('Stop test');
+            case SubtaskModel::STATUS_TEST_FAILED;
+                return t('Fail test');
+            case SubtaskModel::STATUS_TEST_OK;
+                return t('Homolog subtask');
         }
 
         return '';

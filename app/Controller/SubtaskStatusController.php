@@ -11,6 +11,46 @@ namespace Kanboard\Controller;
 class SubtaskStatusController extends BaseController
 {
     /**
+     * Dialog to comment the ending of the status
+     *
+     * @access public
+     */
+    public function end()
+    {
+        $task = $this->getTask();
+        $subtask = $this->getSubtask($task);
+        $status = $this->request->getStringParam('status');
+        $values = array();
+        $errors = array();
+
+        $this->response->html($this->template->render('subtask/end', array(
+            'values' => $values,
+            'errors' => $errors,
+            'status' => $status, 
+            'task' => $task, 
+            'project_id' => $task['project_id'], 
+            'subtask_id' => $subtask['id'])));
+    }
+
+    /**
+     * Confirmation dialog to begin subtask's development or test
+     *
+     * @access public
+     */
+    public function begin()
+    {
+        $task = $this->getTask();
+        $subtask = $this->getSubtask($task);
+        $status = $this->request->getStringParam('status');
+
+        $this->response->html($this->template->render('subtask/start', array(
+            'subtask' => $subtask,
+            'task' => $task,
+            'status' => $status,
+        )));
+    }
+
+    /**
      * Change status to the next status: Toto -> In Progress -> Done
      *
      * @access public
@@ -33,6 +73,23 @@ class SubtaskStatusController extends BaseController
         }
 
         $this->response->html($html);
+    }
+
+    /**
+     * Toggle status
+     *
+     * @access public
+     */
+    public function toggle()
+    {
+        $task = $this->getTask();
+        $subtask = $this->getSubtask($task);
+        $status = $this->request->getStringParam('status');
+
+        $status = $this->subtaskStatusModel->toggle($subtask['id'], $status);
+        $subtask['status'] = $status;
+
+        $this->response->redirect($this->helper->url->to('TaskViewController', 'show', array('project_id' => $task['project_id'], 'task_id' => $task['id']), 'subtasks'), true);
     }
 
     /**

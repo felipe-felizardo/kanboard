@@ -38,9 +38,40 @@ class SubtaskStatusModel extends Base
     {
         return $this->configModel->get('subtask_restriction') == 1 &&
             $this->db->table(SubtaskModel::TABLE)
-                ->eq('status', SubtaskModel::STATUS_INPROGRESS)
+                ->eq('status', SubtaskModel::STATUS_DEV_INPROGRESS)
+                ->eq('user_id', $user_id)
+                ->exists() ||
+            $this->db->table(SubtaskModel::TABLE)
+                ->eq('status', SubtaskModel::STATUS_TEST_INPROGRESS)
                 ->eq('user_id', $user_id)
                 ->exists();
+
+    }
+
+    /**
+     * Change the status of subtask
+     *
+     * @access public
+     * @param  integer  $subtask_id
+     * @return boolean|integer
+     */
+    public function toggle($subtask_id, $status)
+    {
+        $subtask = $this->subtaskModel->getById($subtask_id);
+
+        $values = array(
+            'id' => $subtask['id'],
+            'status' => $status,
+            'task_id' => $subtask['task_id'],
+        );
+
+        if (empty($subtask['user_id']) && $this->userSession->isLogged()) {
+            $values['user_id'] = $this->userSession->getId();
+            $subtask['user_id'] = $values['user_id'];
+        }
+
+        $this->subtaskTimeTrackingModel->toggleTimer($subtask_id, $subtask['user_id'], $status);
+        return $this->subtaskModel->update($values) ? $status : false;
     }
 
     /**

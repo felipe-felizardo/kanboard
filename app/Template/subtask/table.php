@@ -6,6 +6,7 @@
     <thead>
         <tr>
             <th><?= t('Title') ?></th>
+            <th><?= t('Status') ?></th>
             <th class="column-10"><?= t('Assignee') ?></th>
             <?= $this->hook->render('template:subtask:table:header:before-timetracking') ?>
             <th class="column-30"><?= t('Time tracking') ?></th>
@@ -26,6 +27,15 @@
                 <?= $this->subtask->renderToggleStatus($task, $subtask, 'table') ?>
               </div>
             </td>
+            <td>
+                <div class="subtask-table-td">
+                    <?= $this->subtask->getSubtaskTooltip($subtask) ?>     
+                    <?= $this->render('subtask/status', array(
+                        'task' => $task,
+                        'subtask' => $subtask,
+                    )) ?>      
+                </div> 
+            </td>          
             <td>
                 <?php if (! empty($subtask['username'])): ?>
                     <?= $this->text->e($subtask['name'] ?: $subtask['username']) ?>
