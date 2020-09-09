@@ -12,7 +12,8 @@ const VERSION = 117;
 
 function version_117(PDO $pdo)
 {
-    $pdo->exec('ALTER TABLE "subtask_time_tracking" ADD COLUMN work INTEGER DEFAULT 0');
+    $pdo->exec('ALTER TABLE "subtask_time_tracking" ADD COLUMN category INTEGER DEFAULT 0');
+    $pdo->exec('ALTER TABLE "subtask_time_tracking" ADD COLUMN comment TYPE TEXT');
     $pdo->exec('ALTER TABLE "subtasks" ADD COLUMN description TYPE TEXT');
 }
 
