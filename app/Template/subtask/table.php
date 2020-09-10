@@ -29,11 +29,8 @@
             </td>
             <td>
                 <div class="subtask-table-td">
-                    <?= $this->subtask->getSubtaskTooltip($subtask) ?>     
-                    <?= $this->render('subtask/status', array(
-                        'task' => $task,
-                        'subtask' => $subtask,
-                    )) ?>      
+                    <?= $this->subtask->getSubtaskTooltip($subtask) ?>    
+                    <?= $this->subtask->renderChooseStatus($task, $subtask) ?>     
                 </div> 
             </td>          
             <td>
