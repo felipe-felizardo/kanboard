@@ -144,7 +144,7 @@ class SubtaskTimeTrackingModel extends Base
      * @param  integer $status
      * @return boolean
      */
-    public function toggleTimer($subtask_id, $user_id, $status)
+    public function toggleTimer($subtask_id, $user_id, $status, $comment = "")
     {
         if ($status > 3)
             $category = self::CATEGORY_TEST;
@@ -152,14 +152,15 @@ class SubtaskTimeTrackingModel extends Base
             $category = self::CATEGORY_DEVELOPMENT;
 
         if ($this->configModel->get('subtask_time_tracking') == 1) {
-            if ($status == SubtaskModel::STATUS_DEV_INPROGRESS) {
-                return $this->subtaskTimeTrackingModel->logStartTime($subtask_id, $user_id, $category);
-            } elseif ($status == SubtaskModel::STATUS_TEST_INPROGRESS) {
+            if ($status == SubtaskModel::STATUS_DEV_INPROGRESS || $status == SubtaskModel::STATUS_TEST_INPROGRESS) {
                 return $this->subtaskTimeTrackingModel->logStartTime($subtask_id, $user_id, $category);
             } elseif (
-                $status == SubtaskModel::STATUS_DEV_STOPPED || $status == SubtaskModel::STATUS_DEV_DONE || 
-                $status == SubtaskModel::STATUS_TEST_STOPPED || $status == SubtaskModel::STATUS_TEST_FAILED || $status == SubtaskModel::STATUS_TEST_OK) {
-                return $this->subtaskTimeTrackingModel->logEndTime($subtask_id, $user_id, $category);
+                $status == SubtaskModel::STATUS_DEV_STOPPED || 
+                $status == SubtaskModel::STATUS_DEV_DONE || 
+                $status == SubtaskModel::STATUS_TEST_STOPPED || 
+                $status == SubtaskModel::STATUS_TEST_FAILED || 
+                $status == SubtaskModel::STATUS_TEST_OK ) {
+                return $this->subtaskTimeTrackingModel->logEndTime($subtask_id, $user_id, $category, $comment);
             }
         }
 
@@ -191,7 +192,7 @@ class SubtaskTimeTrackingModel extends Base
      * @param  integer   $user_id
      * @return boolean
      */
-    public function logEndTime($subtask_id, $user_id, $time_tracking_category)
+    public function logEndTime($subtask_id, $user_id, $time_tracking_category, $comment)
     {
         $time_spent = $this->getTimeSpent($subtask_id, $user_id);
 
@@ -207,6 +208,7 @@ class SubtaskTimeTrackingModel extends Base
                     ->update(array(
                         'end' => time(),
                         'time_spent' => $time_spent,
+                        'comment' => $comment,
                     ));
     }
 

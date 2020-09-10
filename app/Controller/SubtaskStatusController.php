@@ -15,14 +15,12 @@ class SubtaskStatusController extends BaseController
      *
      * @access public
      */
-    public function end()
+    public function end(array $values = array(), array $errors = array())
     {
         $task = $this->getTask();
         $subtask = $this->getSubtask($task);
         $status = $this->request->getStringParam('status');
-        $values = array();
-        $errors = array();
-
+   
         $this->response->html($this->template->render('subtask/end', array(
             'values' => $values,
             'errors' => $errors,
@@ -51,6 +49,51 @@ class SubtaskStatusController extends BaseController
     }
 
     /**
+     * Toggle to a end status (end of a iteration)
+     *
+     * @access public
+     */
+    public function toggleEnd()
+    {
+        $task = $this->getTask();
+        $subtask = $this->getSubtask($task);
+        $status = $this->request->getStringParam('status');
+        $values = $this->request->getValues();
+        $values['status'] = $status;
+        $values['id'] = $subtask['id'];
+        $values['task_id'] = $task['id'];
+        $comment = "";
+
+        list($valid, $errors) = $this->subtaskStatusValidator->validateEndIteration($values);
+
+        if ($valid)
+        {
+            if ($values != null)
+                $comment = $values['comment'];
+
+            $status = $this->subtaskStatusModel->toggle($subtask['id'], $status, $comment);
+            return $this->response->redirect($this->helper->url->to('TaskViewController', 'show', array('project_id' => $task['project_id'], 'task_id' => $task['id']), 'subtasks'), true);
+        }
+
+        return $this->end($values, $errors);
+    }
+
+    /**
+     * Toggle to a start status (start of a iteration)
+     *
+     * @access public
+     */
+    public function toggleStart()
+    {
+        $task = $this->getTask();
+        $subtask = $this->getSubtask($task);
+        $status = $this->request->getStringParam('status');
+
+        $status = $this->subtaskStatusModel->toggle($subtask['id'], $status);
+        return $this->response->redirect($this->helper->url->to('TaskViewController', 'show', array('project_id' => $task['project_id'], 'task_id' => $task['id']), 'subtasks'), true);
+    }
+
+    /**
      * Change status to the next status: Toto -> In Progress -> Done
      *
      * @access public
@@ -73,23 +116,6 @@ class SubtaskStatusController extends BaseController
         }
 
         $this->response->html($html);
-    }
-
-    /**
-     * Toggle status
-     *
-     * @access public
-     */
-    public function toggle()
-    {
-        $task = $this->getTask();
-        $subtask = $this->getSubtask($task);
-        $status = $this->request->getStringParam('status');
-
-        $status = $this->subtaskStatusModel->toggle($subtask['id'], $status);
-        $subtask['status'] = $status;
-
-        $this->response->redirect($this->helper->url->to('TaskViewController', 'show', array('project_id' => $task['project_id'], 'task_id' => $task['id']), 'subtasks'), true);
     }
 
     /**

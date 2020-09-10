@@ -1454,4 +1454,5 @@ return array(
     'Homolog subtask' => 'Homologar subtarefa',
     'Do you really want to' => 'Você realmente deseja',
     'of the subtask:' => 'da subtarefa:',
+    'The comment is required' => 'É obrigatório fazer um comentário'
 );

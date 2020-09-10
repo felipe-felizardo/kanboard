@@ -55,7 +55,7 @@ class SubtaskStatusModel extends Base
      * @param  integer  $subtask_id
      * @return boolean|integer
      */
-    public function toggle($subtask_id, $status)
+    public function toggle($subtask_id, $status, $comment = "")
     {
         $subtask = $this->subtaskModel->getById($subtask_id);
 
@@ -70,7 +70,7 @@ class SubtaskStatusModel extends Base
             $subtask['user_id'] = $values['user_id'];
         }
 
-        $this->subtaskTimeTrackingModel->toggleTimer($subtask_id, $subtask['user_id'], $status);
+        $this->subtaskTimeTrackingModel->toggleTimer($subtask_id, $subtask['user_id'], $status, $comment);
         return $this->subtaskModel->update($values) ? $status : false;
     }
 

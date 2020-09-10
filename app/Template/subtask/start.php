@@ -14,7 +14,7 @@
 
     <?= $this->modal->confirmButtons(
         'SubtaskStatusController',
-        'toggle', 
+        'toggleStart', 
         array('status' => $status, 'task_id' => $task['id'], 'project_id' => $task['project_id'], 'subtask_id' => $subtask['id'])
     ) ?>
 </div>
