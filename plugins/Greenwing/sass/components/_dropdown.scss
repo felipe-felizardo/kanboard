@@ -7,7 +7,7 @@
     min-width: 285px;
     list-style: none;
     margin: 3px 0 0 1px;
-    padding: 6px 0;
+    padding: 0;
     background-color: $default-bg-color-5;
     border: 1px solid #b2b2b2;
     border-radius: 3px;
@@ -53,5 +53,30 @@
 
 .dropdown-menu-link-text,
 .dropdown-menu-link-icon {
-  color: $primary-color;
+    color: white;
+    text-decoration: none
+}
+
+td a.dropdown-menu strong {
+  color: $primary-color
+}
+
+td a.dropdown-menu strong i {
+  color: $primary-color
+}
+
+td a.dropdown-menu i {
+  color: $primary-color
+}
+
+td a.dropdown-menu:hover strong {
+  color: $primary-color
+}
+
+td a.dropdown-menu:hover strong i {
+  color: $primary-color
+}
+
+td a.dropdown-menu:hover i {
+  color: $primary-color
 }

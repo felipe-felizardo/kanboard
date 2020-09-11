@@ -2,10 +2,10 @@ table {
   border-collapse: separate;
   border-spacing: 0;
 
-  &table-striped {
+  &.table-striped {
     tr {
       &:nth-child(odd) {
-        background: $default-bg-color-10;
+        background: $default-bg-color;
         &:hover,
         &:focus {
           background-color: $default-bg-color-15;
@@ -18,9 +18,10 @@ table {
   tr td {
     border-top: 0 none;
     border-left: 1px solid $default-border-color;
-    border-bottom: 1px solid $default-border-color;
+    border-bottom: 1px solid $default-bg-color;
     padding: 10px;
     border-right: 0 none;
+    background-color: $default-bg-color-10;
 
     &:last-child {
       border-right: 1px solid $default-border-color;
@@ -33,7 +34,7 @@ table {
   }
 
   tr th {
-    background-color: $default-bg-color-2;
+    background-color: $default-bg-color-5;
     border-top: 1px solid $default-border-color;
     text-align: left;
   }
@@ -141,16 +142,13 @@ table {
       &:focus {
         color: white;
       }
-
-      &:first-child {
-        margin-right: 10px;
-      }
     }
   }
 }
 
 .table-striped.table-scrolling td a i {
   padding-right: 3px;
+  padding-left: 5px;
 }
 
 .subtasks-table.table-striped.table-scrolling a {
