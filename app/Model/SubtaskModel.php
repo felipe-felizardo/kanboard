@@ -69,17 +69,14 @@ class SubtaskModel extends Base
     public function getStatusList()
     {
         return array(
-            self::STATUS_DEV_INPROGRESS => t('Development in progress'),
-            self::STATUS_DEV_STOPPED => t('Development stopped'),
-            self::STATUS_DEV_DONE => t('Development done'),
+            self::STATUS_TODO            => t('Todo'),
+            self::STATUS_DEV_INPROGRESS  => t('Development in progress'),
+            self::STATUS_DEV_STOPPED     => t('Development stopped'),
+            self::STATUS_DEV_DONE        => t('Development done'),
             self::STATUS_TEST_INPROGRESS => t('Test in progress'),
-            self::STATUS_TEST_STOPPED => t('Test stopped'),
-            self::STATUS_TEST_FAILED => t('Test failed'),
-            self::STATUS_DONE => t('Test OK'),
-
-            self::STATUS_TODO           => t('Todo'),
-            self::STATUS_INPROGRESS     => t('In progress'),
-            self::STATUS_DONE           => t('Done'),
+            self::STATUS_TEST_STOPPED    => t('Test stopped'),
+            self::STATUS_TEST_FAILED     => t('Test failed'),
+            self::STATUS_DONE            => t('Aproved'),
         );
     }
 

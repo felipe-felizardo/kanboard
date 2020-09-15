@@ -231,7 +231,7 @@ class SubtaskHelper extends Base
             case SubtaskModel::STATUS_TEST_FAILED;
                 return t('Test failed');
             case SubtaskModel::STATUS_DONE;
-                return t('Homologated');
+                return t('Aproved');
         }
 
         return '';
@@ -255,7 +255,7 @@ class SubtaskHelper extends Base
             case SubtaskModel::STATUS_TEST_FAILED;
                 return t('Fail test');
             case SubtaskModel::STATUS_DONE;
-                return t('Homolog subtask');
+                return t('Aprove');
         }
 
         return '';

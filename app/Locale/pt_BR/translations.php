@@ -1443,7 +1443,7 @@ return array(
     'Test in progress' => 'Teste em andamento',
     'Test stopped' => 'Teste parado',
     'Test failed' => 'Reprovado em teste',
-    'Homologated' => 'Homologado',
+    'Aproved' => 'Aprovado',
     'Set as todo' => 'Marcar como a fazer',
     'Start development' => 'Iniciar desenvolvimento',
     'Stop development' => 'Pausar desenvolvimento',
@@ -1451,7 +1451,7 @@ return array(
     'Start test' => 'Iniciar teste',
     'Stop test' => 'Pausar teste',
     'Fail test' => 'Reprovar subtarefa',
-    'Homolog subtask' => 'Homologar subtarefa',
+    'Aprove' => 'Aprovar subtarefa',
     'Do you really want to' => 'Você realmente deseja',
     'of the subtask:' => 'da subtarefa:',
     'The comment is required' => 'É obrigatório fazer um comentário'
