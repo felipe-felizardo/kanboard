@@ -159,7 +159,7 @@ class SubtaskTimeTrackingModel extends Base
                 $status == SubtaskModel::STATUS_DEV_DONE || 
                 $status == SubtaskModel::STATUS_TEST_STOPPED || 
                 $status == SubtaskModel::STATUS_TEST_FAILED || 
-                $status == SubtaskModel::STATUS_TEST_OK ) {
+                $status == SubtaskModel::STATUS_DONE ) {
                 return $this->subtaskTimeTrackingModel->logEndTime($subtask_id, $user_id, $category, $comment);
             }
         }

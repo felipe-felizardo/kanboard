@@ -138,7 +138,7 @@ class SubtaskHelper extends Base
                 $html .= $this->helper->modal->confirm('edit', $this->getSubtaskActionStatusChange(SubtaskModel::STATUS_TEST_FAILED), 'SubtaskStatusController', 'end', array('status' => SubtaskModel::STATUS_TEST_FAILED, 'task_id' => $task['id'], 'project_id' => $task['project_id'], 'subtask_id' => $subtask['id']));
                 $html .= '</li>';
                 $html .= '<li>';
-                $html .= $this->helper->modal->confirm('edit', $this->getSubtaskActionStatusChange(SubtaskModel::STATUS_TEST_OK), 'SubtaskStatusController', 'end', array('status' => SubtaskModel::STATUS_TEST_OK, 'task_id' => $task['id'], 'project_id' => $task['project_id'], 'subtask_id' => $subtask['id']));
+                $html .= $this->helper->modal->confirm('edit', $this->getSubtaskActionStatusChange(SubtaskModel::STATUS_DONE), 'SubtaskStatusController', 'end', array('status' => SubtaskModel::STATUS_DONE, 'task_id' => $task['id'], 'project_id' => $task['project_id'], 'subtask_id' => $subtask['id']));
                 $html .= '</li>';
             break;
             case SubtaskModel::STATUS_TEST_STOPPED: 
@@ -151,7 +151,7 @@ class SubtaskHelper extends Base
                 $html .= $this->helper->modal->confirm('edit', $this->getSubtaskActionStatusChange(SubtaskModel::STATUS_DEV_INPROGRESS), 'SubtaskStatusController', 'begin', array('status' => SubtaskModel::STATUS_DEV_INPROGRESS, 'task_id' => $task['id'], 'project_id' => $task['project_id'], 'subtask_id' => $subtask['id']));
                 $html .= '</li>';
             break;
-            case SubtaskModel::STATUS_TEST_OK;
+            case SubtaskModel::STATUS_DONE;
                 $html .= '<li>';
                 $html .= $this->helper->modal->confirm('edit', $this->getSubtaskActionStatusChange(SubtaskModel::STATUS_DEV_INPROGRESS), 'SubtaskStatusController', 'begin', array('status' => SubtaskModel::STATUS_DEV_INPROGRESS, 'task_id' => $task['id'], 'project_id' => $task['project_id'], 'subtask_id' => $subtask['id']));
                 $html .= '</li>';
@@ -230,12 +230,8 @@ class SubtaskHelper extends Base
                 return t('Test stopped');
             case SubtaskModel::STATUS_TEST_FAILED;
                 return t('Test failed');
-            case SubtaskModel::STATUS_TEST_OK;
+            case SubtaskModel::STATUS_DONE;
                 return t('Homologated');
-            case SubtaskModel::STATUS_INPROGRESS:
-                return t('Subtask currently in progress');
-            case SubtaskModel::STATUS_DONE:
-                return t('Subtask completed');
         }
 
         return '';
@@ -258,7 +254,7 @@ class SubtaskHelper extends Base
                 return t('Stop test');
             case SubtaskModel::STATUS_TEST_FAILED;
                 return t('Fail test');
-            case SubtaskModel::STATUS_TEST_OK;
+            case SubtaskModel::STATUS_DONE;
                 return t('Homolog subtask');
         }
 

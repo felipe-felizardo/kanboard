@@ -53,7 +53,7 @@ class SubtaskRestrictionController extends BaseController
         // Set the current subtask to "in progress"
         $this->subtaskModel->update(array(
             'id'      => $subtask['id'],
-            'status'  => SubtaskModel::STATUS_INPROGRESS,
+            'status'  => SubtaskModel::STATUS_DEV_INPROGRESS,
         ));
 
         $this->response->redirect($this->helper->url->to('TaskViewController', 'show', array('project_id' => $task['project_id'], 'task_id' => $task['id'])), true);

@@ -25,9 +25,6 @@ class SubtaskModel extends Base
      *
      * @var integer
      */
-    const STATUS_INPROGRESS = -1;
-    const STATUS_DONE = -2;
-
     const STATUS_TODO = 0;
     const STATUS_DEV_INPROGRESS = 1;
     const STATUS_DEV_STOPPED = 2;
@@ -35,7 +32,7 @@ class SubtaskModel extends Base
     const STATUS_TEST_INPROGRESS = 4;
     const STATUS_TEST_STOPPED = 5;
     const STATUS_TEST_FAILED = 6;    
-    const STATUS_TEST_OK = 7;
+    const STATUS_DONE = 7;
 
     /**
      * Events
@@ -78,7 +75,7 @@ class SubtaskModel extends Base
             self::STATUS_TEST_INPROGRESS => t('Test in progress'),
             self::STATUS_TEST_STOPPED => t('Test stopped'),
             self::STATUS_TEST_FAILED => t('Test failed'),
-            self::STATUS_TEST_OK => t('Test OK'),
+            self::STATUS_DONE => t('Test OK'),
 
             self::STATUS_TODO           => t('Todo'),
             self::STATUS_INPROGRESS     => t('In progress'),

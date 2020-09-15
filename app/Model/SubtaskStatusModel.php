@@ -22,7 +22,11 @@ class SubtaskStatusModel extends Base
     public function getSubtaskInProgress($user_id)
     {
         return $this->db->table(SubtaskModel::TABLE)
-            ->eq('status', SubtaskModel::STATUS_INPROGRESS)
+            ->eq('status', SubtaskModel::STATUS_DEV_INPROGRESS)
+            ->eq('user_id', $user_id)
+            ->findOne() ||
+        $this->db->table(SubtaskModel::TABLE)
+            ->eq('status', SubtaskModel::STATUS_TEST_INPROGRESS)
             ->eq('user_id', $user_id)
             ->findOne();
     }
