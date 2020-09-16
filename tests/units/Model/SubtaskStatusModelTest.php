@@ -51,7 +51,7 @@ class SubtaskStatusModelTest extends Base
         $this->assertEquals(0, $subtask['user_id']);
         $this->assertEquals(1, $subtask['task_id']);
 
-        $this->assertEquals(SubtaskModel::STATUS_DEV_DONE, $subtaskStatusModel->toggleStatus(1, SubtaskModel::STATUS_DEV_INPROGRESS));
+        $this->assertEquals(SubtaskModel::STATUS_DEV_DONE, $subtaskStatusModel->toggleStatus(1, SubtaskModel::STATUS_DEV_DONE));
 
         $subtask = $subtaskModel->getById(1);
         $this->assertNotEmpty($subtask);
@@ -153,7 +153,7 @@ class SubtaskStatusModelTest extends Base
         $this->assertEquals(0, $subtask['user_id']);
         $this->assertEquals(1, $subtask['task_id']);
 
-        $this->assertEquals(SubtaskModel::STATUS_DEV_DONE, $subtaskStatusModel->toggleStatus(1, SubtaskModel::STATUS_DEV_INPROGRESS));
+        $this->assertEquals(SubtaskModel::STATUS_DEV_DONE, $subtaskStatusModel->toggleStatus(1, SubtaskModel::STATUS_DEV_DONE));
 
         $subtask = $subtaskModel->getById(1);
         $this->assertNotEmpty($subtask);
