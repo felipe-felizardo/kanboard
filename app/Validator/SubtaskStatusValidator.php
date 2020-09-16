@@ -24,8 +24,8 @@ class SubtaskStatusValidator extends BaseValidator
     {
         $rules = array(
             new Validators\Required('status', t('The new status is required')),
-            new Validators\Required('comment', t('The comment is required')),
-            new Validators\MaxLength('comment', t('The maximum length is %d characters', 65535), 65535),
+            new Validators\Required('description', t('The analysis is required')),
+            new Validators\MaxLength('description', t('The maximum length is %d characters', 65535), 65535),
         );
 
         $v = new Validator($values, array_merge($rules, $this->commonValidationRules()));

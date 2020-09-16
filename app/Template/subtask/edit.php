@@ -6,6 +6,8 @@
     <?= $this->form->csrf() ?>
 
     <?= $this->subtask->renderTitleField($values, $errors, array('autofocus')) ?>
+    <?= $this->form->label(t('Analysis'), 'description') ?>
+    <?= $this->form->textEditor('description', $values, $errors, array('required' => true)) ?>
     <?= $this->subtask->renderAssigneeField($users_list, $values, $errors) ?>
     <?= $this->subtask->renderTimeEstimatedField($values, $errors) ?>
     <?= $this->subtask->renderTimeSpentField($values, $errors) ?>
