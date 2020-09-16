@@ -25,8 +25,9 @@ class SubtaskTimeTrackingModel extends Base
      *
      * @var integer
      */
-    const CATEGORY_DEVELOPMENT = 0;
-    const CATEGORY_TEST = 1;
+    const CATEGORY_MISC = 0;
+    const CATEGORY_DEVELOPMENT = 1;
+    const CATEGORY_TEST = 2;
 
     /**
      * Get query to check if a timer is started for the given user and subtask
@@ -175,7 +176,7 @@ class SubtaskTimeTrackingModel extends Base
      * @param  integer   $user_id
      * @return boolean
      */
-    public function logStartTime($subtask_id, $user_id, $time_tracking_category)
+    public function logStartTime($subtask_id, $user_id, $time_tracking_category = 0)
     {
         return
             ! $this->hasTimer($subtask_id, $user_id) &&
