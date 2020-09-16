@@ -212,24 +212,28 @@ class SubtaskTimeTrackingModelTest extends Base
         $this->assertEquals(1, $taskCreationModel->create(array('title' => 'test 1', 'project_id' => 1, 'column_id' => 1, 'owner_id' => 1)));
         $this->assertEquals(1, $subtaskModel->create(array('title' => 'subtask #2', 'task_id' => 1, 'time_spent' => 2.2)));
         $this->assertEquals(2, $subtaskModel->create(array('title' => 'subtask #2', 'task_id' => 1)));
+        $this->assertEquals(3, $subtaskModel->create(array('title' => 'subtask #2', 'task_id' => 1)));
 
-        $this->assertTrue($subtaskTimeTrackingModel->logStartTime(1, 1));
-        $this->assertTrue($subtaskTimeTrackingModel->logStartTime(2, 1));
+        $this->assertTrue($subtaskTimeTrackingModel->logStartTime(1, 1, SubtaskTimeTrackingModel::CATEGORY_DEVELOPMENT));
+        $this->assertTrue($subtaskTimeTrackingModel->logStartTime(2, 1, SubtaskTimeTrackingModel::CATEGORY_TEST));
+        $this->assertTrue($subtaskTimeTrackingModel->logStartTime(3, 1, SubtaskTimeTrackingModel::CATEGORY_MISC));
 
         // Fake start time
         $this->container['db']->table(SubtaskTimeTrackingModel::TABLE)->update(array('start' => time() - 3600));
 
-        $this->assertTrue($subtaskTimeTrackingModel->logEndTime(1, 1));
-        $this->assertTrue($subtaskTimeTrackingModel->logEndTime(2, 1));
+        $this->assertTrue($subtaskTimeTrackingModel->logEndTime(1, 1, SubtaskTimeTrackingModel::CATEGORY_DEVELOPMENT));
+        $this->assertTrue($subtaskTimeTrackingModel->logEndTime(2, 1, SubtaskTimeTrackingModel::CATEGORY_TEST));
+        $this->assertTrue($subtaskTimeTrackingModel->logEndTime(3, 1, SubtaskTimeTrackingModel::CATEGORY_MISC));
 
         $timesheet = $subtaskTimeTrackingModel->getUserTimesheet(1);
         $this->assertNotEmpty($timesheet);
-        $this->assertCount(2, $timesheet);
+        $this->assertCount(3, $timesheet);
         $this->assertEquals(3600, $timesheet[0]['end'] - $timesheet[0]['start'], 'Wrong timestamps', 1);
         $this->assertEquals(3600, $timesheet[1]['end'] - $timesheet[1]['start'], 'Wrong timestamps', 1);
+        $this->assertEquals(3600, $timesheet[2]['end'] - $timesheet[2]['start'], 'Wrong timestamps', 1);
 
         $time = $subtaskTimeTrackingModel->calculateSubtaskTime(1);
-        $this->assertEquals(4.2, $time['time_spent'], 'Total spent', 0.01);
+        $this->assertEquals(3.2, $time['time_spent'], 'Total spent', 0.01);
         $this->assertEquals(0, $time['time_estimated'], 'Total estimated', 0.01);
 
         $time = $subtaskTimeTrackingModel->calculateSubtaskTime(2);
