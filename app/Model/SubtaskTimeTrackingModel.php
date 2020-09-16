@@ -193,7 +193,7 @@ class SubtaskTimeTrackingModel extends Base
      * @param  integer   $user_id
      * @return boolean
      */
-    public function logEndTime($subtask_id, $user_id, $time_tracking_category, $comment)
+    public function logEndTime($subtask_id, $user_id, $time_tracking_category = 0, $comment = '')
     {
         $time_spent = $this->getTimeSpent($subtask_id, $user_id);
 
