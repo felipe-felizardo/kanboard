@@ -14,6 +14,26 @@ use Kanboard\Core\Controller\PageNotFoundException;
 class SubtaskController extends BaseController
 {
     /**
+     * Show a subtask
+     *
+     * @access public
+     */
+    public function show()
+    {
+        $task = $this->getTask();
+        $subtask = $this->getSubtask($task);
+        $project = $this->getProject();
+        $editable = $this->request->getIntegerParam('editable');
+
+        $this->response->html($this->helper->layout->subtask('subtask_view/show', array(
+            'task' => $task,
+            'subtask' => $subtask,
+            'project' => $project,
+            'editable' => $editable
+        )));
+    }
+
+    /**
      * Creation form
      *
      * @access public

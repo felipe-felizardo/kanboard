@@ -75,6 +75,21 @@ class LayoutHelper extends Base
     }
 
     /**
+     * Common layout for subtask views
+     *
+     * @access public
+     * @param  string $template Template name
+     * @param  array  $params   Template parameters
+     * @return string
+     */
+    public function subtask($template, array $params)
+    {
+        $params['page_title'] = $params['subtask']['title'];
+        $params['title'] = $params['subtask']['title'];
+        return $this->subLayout('subtask_view/layout', null, $template, $params);
+    }
+
+    /**
      * Common layout for project views
      *
      * @access public
