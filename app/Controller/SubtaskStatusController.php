@@ -62,16 +62,12 @@ class SubtaskStatusController extends BaseController
         $values['status'] = $status;
         $values['id'] = $subtask['id'];
         $values['task_id'] = $task['id'];
-        $comment = "";
 
         list($valid, $errors) = $this->subtaskStatusValidator->validateEndIteration($values);
 
         if ($valid)
         {
-            if ($values != null)
-                $comment = $values['comment'];
-
-            $status = $this->subtaskStatusModel->toggle($subtask['id'], $status, $comment);
+            $status = $this->subtaskStatusModel->toggle($subtask['id'], $status, $values['comment']);
             return $this->response->redirect($this->helper->url->to('TaskViewController', 'show', array('project_id' => $task['project_id'], 'task_id' => $task['id']), 'subtasks'), true);
         }
 
