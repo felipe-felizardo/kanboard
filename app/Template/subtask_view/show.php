@@ -9,10 +9,8 @@
 <?= $this->hook->render('template:task:show:before-description', array('task' => $task, 'project' => $project)) ?>
 <?= $this->render('subtask_view/description', array('subtask' => $subtask)) ?>
 
-<?= $this->render('activity/project', array(
-    'title'   => t('%s\'s activity', $project['name']),
-    'events'  => $this->helper->projectActivity->getProjectEvents($project['id']),
-    'project' => $project 
-)) ?>
+<?= $this->render('activity/subtask', array(
+    'title'   => $subtask['title'],
+    'events'  => $this->helper->projectActivity->getSubtaskEvents($subtask['id']))) ?>
 
 <?= $this->hook->render('template:task:show:bottom', array('task' => $task, 'project' => $project)) ?>

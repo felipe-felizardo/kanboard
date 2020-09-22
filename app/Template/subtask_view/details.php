@@ -19,10 +19,8 @@
             <div class="task-summary-column">
                 <ul class="no-bullet">
                     <li>
-                        <?php if ($task['time_estimated']): ?>
                         <strong><?= t('Time estimated:') ?></strong>
                         <span><?= t('%s hours', $subtask['time_estimated']) ?></span>
-                        <?php endif ?>
                     </li>       
                     <?= $this->hook->render('template:task:details:second-column', array('task' => $task)) ?>
                 </ul>

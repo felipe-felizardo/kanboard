@@ -70,7 +70,7 @@ class SubtaskModel extends Base
     {
         return array(
             self::STATUS_TODO            => t('Todo'),
-            self::STATUS_DEV_INPROGRESS  => t('Development in progress'),
+            self::STATUS_DEV_INPROGRESS  => t('Under development'),
             self::STATUS_DEV_STOPPED     => t('Development stopped'),
             self::STATUS_DEV_DONE        => t('Development done'),
             self::STATUS_TEST_INPROGRESS => t('Test in progress'),

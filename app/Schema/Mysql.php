@@ -12,6 +12,7 @@ const VERSION = 139;
 
 function version_139(PDO $pdo)
 {
+    $pdo->exec('ALTER TABLE `project_activities` ADD COLUMN `subtask_id` INTEGER');
     $pdo->exec('ALTER TABLE `subtask_time_tracking` ADD COLUMN `category` INTEGER DEFAULT 0');
     $pdo->exec('ALTER TABLE `subtask_time_tracking` ADD COLUMN `comment` TEXT');
     $pdo->exec('ALTER TABLE `subtasks` ADD COLUMN `description` TEXT');

@@ -35,13 +35,17 @@ class ActivityStreamNotification extends Base implements NotificationInterface
      */
     public function notifyProject(array $project, $event_name, array $event_data)
     {
+        if (!isset($event_data['subtask']['id']))
+            $event_data['subtask']['id'] = null;
+            
         if ($this->userSession->isLogged()) {
             $this->projectActivityModel->createEvent(
                 $project['id'],
                 $event_data['task']['id'],
                 $this->userSession->getId(),
                 $event_name,
-                $event_data
+                $event_data,
+                $event_data['subtask']['id'],
             );
         }
     }

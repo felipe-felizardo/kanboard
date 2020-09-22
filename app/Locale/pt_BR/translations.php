@@ -1457,4 +1457,8 @@ return array(
     'The comment is required' => 'É obrigatório fazer um comentário',
     'Analysis' => 'Análise',
     'The analysis is required' => 'A análise é requirida',
+    'Comments:' => 'Comentários:',
+    '%s updated the subtask to the status %s' => '%s atualizou o status da subtask para %s',
+    'Task: %s' => 'Tarefa: %s',
+    'Time spent %sh' => 'Tempo gasto %sh',
 );

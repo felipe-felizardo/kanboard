@@ -13,6 +13,13 @@ use Kanboard\Core\Base;
 class SubtaskStatusModel extends Base
 {
     /**
+     * Events
+     *
+     * @var string
+     */
+    const EVENT_STATUS_UPDATE = 'subtask.status.update';
+
+    /**
      * Get the subtask in progress for this user
      *
      * @access public
@@ -74,8 +81,20 @@ class SubtaskStatusModel extends Base
             $subtask['user_id'] = $values['user_id'];
         }
 
-        $this->subtaskTimeTrackingModel->toggleTimer($subtask_id, $subtask['user_id'], $status, $comment);
-        return $this->subtaskModel->update($values) ? $status : false;
+        $status_time_spent = $this->subtaskTimeTrackingModel->toggleTimer($subtask_id, $subtask['user_id'], $status, $comment);
+        $this->subtaskModel->update($values, false) ? $status : false;
+
+        if ($comment != '')
+        {
+            $values['comment'] = $comment;
+            $values['status_time_spent'] = $status_time_spent;
+        }
+
+        return $this->queueManager->push($this->subtaskEventJob->withParams(
+            $subtask['id'], 
+            array(Self::EVENT_STATUS_UPDATE),
+            $values
+        ));
     }
 
     /**

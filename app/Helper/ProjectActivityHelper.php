@@ -6,6 +6,7 @@ use Kanboard\Core\Base;
 use Kanboard\Filter\ProjectActivityProjectIdFilter;
 use Kanboard\Filter\ProjectActivityProjectIdsFilter;
 use Kanboard\Filter\ProjectActivityTaskIdFilter;
+use Kanboard\Filter\ProjectActivitySubtaskIdFilter;
 use Kanboard\Model\ProjectActivityModel;
 
 /**
@@ -96,6 +97,23 @@ class ProjectActivityHelper extends Base
     {
         $queryBuilder = $this->projectActivityQuery
             ->withFilter(new ProjectActivityTaskIdFilter($task_id));
+
+        $queryBuilder->getQuery()->desc(ProjectActivityModel::TABLE.'.id');
+
+        return $queryBuilder->format($this->projectActivityEventFormatter);
+    }
+
+    /**
+     * Get subtask activity events
+     *
+     * @access public
+     * @param  integer $subtask_id
+     * @return array
+     */
+    public function getSubtaskEvents($subtask_id)
+    {
+        $queryBuilder = $this->projectActivityQuery
+            ->withFilter(new ProjectActivitySubtaskIdFilter($subtask_id));
 
         $queryBuilder->getQuery()->desc(ProjectActivityModel::TABLE.'.id');
 

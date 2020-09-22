@@ -201,16 +201,18 @@ class SubtaskTimeTrackingModel extends Base
             $this->updateSubtaskTimeSpent($subtask_id, $time_spent);
         }
 
-        return $this->db
-                    ->table(self::TABLE)
-                    ->eq('subtask_id', $subtask_id)
-                    ->eq('user_id', $user_id)
-                    ->eq('end', 0)
-                    ->update(array(
-                        'end' => time(),
-                        'time_spent' => $time_spent,
-                        'comment' => $comment,
-                    ));
+        $this->db
+            ->table(self::TABLE)
+            ->eq('subtask_id', $subtask_id)
+            ->eq('user_id', $user_id)
+            ->eq('end', 0)
+            ->update(array(
+                'end' => time(),
+                'time_spent' => $time_spent,
+                'comment' => $comment,
+            ));
+
+        return $time_spent;
     }
 
     /**
