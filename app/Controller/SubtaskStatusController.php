@@ -2,6 +2,8 @@
 
 namespace Kanboard\Controller;
 
+use Kanboard\Model\SubtaskModel;
+
 /**
  * Subtask Status
  *
@@ -20,14 +22,24 @@ class SubtaskStatusController extends BaseController
         $task = $this->getTask();
         $subtask = $this->getSubtask($task);
         $status = $this->request->getStringParam('status');
-   
+        $fail_motive = array();
+
+        if ($status == SubtaskModel::STATUS_TEST_FAILED)
+        {
+            $fail_motive = array(
+                t($this->helper->subtask->getSubtaskActionStatusChange(SubtaskModel::STATUS_TEST_FAILED_REQUIREMENTS)),
+                t($this->helper->subtask->getSubtaskActionStatusChange(SubtaskModel::STATUS_TEST_FAILED_PARTLY_REQUIREMENTS)),
+                t($this->helper->subtask->getSubtaskActionStatusChange(SubtaskModel::STATUS_TEST_FAILED_ANOTHER_PROBLEM)));
+        }
+
         $this->response->html($this->template->render('subtask/end', array(
             'values' => $values,
             'errors' => $errors,
             'status' => $status, 
             'task' => $task, 
             'project_id' => $task['project_id'], 
-            'subtask_id' => $subtask['id'])));
+            'subtask_id' => $subtask['id'],
+            'fail_motive' => $fail_motive)));
     }
 
     /**
@@ -56,18 +68,32 @@ class SubtaskStatusController extends BaseController
     public function toggleEnd()
     {
         $task = $this->getTask();
-        $subtask = $this->getSubtask($task);
-        $status = $this->request->getStringParam('status');
+        $subtask = $this->getSubtask($task);  
         $values = $this->request->getValues();
-        $values['status'] = $status;
+        $values['status'] = $this->request->getStringParam('status');
         $values['id'] = $subtask['id'];
         $values['task_id'] = $task['id'];
+
+        if ($values['status'] == SubtaskModel::STATUS_TEST_FAILED)
+        {        
+            switch ($values['fail_motive']) {
+                case '0':
+                    $values['status'] = SubtaskModel::STATUS_TEST_FAILED_REQUIREMENTS;
+                    break;
+                case '1':
+                    $values['status'] = SubtaskModel::STATUS_TEST_FAILED_PARTLY_REQUIREMENTS;
+                    break;    
+                case '2':
+                    $values['status'] = SubtaskModel::STATUS_TEST_FAILED_ANOTHER_PROBLEM;
+                    break;              
+            }
+        }
 
         list($valid, $errors) = $this->subtaskStatusValidator->validateEndIteration($values);
 
         if ($valid)
         {
-            $status = $this->subtaskStatusModel->toggle($subtask['id'], $status, $values['comment']);
+            $this->subtaskStatusModel->toggle($subtask['id'], $values['status'], $values['comment']);
             return $this->response->redirect($this->helper->url->to('TaskViewController', 'show', array('project_id' => $task['project_id'], 'task_id' => $task['id']), 'subtasks'), true);
         }
 

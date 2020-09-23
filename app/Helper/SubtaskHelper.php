@@ -147,6 +147,9 @@ class SubtaskHelper extends Base
                 $html .= '</li>';
             break;
             case SubtaskModel::STATUS_TEST_FAILED;
+            case SubtaskModel::STATUS_TEST_FAILED_REQUIREMENTS;
+            case SubtaskModel::STATUS_TEST_FAILED_PARTLY_REQUIREMENTS;
+            case SubtaskModel::STATUS_TEST_FAILED_ANOTHER_PROBLEM;
                 $html .= '<li>';
                 $html .= $this->helper->modal->confirm('edit', $this->getSubtaskActionStatusChange(SubtaskModel::STATUS_DEV_INPROGRESS), 'SubtaskStatusController', 'begin', array('status' => SubtaskModel::STATUS_DEV_INPROGRESS, 'task_id' => $task['id'], 'project_id' => $task['project_id'], 'subtask_id' => $subtask['id']));
                 $html .= '</li>';
@@ -175,6 +178,18 @@ class SubtaskHelper extends Base
         $html .= $this->helper->form->text('title', $values, $errors, $attributes, 'form-max-width');
 
         return $html;
+    }
+
+    public function renderFailMotiveSelect(int $status, array $fail_motive = array(), array $values, array $errors = array(), array $attributes = array())
+    {
+        if ($status == SubtaskModel::STATUS_TEST_FAILED)
+        {
+            $html = $this->helper->form->label(t('Motive'), 'motive');
+            $html .= $this->helper->form->select('fail_motive', $fail_motive, $values, $errors, $attributes);
+            return $html;
+        }
+
+        return null;
     }
 
     public function renderAssigneeField(array $users, array $values, array $errors = array(), array $attributes = array())
@@ -230,6 +245,12 @@ class SubtaskHelper extends Base
                 return t('Test stopped');
             case SubtaskModel::STATUS_TEST_FAILED;
                 return t('Test failed');
+            case SubtaskModel::STATUS_TEST_FAILED_REQUIREMENTS;
+                return t('Fail: Did not meet the requirements');
+            case SubtaskModel::STATUS_TEST_FAILED_PARTLY_REQUIREMENTS;
+                return t('Fail: Partly meet the requirements');
+            case SubtaskModel::STATUS_TEST_FAILED_ANOTHER_PROBLEM;
+                return t('Fail: Generated another problem');
             case SubtaskModel::STATUS_DONE;
                 return t('Aproved');
         }
@@ -254,6 +275,12 @@ class SubtaskHelper extends Base
                 return t('Stop test');
             case SubtaskModel::STATUS_TEST_FAILED;
                 return t('Fail test');
+            case SubtaskModel::STATUS_TEST_FAILED_REQUIREMENTS;
+                return t('Did not meet the requirements');
+            case SubtaskModel::STATUS_TEST_FAILED_PARTLY_REQUIREMENTS;
+                return t('Partly meet the requirements');
+            case SubtaskModel::STATUS_TEST_FAILED_ANOTHER_PROBLEM;
+                return t('Generated another problem');    
             case SubtaskModel::STATUS_DONE;
                 return t('Aprove');
         }

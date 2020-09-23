@@ -31,8 +31,11 @@ class SubtaskModel extends Base
     const STATUS_DEV_DONE = 3;
     const STATUS_TEST_INPROGRESS = 4;
     const STATUS_TEST_STOPPED = 5;
-    const STATUS_TEST_FAILED = 6;    
-    const STATUS_DONE = 7;
+    const STATUS_TEST_FAILED = 6;
+    const STATUS_TEST_FAILED_REQUIREMENTS = 7;
+    const STATUS_TEST_FAILED_PARTLY_REQUIREMENTS = 8;
+    const STATUS_TEST_FAILED_ANOTHER_PROBLEM = 9;        
+    const STATUS_DONE = 10;
 
     /**
      * Events
@@ -69,14 +72,17 @@ class SubtaskModel extends Base
     public function getStatusList()
     {
         return array(
-            self::STATUS_TODO            => t('Todo'),
-            self::STATUS_DEV_INPROGRESS  => t('Under development'),
-            self::STATUS_DEV_STOPPED     => t('Development stopped'),
-            self::STATUS_DEV_DONE        => t('Development done'),
-            self::STATUS_TEST_INPROGRESS => t('Test in progress'),
-            self::STATUS_TEST_STOPPED    => t('Test stopped'),
-            self::STATUS_TEST_FAILED     => t('Test failed'),
-            self::STATUS_DONE            => t('Aproved'),
+            self::STATUS_TODO                            => t('Todo'),
+            self::STATUS_DEV_INPROGRESS                  => t('Under development'),
+            self::STATUS_DEV_STOPPED                     => t('Development stopped'),
+            self::STATUS_DEV_DONE                        => t('Development done'),
+            self::STATUS_TEST_INPROGRESS                 => t('Test in progress'),
+            self::STATUS_TEST_STOPPED                    => t('Test stopped'),
+            self::STATUS_TEST_FAILED                     => t('Test failed'),
+            self::STATUS_TEST_FAILED_REQUIREMENTS        => t('Did not meet the requirements'),
+            self::STATUS_TEST_FAILED_PARTLY_REQUIREMENTS => t('Partly meet the requirements'),
+            self::STATUS_TEST_FAILED_ANOTHER_PROBLEM     => t('Generated another problem'),    
+            self::STATUS_DONE                            => t('Aproved'),
         );
     }
 
