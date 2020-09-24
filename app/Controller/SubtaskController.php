@@ -21,7 +21,7 @@ class SubtaskController extends BaseController
     public function show()
     {
         $task = $this->getTask();
-        $subtask = $this->getSubtask($task);
+        $subtask = $this->getSubtaskWithDetails($task);
         $project = $this->getProject();
         $editable = $this->request->getIntegerParam('editable');
 

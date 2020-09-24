@@ -31,6 +31,9 @@
                         <?php if ($task['time_spent']): ?>
                         <strong><?= t('Time spent:') ?></strong>
                         <span><?= t('%s hours', $subtask['time_spent']) ?></span>
+                        <?php else: ?>
+                        <strong><?= t('Time spent:') ?></strong>
+                        <span><?= t('%s hours', 0) ?></span>
                         <?php endif ?>
                     </li>       
                     <?= $this->hook->render('template:task:details:third-column', array('task' => $task)) ?>
@@ -47,9 +50,6 @@
                             <?= t('not assigned') ?>
                         <?php endif ?>
                         </span>
-                        <?php if ($editable && $task['owner_id'] != $this->user->getId()): ?>
-                            - <span><?= $this->url->link(t('Assign to me'), 'TaskModificationController', 'assignToMe', ['task_id' => $task['id'], 'project_id' => $task['project_id']]) ?></span>
-                        <?php endif ?>
                     </li>
                     <?= $this->hook->render('template:task:details:third-column', array('task' => $task)) ?>
                 </ul>
