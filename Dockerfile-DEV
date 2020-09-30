@@ -19,6 +19,8 @@ RUN apt-get update -y -q && \
         php-xml \
         php-mysql \
         php-pgsql \
+        php-pear \
+        php-dev \
         composer \
         npm \
         git \
@@ -26,4 +28,15 @@ RUN apt-get update -y -q && \
         mariadb-client \
         postgresql-client
 
+# Apache rewrite
 RUN a2enmod rewrite
+
+# Set php.ini path in config-set
+RUN pear config-set php_ini /etc/php/7.4/cli/php.ini
+
+# Install xdebug
+RUN yes | pecl install xdebug \
+    && echo "zend_extension=$(find /usr/lib/php/20190902/ -name xdebug.so)" > /etc/php/7.4/cli/conf.d/xdebug.ini \
+    && echo "xdebug.remote_enable=on" >> /etc/php/7.4/cli/conf.d/xdebug.ini \
+    && echo "xdebug.remote_autostart=on" >> /etc/php/7.4/cli/conf.d/xdebug.ini \
+    && rm -rf /tmp/pear
