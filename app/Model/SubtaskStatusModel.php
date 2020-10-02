@@ -82,19 +82,24 @@ class SubtaskStatusModel extends Base
         }
 
         $status_time_spent = $this->subtaskTimeTrackingModel->toggleTimer($subtask_id, $subtask['user_id'], $status, $comment);
-        $this->subtaskModel->update($values, false) ? $status : false;
+        $return_status = $this->subtaskModel->update($values, false) ? $status : false;
 
-        if ($comment != '')
+        if ($return_status)
         {
-            $values['comment'] = $comment;
-            $values['status_time_spent'] = $status_time_spent;
+            if ($comment != '')
+            {
+                $values['comment'] = $comment;
+                $values['status_time_spent'] = $status_time_spent;
+            }
+    
+            $this->queueManager->push($this->subtaskEventJob->withParams(
+                $subtask['id'], 
+                array(Self::EVENT_STATUS_UPDATE),
+                $values
+            ));
         }
 
-        return $this->queueManager->push($this->subtaskEventJob->withParams(
-            $subtask['id'], 
-            array(Self::EVENT_STATUS_UPDATE),
-            $values
-        ));
+        return $return_status;
     }
 
     /**
