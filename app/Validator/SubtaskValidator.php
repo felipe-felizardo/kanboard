@@ -25,6 +25,8 @@ class SubtaskValidator extends BaseValidator
         $rules = array(
             new Validators\Required('task_id', t('The task id is required')),
             new Validators\Required('title', t('The title is required')),
+            new Validators\Required('description', t('The analysis is required')),
+            new Validators\MaxLength('description', t('The maximum length is %d characters', 65535), 65535),
         );
 
         $v = new Validator($values, array_merge($rules, $this->commonValidationRules()));
@@ -48,6 +50,8 @@ class SubtaskValidator extends BaseValidator
             new Validators\Required('id', t('The subtask id is required')),
             new Validators\Required('task_id', t('The task id is required')),
             new Validators\Required('title', t('The title is required')),
+            new Validators\Required('description', t('The analysis is required')),
+            new Validators\MaxLength('description', t('The maximum length is %d characters', 65535), 65535),
         );
 
         $v = new Validator($values, array_merge($rules, $this->commonValidationRules()));

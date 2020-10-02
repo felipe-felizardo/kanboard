@@ -8,24 +8,19 @@ a {
 
 .fa.fa-cog,
 .fa.fa-th {
-  color: $default-color;
-
-  &:hover,
-  &:focus {
-    color: black;
-  }
+  color: inherit;
 }
 
 .fa-fa-caret-down {
-  color: $default-color;
+  color: inherit;
 }
 
 .fa.fa-plus {
-  color: $default-bg-color;
+  color: inherit;
 }
 
 .fa.fa-arrows-alt {
-  color: $default-color;
+  color: inherit;
 }
 
 .fa.fa-fw.fa-trash-o {

@@ -278,7 +278,7 @@ class ProcedureAuthorizationTest extends BaseProcedureTest
         $taskId = $this->manager->createTask('My Task', $projectId);
         $this->assertNotFalse($taskId);
 
-        $subtaskId = $this->manager->createSubtask($taskId, 'My subtask');
+        $subtaskId = $this->manager->createSubtask($taskId, 'My subtask', 'Description');
         $this->assertNotFalse($subtaskId);
 
         $this->expectException('JsonRPC\Exception\AccessDeniedException');
@@ -298,7 +298,7 @@ class ProcedureAuthorizationTest extends BaseProcedureTest
         $taskId = $this->user->createTask('My Task', $projectId);
         $this->assertNotFalse($taskId);
 
-        $subtaskId = $this->manager->createSubtask($taskId, 'My subtask');
+        $subtaskId = $this->manager->createSubtask($taskId, 'My subtask', 'Description');
         $this->assertNotFalse($subtaskId);
 
         $this->assertTrue($this->user->removeSubtask($subtaskId));

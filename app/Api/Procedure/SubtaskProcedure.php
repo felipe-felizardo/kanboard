@@ -31,12 +31,13 @@ class SubtaskProcedure extends BaseProcedure
         return $this->subtaskModel->remove($subtask_id);
     }
 
-    public function createSubtask($task_id, $title, $user_id = 0, $time_estimated = 0, $time_spent = 0, $status = 0)
+    public function createSubtask($task_id, $title, $description, $user_id = 0, $time_estimated = 0, $time_spent = 0, $status = 0)
     {
         TaskAuthorization::getInstance($this->container)->check($this->getClassName(), 'createSubtask', $task_id);
         
         $values = array(
             'title' => $title,
+            'description' => $description,
             'task_id' => $task_id,
             'user_id' => $user_id,
             'time_estimated' => $time_estimated,

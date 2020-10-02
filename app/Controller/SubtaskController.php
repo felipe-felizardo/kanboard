@@ -14,6 +14,26 @@ use Kanboard\Core\Controller\PageNotFoundException;
 class SubtaskController extends BaseController
 {
     /**
+     * Show a subtask
+     *
+     * @access public
+     */
+    public function show()
+    {
+        $task = $this->getTask();
+        $subtask = $this->getSubtaskWithDetails($task);
+        $project = $this->getProject();
+        $editable = $this->request->getIntegerParam('editable');
+
+        $this->response->html($this->helper->layout->subtask('subtask_view/show', array(
+            'task' => $task,
+            'subtask' => $subtask,
+            'project' => $project,
+            'editable' => $editable
+        )));
+    }
+
+    /**
      * Creation form
      *
      * @access public
@@ -67,33 +87,26 @@ class SubtaskController extends BaseController
         $task = $this->getTask();
         $values = $this->request->getValues();
         $values['task_id'] = $task['id'];
-        $subtasks = explode("\r\n", isset($values['title']) ? $values['title'] : '');
-        $subtasksAdded = 0;
 
-        foreach ($subtasks as $subtask) {
-            $subtask = trim($subtask);
+        $subtasksAdded = 0; 
 
-            if (! empty($subtask)) {
-                $subtaskValues = $values;
-                $subtaskValues['title'] = $subtask;
+        $subtaskValues = $values;
 
-                list($valid, $errors) = $this->subtaskValidator->validateCreation($subtaskValues);
+        list($valid, $errors) = $this->subtaskValidator->validateCreation($subtaskValues);
 
-                if (! $valid) {
-                    $this->create($values, $errors);
-                    return false;
-                }
-
-                if (! $this->subtaskModel->create($subtaskValues)) {
-                    $this->flash->failure(t('Unable to create your sub-task.'));
-                    $this->response->redirect($this->helper->url->to('TaskViewController', 'show', array('project_id' => $task['project_id'], 'task_id' => $task['id']), 'subtasks'), true);
-                    return false;
-                }
-
-                $subtasksAdded++;
-            }
+        if (! $valid) {             
+            return $this->create($values, $errors);;
         }
 
+        if (! $this->subtaskModel->create($subtaskValues)) {
+            $this->flash->failure(t('Unable to create your sub-task.'));
+            $this->response->redirect($this->helper->url->to('TaskViewController', 'show', array('project_id' => $task['project_id'], 'task_id' => $task['id']), 'subtasks'), true);
+            return false;
+
+        }
+
+        $subtasksAdded++;
+        
         if (isset($values['another_subtask']) && $values['another_subtask'] == 1) {
             return $this->create(array(
                 'project_id' => $task['project_id'],

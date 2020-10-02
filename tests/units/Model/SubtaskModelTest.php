@@ -59,14 +59,14 @@ class SubtaskModelTest extends Base
         $this->assertEquals(1, $taskCreationModel->create(array('title' => 'test 1', 'project_id' => 1)));
 
         $this->assertEquals(1, $subtaskModel->create(array('title' => 'subtask #1', 'task_id' => 1)));
-        $this->assertTrue($subtaskModel->update(array('id' => 1, 'task_id' => 1, 'user_id' => 1, 'status' => SubtaskModel::STATUS_INPROGRESS)));
+        $this->assertTrue($subtaskModel->update(array('id' => 1, 'task_id' => 1, 'user_id' => 1, 'status' => SubtaskModel::STATUS_DEV_INPROGRESS)));
 
         $subtask = $subtaskModel->getById(1);
         $this->assertNotEmpty($subtask);
         $this->assertEquals(1, $subtask['id']);
         $this->assertEquals(1, $subtask['task_id']);
         $this->assertEquals('subtask #1', $subtask['title']);
-        $this->assertEquals(SubtaskModel::STATUS_INPROGRESS, $subtask['status']);
+        $this->assertEquals(SubtaskModel::STATUS_DEV_INPROGRESS, $subtask['status']);
         $this->assertEquals(0, $subtask['time_estimated']);
         $this->assertEquals(0, $subtask['time_spent']);
         $this->assertEquals(1, $subtask['user_id']);

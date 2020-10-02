@@ -21,6 +21,15 @@ class SubtaskTimeTrackingModel extends Base
     const TABLE = 'subtask_time_tracking';
 
     /**
+     * Indicates the type of work that time is being tracked
+     *
+     * @var integer
+     */
+    const CATEGORY_MISC = 0;
+    const CATEGORY_DEVELOPMENT = 1;
+    const CATEGORY_TEST = 2;
+
+    /**
      * Get query to check if a timer is started for the given user and subtask
      *
      * @access public
@@ -134,15 +143,29 @@ class SubtaskTimeTrackingModel extends Base
      * @param  integer $subtask_id
      * @param  integer $user_id
      * @param  integer $status
-     * @return boolean
+     * @return float
      */
-    public function toggleTimer($subtask_id, $user_id, $status)
+    public function toggleTimer($subtask_id, $user_id, $status, $comment = "")
     {
+        if ($status > 3)
+            $category = self::CATEGORY_TEST;
+        elseif ($status > 0)
+            $category = self::CATEGORY_DEVELOPMENT;
+
         if ($this->configModel->get('subtask_time_tracking') == 1) {
-            if ($status == SubtaskModel::STATUS_INPROGRESS) {
-                return $this->subtaskTimeTrackingModel->logStartTime($subtask_id, $user_id);
-            } elseif ($status == SubtaskModel::STATUS_DONE) {
-                return $this->subtaskTimeTrackingModel->logEndTime($subtask_id, $user_id);
+            if ($status == SubtaskModel::STATUS_DEV_INPROGRESS || $status == SubtaskModel::STATUS_TEST_INPROGRESS) {
+                return $this->subtaskTimeTrackingModel->logStartTime($subtask_id, $user_id, $category);
+            } elseif (
+                $status == SubtaskModel::STATUS_DEV_STOPPED || 
+                $status == SubtaskModel::STATUS_DEV_DONE || 
+                $status == SubtaskModel::STATUS_TEST_STOPPED || 
+                $status == SubtaskModel::STATUS_TEST_FAILED || 
+                $status == SubtaskModel::STATUS_TEST_FAILED_ANOTHER_PROBLEM || 
+                $status == SubtaskModel::STATUS_TEST_FAILED_PARTLY_REQUIREMENTS || 
+                $status == SubtaskModel::STATUS_TEST_FAILED_REQUIREMENTS || 
+                $status == SubtaskModel::STATUS_DONE ) {
+                if ($this->subtaskTimeTrackingModel->logEndTime($subtask_id, $user_id, $category, $comment))
+                    return $this->getTimeSpent($subtask_id, $user_id);
             }
         }
 
@@ -157,13 +180,13 @@ class SubtaskTimeTrackingModel extends Base
      * @param  integer   $user_id
      * @return boolean
      */
-    public function logStartTime($subtask_id, $user_id)
+    public function logStartTime($subtask_id, $user_id, $time_tracking_category = 0)
     {
         return
             ! $this->hasTimer($subtask_id, $user_id) &&
             $this->db
                 ->table(self::TABLE)
-                ->insert(array('subtask_id' => $subtask_id, 'user_id' => $user_id, 'start' => time(), 'end' => 0));
+                ->insert(array('subtask_id' => $subtask_id, 'user_id' => $user_id, 'start' => time(), 'end' => 0, 'category' => $time_tracking_category));
     }
 
     /**
@@ -174,11 +197,11 @@ class SubtaskTimeTrackingModel extends Base
      * @param  integer   $user_id
      * @return boolean
      */
-    public function logEndTime($subtask_id, $user_id)
+    public function logEndTime($subtask_id, $user_id, $time_tracking_category = 0, $comment = '')
     {
         $time_spent = $this->getTimeSpent($subtask_id, $user_id);
 
-        if ($time_spent > 0) {
+        if ($time_spent > 0 && $time_tracking_category == self::CATEGORY_DEVELOPMENT) {
             $this->updateSubtaskTimeSpent($subtask_id, $time_spent);
         }
 
@@ -190,6 +213,7 @@ class SubtaskTimeTrackingModel extends Base
                     ->update(array(
                         'end' => time(),
                         'time_spent' => $time_spent,
+                        'comment' => $comment,
                     ));
     }
 

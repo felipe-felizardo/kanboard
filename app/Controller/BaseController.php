@@ -175,6 +175,21 @@ abstract class BaseController extends Base
         return $subtask;
     }
 
+    protected function getSubtaskWithDetails(array $task)
+    {
+        $subtask = $this->subtaskModel->getByIdWithDetails($this->request->getIntegerParam('subtask_id'));
+
+        if (empty($subtask)) {
+            throw new PageNotFoundException();
+        }
+
+        if ($subtask['task_id'] != $task['id']) {
+            throw new AccessForbiddenException();
+        }
+
+        return $subtask;
+    }
+
     protected function getComment(array $task)
     {
         $comment = $this->commentModel->getById($this->request->getIntegerParam('comment_id'));

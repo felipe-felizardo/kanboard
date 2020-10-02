@@ -81,10 +81,7 @@ class SubtaskHelper extends Base
         $html = '<span class="subtask-timer-toggle">';
 
         if ($subtask['is_timer_started']) {
-            $html .= $this->helper->url->icon('pause', t('Stop timer'), 'SubtaskStatusController', 'timer', array('timer' => 'stop', 'project_id' => $task['project_id'], 'task_id' => $subtask['task_id'], 'subtask_id' => $subtask['id']), false, 'js-subtask-toggle-timer');
             $html .= ' (' . $this->helper->dt->age($subtask['timer_start_date']) .')';
-        } else {
-            $html .= $this->helper->url->icon('play-circle-o', t('Start timer'), 'SubtaskStatusController', 'timer', array('timer' => 'start', 'project_id' => $task['project_id'], 'task_id' => $subtask['task_id'], 'subtask_id' => $subtask['id']), false, 'js-subtask-toggle-timer');
         }
 
         $html .= '</span>';
@@ -103,6 +100,76 @@ class SubtaskHelper extends Base
         return $html;
     }
 
+    public function renderChooseStatus(array $task, array $subtask)
+    {
+        $html = '<div class="dropdown">';
+        $html .= '<a class="dropdown-menu dropdown-menu-link-icon"><div class="subtask-submenu"><i class="fa fa-caret-down"></i></div></a>';
+        $html .= '<ul>';
+
+        switch ($subtask['status']) {
+            case SubtaskModel::STATUS_TODO:
+                $html .= '<li>';
+                $html .= $this->helper->modal->confirm('edit', $this->getSubtaskActionStatusChange(SubtaskModel::STATUS_DEV_INPROGRESS), 'SubtaskStatusController', 'begin', array('status' => SubtaskModel::STATUS_DEV_INPROGRESS, 'task_id' => $task['id'], 'project_id' => $task['project_id'], 'subtask_id' => $subtask['id']));
+                $html .= '</li>';
+            break;
+            case SubtaskModel::STATUS_DEV_INPROGRESS:
+                $html .= '<li>';
+                $html .= $this->helper->modal->confirm('edit', $this->getSubtaskActionStatusChange(SubtaskModel::STATUS_DEV_STOPPED), 'SubtaskStatusController', 'end', array('status' => SubtaskModel::STATUS_DEV_STOPPED, 'task_id' => $task['id'], 'project_id' => $task['project_id'], 'subtask_id' => $subtask['id']));
+                $html .= '</li>';
+                $html .= '<li>';
+                $html .= $this->helper->modal->confirm('edit', $this->getSubtaskActionStatusChange(SubtaskModel::STATUS_DEV_DONE), 'SubtaskStatusController', 'end', array('status' => SubtaskModel::STATUS_DEV_DONE, 'task_id' => $task['id'], 'project_id' => $task['project_id'], 'subtask_id' => $subtask['id']));
+                $html .= '</li>';
+            break;
+            case SubtaskModel::STATUS_DEV_STOPPED:
+                $html .= '<li>';
+                $html .= $this->helper->modal->confirm('edit', $this->getSubtaskActionStatusChange(SubtaskModel::STATUS_DEV_INPROGRESS), 'SubtaskStatusController', 'begin', array('status' => SubtaskModel::STATUS_DEV_INPROGRESS, 'task_id' => $task['id'], 'project_id' => $task['project_id'], 'subtask_id' => $subtask['id']));
+                $html .= '</li>';
+            break;
+            case SubtaskModel::STATUS_DEV_DONE: 
+                $html .= '<li>';
+                $html .= $this->helper->modal->confirm('edit', $this->getSubtaskActionStatusChange(SubtaskModel::STATUS_TEST_INPROGRESS), 'SubtaskStatusController', 'begin', array('status' => SubtaskModel::STATUS_TEST_INPROGRESS, 'task_id' => $task['id'], 'project_id' => $task['project_id'], 'subtask_id' => $subtask['id']));
+                $html .= '</li>';
+            break;
+            case SubtaskModel::STATUS_TEST_INPROGRESS:
+                $html .= '<li>';
+                $html .= $this->helper->modal->confirm('edit', $this->getSubtaskActionStatusChange(SubtaskModel::STATUS_TEST_STOPPED), 'SubtaskStatusController', 'end', array('status' => SubtaskModel::STATUS_TEST_STOPPED, 'task_id' => $task['id'], 'project_id' => $task['project_id'], 'subtask_id' => $subtask['id']));
+                $html .= '</li>';
+                $html .= '<li>';
+                $html .= $this->helper->modal->confirm('edit', $this->getSubtaskActionStatusChange(SubtaskModel::STATUS_TEST_FAILED), 'SubtaskStatusController', 'end', array('status' => SubtaskModel::STATUS_TEST_FAILED, 'task_id' => $task['id'], 'project_id' => $task['project_id'], 'subtask_id' => $subtask['id']));
+                $html .= '</li>';
+                $html .= '<li>';
+                $html .= $this->helper->modal->confirm('edit', $this->getSubtaskActionStatusChange(SubtaskModel::STATUS_DONE), 'SubtaskStatusController', 'end', array('status' => SubtaskModel::STATUS_DONE, 'task_id' => $task['id'], 'project_id' => $task['project_id'], 'subtask_id' => $subtask['id']));
+                $html .= '</li>';
+            break;
+            case SubtaskModel::STATUS_TEST_STOPPED: 
+                $html .= '<li>';
+                $html .= $this->helper->modal->confirm('edit', $this->getSubtaskActionStatusChange(SubtaskModel::STATUS_TEST_INPROGRESS), 'SubtaskStatusController', 'begin', array('status' => SubtaskModel::STATUS_TEST_INPROGRESS, 'task_id' => $task['id'], 'project_id' => $task['project_id'], 'subtask_id' => $subtask['id']));
+                $html .= '</li>';
+            break;
+            case SubtaskModel::STATUS_TEST_FAILED;
+            case SubtaskModel::STATUS_TEST_FAILED_REQUIREMENTS;
+            case SubtaskModel::STATUS_TEST_FAILED_PARTLY_REQUIREMENTS;
+            case SubtaskModel::STATUS_TEST_FAILED_ANOTHER_PROBLEM;
+                $html .= '<li>';
+                $html .= $this->helper->modal->confirm('edit', $this->getSubtaskActionStatusChange(SubtaskModel::STATUS_DEV_INPROGRESS), 'SubtaskStatusController', 'begin', array('status' => SubtaskModel::STATUS_DEV_INPROGRESS, 'task_id' => $task['id'], 'project_id' => $task['project_id'], 'subtask_id' => $subtask['id']));
+                $html .= '</li>';
+            break;
+            case SubtaskModel::STATUS_DONE;
+                $html .= '<li>';
+                $html .= $this->helper->modal->confirm('edit', $this->getSubtaskActionStatusChange(SubtaskModel::STATUS_DEV_INPROGRESS), 'SubtaskStatusController', 'begin', array('status' => SubtaskModel::STATUS_DEV_INPROGRESS, 'task_id' => $task['id'], 'project_id' => $task['project_id'], 'subtask_id' => $subtask['id']));
+                $html .= '</li>';
+                $html .= '<li>';
+                $html .= $this->helper->modal->confirm('edit', $this->getSubtaskActionStatusChange(SubtaskModel::STATUS_TEST_INPROGRESS), 'SubtaskStatusController', 'begin', array('status' => SubtaskModel::STATUS_TEST_INPROGRESS, 'task_id' => $task['id'], 'project_id' => $task['project_id'], 'subtask_id' => $subtask['id']));
+                $html .= '</li>';
+            break;
+            }
+
+        $html .= '</ul>';
+        $html .= '</div>';
+
+        return $html;
+    }
+
     public function renderTitleField(array $values, array $errors = array(), array $attributes = array())
     {
         $attributes = array_merge(array('tabindex="1"', 'required'), $attributes);
@@ -111,6 +178,18 @@ class SubtaskHelper extends Base
         $html .= $this->helper->form->text('title', $values, $errors, $attributes, 'form-max-width');
 
         return $html;
+    }
+
+    public function renderFailMotiveSelect(int $status, array $fail_motive = array(), array $values, array $errors = array(), array $attributes = array())
+    {
+        if ($status == SubtaskModel::STATUS_TEST_FAILED)
+        {
+            $html = $this->helper->form->label(t('Motive'), 'motive');
+            $html .= $this->helper->form->select('fail_motive', $fail_motive, $values, $errors, $attributes);
+            return $html;
+        }
+
+        return null;
     }
 
     public function renderAssigneeField(array $users, array $values, array $errors = array(), array $attributes = array())
@@ -154,10 +233,56 @@ class SubtaskHelper extends Base
         switch ($subtask['status']) {
             case SubtaskModel::STATUS_TODO:
                 return t('Subtask not started');
-            case SubtaskModel::STATUS_INPROGRESS:
-                return t('Subtask currently in progress');
-            case SubtaskModel::STATUS_DONE:
-                return t('Subtask completed');
+            case SubtaskModel::STATUS_DEV_INPROGRESS:
+                return t('Under development');
+            case SubtaskModel::STATUS_DEV_STOPPED:
+                return t('Development stopped');
+            case SubtaskModel::STATUS_DEV_DONE: 
+                return t('Development done');
+            case SubtaskModel::STATUS_TEST_INPROGRESS:
+                return t('Test in progress');
+            case SubtaskModel::STATUS_TEST_STOPPED: 
+                return t('Test stopped');
+            case SubtaskModel::STATUS_TEST_FAILED;
+                return t('Test failed');
+            case SubtaskModel::STATUS_TEST_FAILED_REQUIREMENTS;
+                return t('Fail: Did not meet the requirements');
+            case SubtaskModel::STATUS_TEST_FAILED_PARTLY_REQUIREMENTS;
+                return t('Fail: Partly meet the requirements');
+            case SubtaskModel::STATUS_TEST_FAILED_ANOTHER_PROBLEM;
+                return t('Fail: Generated another problem');
+            case SubtaskModel::STATUS_DONE;
+                return t('Aproved');
+        }
+
+        return '';
+    }
+
+    public function getSubtaskActionStatusChange(int $newStatus)
+    {
+        switch ($newStatus) {
+            case SubtaskModel::STATUS_TODO:
+                return t('Set as todo');
+            case SubtaskModel::STATUS_DEV_INPROGRESS:
+                return t('Start development');
+            case SubtaskModel::STATUS_DEV_STOPPED:
+                return t('Stop development');
+            case SubtaskModel::STATUS_DEV_DONE: 
+                return t('Finish development');
+            case SubtaskModel::STATUS_TEST_INPROGRESS:
+                return t('Start test');
+            case SubtaskModel::STATUS_TEST_STOPPED: 
+                return t('Stop test');
+            case SubtaskModel::STATUS_TEST_FAILED;
+                return t('Fail test');
+            case SubtaskModel::STATUS_TEST_FAILED_REQUIREMENTS;
+                return t('Did not meet the requirements');
+            case SubtaskModel::STATUS_TEST_FAILED_PARTLY_REQUIREMENTS;
+                return t('Partly meet the requirements');
+            case SubtaskModel::STATUS_TEST_FAILED_ANOTHER_PROBLEM;
+                return t('Generated another problem');    
+            case SubtaskModel::STATUS_DONE;
+                return t('Aprove');
         }
 
         return '';

@@ -29,13 +29,15 @@ class ProjectActivityModel extends Base
      * @param  integer     $creator_id      User id
      * @param  string      $event_name      Event name
      * @param  array       $data            Event data (will be serialized)
+     * @param  integer     $subtask_id      Subtask id
      * @return boolean
      */
-    public function createEvent($project_id, $task_id, $creator_id, $event_name, array $data)
+    public function createEvent($project_id, $task_id, $creator_id, $event_name, array $data, $subtask_id = null)
     {
         return $this->db->table(self::TABLE)->insert(array(
             'project_id' => $project_id,
             'task_id' => $task_id,
+            'subtask_id' => $subtask_id,
             'creator_id' => $creator_id,
             'event_name' => $event_name,
             'date_creation' => time(),

@@ -59,4 +59,20 @@ class ActivityController extends BaseController
             'tags'    => $this->taskTagModel->getTagsByTask($task['id']),
         )));
     }
+
+    /**
+     * Display subtask activities
+     *
+     * @access public
+     */
+    public function subtask()
+    {
+        $task = $this->getTask();
+        $subtask = $this->getSubtask($task);
+
+        $this->response->html($this->helper->layout->task('activity/subtask', array(
+            'title'   => $subtask['title'],
+            'events'  => $this->helper->projectActivity->getSubaskEvents($subtask['id']),
+        )));
+    }    
 }
