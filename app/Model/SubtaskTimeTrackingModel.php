@@ -143,7 +143,7 @@ class SubtaskTimeTrackingModel extends Base
      * @param  integer $subtask_id
      * @param  integer $user_id
      * @param  integer $status
-     * @return boolean
+     * @return float
      */
     public function toggleTimer($subtask_id, $user_id, $status, $comment = "")
     {
@@ -164,7 +164,8 @@ class SubtaskTimeTrackingModel extends Base
                 $status == SubtaskModel::STATUS_TEST_FAILED_PARTLY_REQUIREMENTS || 
                 $status == SubtaskModel::STATUS_TEST_FAILED_REQUIREMENTS || 
                 $status == SubtaskModel::STATUS_DONE ) {
-                return $this->subtaskTimeTrackingModel->logEndTime($subtask_id, $user_id, $category, $comment);
+                if ($this->subtaskTimeTrackingModel->logEndTime($subtask_id, $user_id, $category, $comment))
+                    return $this->getTimeSpent($subtask_id, $user_id);
             }
         }
 
@@ -204,18 +205,16 @@ class SubtaskTimeTrackingModel extends Base
             $this->updateSubtaskTimeSpent($subtask_id, $time_spent);
         }
 
-        $this->db
-            ->table(self::TABLE)
-            ->eq('subtask_id', $subtask_id)
-            ->eq('user_id', $user_id)
-            ->eq('end', 0)
-            ->update(array(
-                'end' => time(),
-                'time_spent' => $time_spent,
-                'comment' => $comment,
-            ));
-
-        return $time_spent;
+        return $this->db
+                    ->table(self::TABLE)
+                    ->eq('subtask_id', $subtask_id)
+                    ->eq('user_id', $user_id)
+                    ->eq('end', 0)
+                    ->update(array(
+                        'end' => time(),
+                        'time_spent' => $time_spent,
+                        'comment' => $comment,
+                    ));
     }
 
     /**

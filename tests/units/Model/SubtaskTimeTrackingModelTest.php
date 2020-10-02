@@ -24,13 +24,13 @@ class SubtaskTimeTrackingModelTest extends Base
 
         $this->assertFalse($subtaskTimeTrackingModel->toggleTimer(1, 1, SubtaskModel::STATUS_TODO));
         $this->assertTrue($subtaskTimeTrackingModel->toggleTimer(1, 1, SubtaskModel::STATUS_DEV_INPROGRESS));
-        $this->assertTrue($subtaskTimeTrackingModel->toggleTimer(1, 1, SubtaskModel::STATUS_DEV_STOPPED));
+        $this->assertEquals(0.0, $subtaskTimeTrackingModel->toggleTimer(1, 1, SubtaskModel::STATUS_DEV_STOPPED));
         $this->assertTrue($subtaskTimeTrackingModel->toggleTimer(1, 1, SubtaskModel::STATUS_DEV_INPROGRESS));
-        $this->assertTrue($subtaskTimeTrackingModel->toggleTimer(1, 1, SubtaskModel::STATUS_DEV_DONE));
+        $this->assertEquals(0.0, $subtaskTimeTrackingModel->toggleTimer(1, 1, SubtaskModel::STATUS_DEV_DONE));
         $this->assertTrue($subtaskTimeTrackingModel->toggleTimer(1, 1, SubtaskModel::STATUS_TEST_INPROGRESS));
-        $this->assertTrue($subtaskTimeTrackingModel->toggleTimer(1, 1, SubtaskModel::STATUS_TEST_STOPPED));
+        $this->assertEquals(0.0, $subtaskTimeTrackingModel->toggleTimer(1, 1, SubtaskModel::STATUS_TEST_STOPPED));
         $this->assertTrue($subtaskTimeTrackingModel->toggleTimer(1, 1, SubtaskModel::STATUS_TEST_INPROGRESS));
-        $this->assertTrue($subtaskTimeTrackingModel->toggleTimer(1, 1, SubtaskModel::STATUS_DONE));
+        $this->assertEquals(0.0, $subtaskTimeTrackingModel->toggleTimer(1, 1, SubtaskModel::STATUS_DONE));
     }
 
     public function testToggleTimerWhenFeatureDisabled()
