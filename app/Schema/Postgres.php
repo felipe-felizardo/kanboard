@@ -8,7 +8,12 @@ use PDO;
 use Kanboard\Core\Security\Token;
 use Kanboard\Core\Security\Role;
 
-const VERSION = 117;
+const VERSION = 118;
+
+function version_118(PDO $pdo)
+{
+    $pdo->exec('ALTER TABLE "tasks" ADD COLUMN client INTEGER');
+}
 
 function version_117(PDO $pdo)
 {
