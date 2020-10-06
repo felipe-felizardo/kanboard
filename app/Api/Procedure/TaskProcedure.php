@@ -93,7 +93,7 @@ class TaskProcedure extends BaseProcedure
                                $date_due = '', $description = '', $category_id = 0, $score = 0, $swimlane_id = null, $priority = 0,
                                $recurrence_status = 0, $recurrence_trigger = 0, $recurrence_factor = 0, $recurrence_timeframe = 0,
                                $recurrence_basedate = 0, $reference = '', array $tags = array(), $date_started = '',
-                               $time_spent = null, $time_estimated = null, $category = '', $swimlane = '')
+                               $time_spent = null, $time_estimated = null, $category = '', $swimlane = '', $client = 0)
     {
         ProjectAuthorization::getInstance($this->container)->check($this->getClassName(), 'createTask', $project_id);
 
@@ -138,6 +138,7 @@ class TaskProcedure extends BaseProcedure
             'date_started' => $date_started,
             'time_spent' => $time_spent,
             'time_estimated' => $time_estimated,
+            'client' => $client,
         );
 
         list($valid, ) = $this->taskValidator->validateCreation($values);
