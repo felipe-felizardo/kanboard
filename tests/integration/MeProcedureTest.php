@@ -45,7 +45,7 @@ class MeProcedureTest extends BaseProcedureTest
 
     public function assertCreateTask()
     {
-        $taskId = $this->user->createTask(array('title' => 'My task', 'project_id' => $this->projectId, 'owner_id' => $this->userUserId));
+        $taskId = $this->user->createTask(array('id' => 100, 'title' => 'My task', 'project_id' => $this->projectId, 'owner_id' => $this->userUserId));
         $this->assertNotFalse($taskId);
     }
 

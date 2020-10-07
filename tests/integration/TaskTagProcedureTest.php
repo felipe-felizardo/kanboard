@@ -30,6 +30,7 @@ class TaskTagProcedureTest extends BaseProcedureTest
     public function assertCreateTaskWithTags()
     {
         $this->taskId = $this->app->createTask(array(
+            'id' => 600,
             'title' => $this->taskTitle,
             'project_id' => $this->projectId,
             'tags' => array('tag A', 'tag B'),
