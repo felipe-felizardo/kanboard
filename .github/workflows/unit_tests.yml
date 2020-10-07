@@ -41,15 +41,17 @@ jobs:
       run: composer validate
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
+    - name: Start Apache
+      run: /etc/init.d/apache2 start
     - name: Link document root
       run: |
         rm -rf /var/www/html
         ln -s $GITHUB_WORKSPACE /var/www/html
         cp tests/configs/config.mysql.php /var/www/html/config.php
         chown -R www-data:www-data /var/www/html/data
-        ls -l /var/www/html/      
-    - name: Unit tests with Postgres
+        ls -l /var/www/html/
+    - name: Integration tests with Mysql
       run: ./vendor/bin/phpunit -c tests/units.mysql.xml
       env:
         DB_HOSTNAME: mysql
-        DB_PORT: ${{ job.services.mysql.ports[3306] }}
+        DB_PORT: ${{ job.services.mysql.ports[3306] }}    
