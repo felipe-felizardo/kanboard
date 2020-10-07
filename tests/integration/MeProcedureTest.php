@@ -14,6 +14,7 @@ class MeProcedureTest extends BaseProcedureTest
         $this->assertGetMyProjects();
         $this->assertCreateTask();
         $this->assertGetMyDashboard();
+        $this->assertGetMyActivityStream();
     }
 
     public function assertGetMe()
@@ -53,5 +54,11 @@ class MeProcedureTest extends BaseProcedureTest
         $dashboard = $this->user->getMyDashboard();
         $this->assertNotEmpty($dashboard);
         $this->assertEquals('My task', $dashboard[0]['title']);
+    }
+
+    public function assertGetMyActivityStream()
+    {
+        $activity = $this->user->getMyActivityStream();
+        $this->assertNotEmpty($activity);
     }
 }
