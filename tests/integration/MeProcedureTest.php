@@ -14,7 +14,6 @@ class MeProcedureTest extends BaseProcedureTest
         $this->assertGetMyProjects();
         $this->assertCreateTask();
         $this->assertGetMyDashboard();
-        $this->assertGetMyActivityStream();
     }
 
     public function assertGetMe()
