@@ -1472,4 +1472,5 @@ return array(
     'Generated another problem' => 'Gerou outro problema',
     'Comments' => 'Comentários',
     'Motive' => 'Motivo',
+    'Task #%d | Title: %s | Client #%d' => 'Tarefa #%d | Título: %s | Cliente #%d',
 );
