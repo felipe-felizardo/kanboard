@@ -33,7 +33,7 @@ class TaskProcedureTest extends BaseProcedureTest
 
     public function assertGetTaskByReference()
     {
-        $taskId = $this->app->createTask(array('title' => 'task with reference', 'project_id' => $this->projectId, 'reference' => 'test'));
+        $taskId = $this->app->createTask(array('id' => 500, 'title' => 'task with reference', 'project_id' => $this->projectId, 'reference' => 'test'));
         $this->assertNotFalse($taskId);
 
         $task = $this->app->getTaskByReference($this->projectId, 'test');

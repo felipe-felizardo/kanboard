@@ -236,7 +236,7 @@ class ProcedureAuthorizationTest extends BaseProcedureTest
         $this->assertNotFalse($projectId);
         $this->assertTrue($this->manager->addProjectUser($projectId, $this->userUserId, 'project-viewer'));
 
-        $taskId = $this->manager->createTask('My Task', $projectId);
+        $taskId = $this->manager->createTask(700, 'My Task', $projectId);
         $this->assertNotFalse($taskId);
 
         $commentId = $this->manager->createComment($taskId, $this->userUserId, 'My comment');
@@ -256,7 +256,7 @@ class ProcedureAuthorizationTest extends BaseProcedureTest
         $this->assertNotFalse($projectId);
         $this->assertTrue($this->manager->addProjectUser($projectId, $this->userUserId, 'project-member'));
 
-        $taskId = $this->user->createTask('My Task', $projectId);
+        $taskId = $this->user->createTask(800, 'My Task', $projectId);
         $this->assertNotFalse($taskId);
 
         $commentId = $this->user->createComment($taskId, $this->userUserId, 'My comment');
@@ -275,7 +275,7 @@ class ProcedureAuthorizationTest extends BaseProcedureTest
         $this->assertNotFalse($projectId);
         $this->assertTrue($this->manager->addProjectUser($projectId, $this->userUserId, 'project-member'));
 
-        $taskId = $this->manager->createTask('My Task', $projectId);
+        $taskId = $this->manager->createTask(900, 'My Task', $projectId);
         $this->assertNotFalse($taskId);
 
         $subtaskId = $this->manager->createSubtask($taskId, 'My subtask', 'Description');
@@ -295,7 +295,7 @@ class ProcedureAuthorizationTest extends BaseProcedureTest
         $this->assertNotFalse($projectId);
         $this->assertTrue($this->manager->addProjectUser($projectId, $this->userUserId, 'project-manager'));
 
-        $taskId = $this->user->createTask('My Task', $projectId);
+        $taskId = $this->user->createTask(1000, 'My Task', $projectId);
         $this->assertNotFalse($taskId);
 
         $subtaskId = $this->manager->createSubtask($taskId, 'My subtask', 'Description');

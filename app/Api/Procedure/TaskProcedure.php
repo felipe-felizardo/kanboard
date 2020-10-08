@@ -89,7 +89,7 @@ class TaskProcedure extends BaseProcedure
         return $this->taskProjectDuplicationModel->duplicateToProject($task_id, $project_id, $swimlane_id, $column_id, $category_id, $owner_id);
     }
 
-    public function createTask($title, $project_id, $color_id = '', $column_id = 0, $owner_id = 0, $creator_id = 0,
+    public function createTask($id, $title, $project_id, $color_id = '', $column_id = 0, $owner_id = 0, $creator_id = 0,
                                $date_due = '', $description = '', $category_id = 0, $score = 0, $swimlane_id = null, $priority = 0,
                                $recurrence_status = 0, $recurrence_trigger = 0, $recurrence_factor = 0, $recurrence_timeframe = 0,
                                $recurrence_basedate = 0, $reference = '', array $tags = array(), $date_started = '',
@@ -116,6 +116,7 @@ class TaskProcedure extends BaseProcedure
             $swimlane_id = $this->swimlaneModel->getIdByName($project_id, $swimlane);            
 
         $values = array(
+            'id' => $id,
             'title' => $title,
             'project_id' => $project_id,
             'color_id' => $color_id,
