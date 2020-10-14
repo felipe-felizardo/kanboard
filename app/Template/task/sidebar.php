@@ -58,21 +58,12 @@
         <li>
             <?= $this->modal->large('edit', t('Edit the task'), 'TaskModificationController', 'edit', array('task_id' => $task['id'], 'project_id' => $task['project_id'])) ?>
         </li>
-        <li>
-            <?= $this->modal->medium('refresh fa-rotate-90', t('Edit recurrence'), 'TaskRecurrenceController', 'edit', array('task_id' => $task['id'], 'project_id' => $task['project_id'])) ?>
-        </li>
         <?php endif ?>    
         <?php if ($this->user->hasProjectAccess('SubtaskController', 'create', $task['project_id'])): ?>
         <li>
             <?= $this->modal->medium('plus', t('Add a sub-task'), 'SubtaskController', 'create', array('task_id' => $task['id'], 'project_id' => $task['project_id'])) ?>
         </li>
         <?php endif ?>
-        <li>
-            <?= $this->modal->small('clipboard', t('Duplicate to another project'), 'TaskDuplicationController', 'copy', array('task_id' => $task['id'], 'project_id' => $task['project_id'])) ?>
-        </li>
-        <li>
-            <?= $this->modal->small('files-o', t('Duplicate'), 'TaskDuplicationController', 'duplicate', array('task_id' => $task['id'], 'project_id' => $task['project_id'])) ?>
-        </li>
         <li>
             <?= $this->modal->small('clone', t('Move to another project'), 'TaskDuplicationController', 'move', array('task_id' => $task['id'], 'project_id' => $task['project_id'])) ?>
         </li>

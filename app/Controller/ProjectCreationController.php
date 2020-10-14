@@ -77,7 +77,7 @@ class ProjectCreationController extends BaseController
      */
     private function createOrDuplicate(array $values)
     {
-        if (empty($values['src_project_id'])) {
+        if (!$this->projectModel->exists(1)) {
             return $this->createNewProject($values);
         }
 
@@ -114,6 +114,15 @@ class ProjectCreationController extends BaseController
      */
     private function duplicateNewProject(array $values)
     {
+        //Allways duplicate the main project
+        $values['src_project_id'] = '1'; 
+        $values['projectPermissionModel'] = '1';
+        $values['projectRoleModel'] = '1';
+        $values['categoryModel'] = '1';
+        $values['tagDuplicationModel'] = '1';
+        $values['actionModel'] = '1';
+        $values['customFilterModel'] = '1';
+
         $selection = array();
 
         foreach ($this->projectDuplicationModel->getOptionalSelection() as $item) {

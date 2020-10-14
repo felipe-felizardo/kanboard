@@ -172,7 +172,7 @@ class UserHelperTest extends Base
         $this->assertTrue($helper->hasProjectAccess('ProjectEditController', 'edit', 1));
         $this->assertTrue($helper->hasProjectAccess('BoardViewController', 'show', 1));
         $this->assertTrue($helper->hasProjectAccess('TaskViewController', 'show', 1));
-        $this->assertTrue($helper->hasProjectAccess('taskcreationcontroller', 'save', 1));
+        $this->assertFalse($helper->hasProjectAccess('taskcreationcontroller', 'save', 1));
 
         $this->assertFalse($helper->hasProjectAccess('ProjectEditController', 'edit', 2));
         $this->assertFalse($helper->hasProjectAccess('BoardViewController', 'show', 2));
@@ -200,7 +200,7 @@ class UserHelperTest extends Base
         $this->assertTrue($helper->hasProjectAccess('ProjectEditController', 'edit', 1));
         $this->assertTrue($helper->hasProjectAccess('BoardViewController', 'show', 1));
         $this->assertTrue($helper->hasProjectAccess('TaskViewController', 'show', 1));
-        $this->assertTrue($helper->hasProjectAccess('TaskCreationController', 'save', 1));
+        $this->assertFalse($helper->hasProjectAccess('TaskCreationController', 'save', 1));
 
         $this->assertFalse($helper->hasProjectAccess('ProjectEditController', 'edit', 2));
         $this->assertFalse($helper->hasProjectAccess('BoardViewController', 'show', 2));
