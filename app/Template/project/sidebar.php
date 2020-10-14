@@ -13,18 +13,22 @@
             <li <?= $this->app->checkMenuSelection('ProjectEditController') ?>>
                 <?= $this->url->link(t('Edit project'), 'ProjectEditController', 'show', array('project_id' => $project['id'])) ?>
             </li>
+            <?php if ($this->user->hasProjectAccess('ProjectViewController', 'share', $project['id'])): ?>
             <li <?= $this->app->checkMenuSelection('ProjectPredefinedContentController') ?>>
                 <?= $this->url->link(t('Predefined contents'), 'ProjectPredefinedContentController', 'show', array('project_id' => $project['id'])) ?>
             </li>
+            <?php endif ?>
             <li <?= $this->app->checkMenuSelection('ProjectViewController', 'share') ?>>
                 <?= $this->url->link(t('Public access'), 'ProjectViewController', 'share', array('project_id' => $project['id'])) ?>
             </li>
             <li <?= $this->app->checkMenuSelection('ProjectViewController', 'notifications') ?>>
                 <?= $this->url->link(t('Notifications'), 'ProjectViewController', 'notifications', array('project_id' => $project['id'])) ?>
             </li>
+            <?php if ($this->user->hasProjectAccess('ProjectViewController', 'integrations', $project['id'])): ?>
             <li <?= $this->app->checkMenuSelection('ProjectViewController', 'integrations') ?>>
                 <?= $this->url->link(t('Integrations'), 'ProjectViewController', 'integrations', array('project_id' => $project['id'])) ?>
             </li>
+            <?php endif ?>
             <li <?= $this->app->checkMenuSelection('ColumnController') ?>>
                 <?= $this->url->link(t('Columns'), 'ColumnController', 'index', array('project_id' => $project['id'])) ?>
             </li>
@@ -48,22 +52,22 @@
             <li <?= $this->app->checkMenuSelection('ActionController') ?>>
                 <?= $this->url->link(t('Automatic actions'), 'ActionController', 'index', array('project_id' => $project['id'])) ?>
             </li>
+            <?php if ($this->user->hasProjectAccess('ProjectViewController', 'duplicate', $project['id'])): ?>
             <li <?= $this->app->checkMenuSelection('ProjectViewController', 'duplicate') ?>>
                 <?= $this->url->link(t('Duplicate'), 'ProjectViewController', 'duplicate', array('project_id' => $project['id'])) ?>
             </li>
-                <?php if ($project['scope_is_open']): ?>
-                    <li>
+            <?php endif ?>
+            <li>
+                <?php if ($project['scope_is_open']): ?>               
                     <?= $this->modal->confirmLink(t('Close project\'s scope'), 'ProjectScopeController', 'confirmClose', array('project_id' => $project['id'])) ?>
                 <?php else: ?>
-                    <li>
                     <?= $this->modal->confirmLink(t('Reopen project\'s scope'), 'ProjectScopeController', 'confirmOpen', array('project_id' => $project['id'])) ?>
                 <?php endif ?>
             </li>     
-                <?php if ($project['is_active']): ?>
-                    <li>
+            <li>
+                <?php if ($project['is_active']): ?>             
                     <?= $this->modal->confirmLink(t('Close this project'), 'ProjectStatusController', 'confirmDisable', array('project_id' => $project['id'])) ?>
                 <?php else: ?>
-                    <li>
                     <?= $this->modal->confirmLink(t('Open this project'), 'ProjectStatusController', 'confirmEnable', array('project_id' => $project['id'])) ?>
                 <?php endif ?>
             </li>

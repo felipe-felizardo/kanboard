@@ -89,7 +89,8 @@ class AuthenticationProvider implements ServiceProviderInterface
         $acl->add('CustomFilterController', '*', Role::PROJECT_MEMBER);
         $acl->add('ExportController', '*', Role::PROJECT_MANAGER);
         $acl->add('TaskFileController', array('screenshot', 'create', 'save', 'remove', 'confirm'), Role::PROJECT_MEMBER);
-        $acl->add('ProjectViewController', array('share', 'updateSharing', 'integrations', 'updateIntegrations', 'notifications', 'updateNotifications', 'duplicate', 'doDuplication'), Role::PROJECT_MANAGER);
+        $acl->add('ProjectViewController', array('share', 'updateSharing', 'integrations', 'updateIntegrations', 'updateNotifications', 'duplicate', 'doDuplication'), Role::APP_ADMIN);
+        $acl->add('ProjectViewController', array('notifications', 'updateNotifications'), Role::PROJECT_MANAGER);
         $acl->add('ProjectPermissionController', '*', Role::PROJECT_MANAGER);
         $acl->add('ProjectEditController', '*', Role::PROJECT_MANAGER);
         $acl->add('ProjectPredefinedContentController', '*', Role::PROJECT_MANAGER);
@@ -110,8 +111,8 @@ class AuthenticationProvider implements ServiceProviderInterface
         $acl->add('TaskBulkMoveColumnController', '*', Role::PROJECT_MEMBER);
         $acl->add('TaskBulkChangePropertyController', '*', Role::PROJECT_MEMBER);
         $acl->add('TaskDuplicationController', '*', Role::PROJECT_MANAGER);
-        $acl->add('TaskRecurrenceController', '*', Role::PROJECT_MANAGER);
-        $acl->add('TaskImportController', '*', Role::PROJECT_MANAGER);
+        $acl->add('TaskRecurrenceController', '*', Role::APP_ADMIN);
+        $acl->add('TaskImportController', '*', Role::APP_ADMIN);
         $acl->add('TaskInternalLinkController', '*', Role::PROJECT_MEMBER);
         $acl->add('TaskExternalLinkController', '*', Role::PROJECT_MEMBER);
         $acl->add('TaskModificationController', '*', Role::PROJECT_MANAGER);
