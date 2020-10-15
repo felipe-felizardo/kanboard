@@ -39,7 +39,11 @@
                     <?php endif ?>
 
                     <?= $this->hook->render('template:dashboard:project:after-title', array('project' => $project)) ?>
-
+                </div>
+                <div>
+                    <span class="table-list-details">
+                    <?= t('Scope:') ?> <strong><?= $project['scope_is_open'] ? t('OPEN') : t('CLOSED') ?></strong>
+                    </span>
                 </div>
                 <div class="table-list-details">
                     <?php foreach ($project['columns'] as $column): ?>

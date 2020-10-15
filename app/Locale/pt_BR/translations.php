@@ -1473,4 +1473,7 @@ return array(
     'Comments' => 'Comentários',
     'Motive' => 'Motivo',
     'Task #%d | Title: %s | Client #%d' => 'Tarefa #%d | Título: %s | Cliente #%d',
+    'Scope:' => 'Escopo:',
+    'OPEN' => 'ABERTO',
+    'CLOSED' => 'FECHADO',
 );
