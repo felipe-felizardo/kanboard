@@ -15,7 +15,7 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
     - name: Unit tests with Sqlite
-      run: ./vendor/bin/phpunit -c tests/units.sqlite.xml
+      run: php ./vendor/bin/phpunit -c tests/units.sqlite.xml
 
   Mysql:
     runs-on: ubuntu-latest
@@ -40,7 +40,7 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
     - name: Integration tests with Mysql
-      run: ./vendor/bin/phpunit -c tests/units.mysql.xml
+      run: php ./vendor/bin/phpunit -c tests/units.mysql.xml
       env:
         DB_HOSTNAME: mysql
         DB_PORT: ${{ job.services.mysql.ports[3306] }}    
