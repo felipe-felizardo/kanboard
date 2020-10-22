@@ -12,7 +12,6 @@
 .*.yml
 *.yml
 data/*
-plugins/*
 tests
 ChangeLog
 composer.json
