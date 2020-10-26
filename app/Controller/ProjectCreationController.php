@@ -32,6 +32,27 @@ class ProjectCreationController extends BaseController
     }
 
     /**
+     * Display a form to create a backlog project
+     *
+     * @access public
+     * @param array $values
+     * @param array $errors
+     */
+    public function createBacklog(array $values = array(), array $errors = array())
+    {
+        $is_private = isset($values['is_private']) && $values['is_private'] == 1;
+        $projects_list = array(0 => t('Do not duplicate anything')) + $this->projectUserRoleModel->getActiveProjectsByUser($this->userSession->getId());
+
+        $this->response->html($this->helper->layout->app('project_creation/create_backlog', array(
+            'values' => $values,
+            'errors' => $errors,
+            'is_private' => $is_private,
+            'projects_list' => $projects_list,
+            'title' => t('New backlog'),
+        )));
+    }
+
+    /**
      * Display a form to create a private project
      *
      * @access public
@@ -64,8 +85,10 @@ class ProjectCreationController extends BaseController
 
             $this->flash->failure(t('Unable to create your project.'));
         }
-
-        return $this->create($values, $errors);
+        if (!isset($values['id']))
+            return $this->create($values, $errors);
+        else
+            return $this->createBacklog($values, $errors);
     }
 
     /**
@@ -114,6 +137,18 @@ class ProjectCreationController extends BaseController
      */
     private function duplicateNewProject(array $values)
     {
+        if (!isset($values['hour_budget']))
+            $values['hour_budget'] = 0;
+
+        if (!isset($values['id']))
+        {
+            $values['id'] = 0;
+            $values['src_project_id'] = '1';
+        }
+        else
+            $values['src_project_id'] = '2';
+            
+
         //Allways duplicate the main project
         $values['src_project_id'] = '1'; 
         $values['projectPermissionModel'] = '1';
@@ -122,6 +157,8 @@ class ProjectCreationController extends BaseController
         $values['tagDuplicationModel'] = '1';
         $values['actionModel'] = '1';
         $values['customFilterModel'] = '1';
+
+
 
         $selection = array();
 
@@ -139,6 +176,7 @@ class ProjectCreationController extends BaseController
             $values['is_private'] == 1,
             $values['identifier'],
             $values['hour_budget'],
+            $values['id'],
         );
     }
 }
