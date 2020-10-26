@@ -45,6 +45,7 @@ class RouteProvider implements ServiceProviderInterface
 
             // ProjectCreation routes
             $container['route']->addRoute('project/create', 'ProjectCreationController', 'create');
+            $container['route']->addRoute('project/create/backlog', 'ProjectCreationController', 'createBacklog');
             $container['route']->addRoute('project/create/private', 'ProjectCreationController', 'createPrivate');
 
             // Project routes

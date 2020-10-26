@@ -11,6 +11,11 @@
                     <?= $this->modal->medium('lock', t('New personal project'), 'ProjectCreationController', 'createPrivate') ?>
                 </li>
             <?php endif ?>
+            <?php if ($this->user->hasAccess('ProjectCreationController', 'createBacklog')): ?>
+                <li>
+                    <?= $this->modal->medium('folder', t('New backlog'), 'ProjectCreationController', 'createBacklog') ?>
+                </li>
+            <?php endif ?>
             <li>
                 <?= $this->url->icon('folder', t('Project management'), 'ProjectListController', 'show') ?>
             </li>
