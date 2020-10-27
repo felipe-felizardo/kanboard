@@ -14,6 +14,12 @@
             </li>
         <?php endif ?>
 
+        <?php if ($this->user->hasAccess('ProjectCreationController', 'createBacklog')): ?>
+            <li>
+                <?= $this->modal->medium('folder', t('New backlog'), 'ProjectCreationController', 'createBacklog') ?>
+            </li>
+        <?php endif ?>    
+
         <?php if ($this->user->hasAccess('ProjectUserOverviewController', 'managers')): ?>
             <li><?= $this->url->icon('user', t('Users overview'), 'ProjectUserOverviewController', 'managers') ?></li>
         <?php endif ?>
