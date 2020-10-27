@@ -148,17 +148,13 @@ class ProjectCreationController extends BaseController
         else
             $values['src_project_id'] = '2';
             
-
-        //Allways duplicate the main project
-        $values['src_project_id'] = '1'; 
+        //Allways duplicate the below data to the new project
         $values['projectPermissionModel'] = '1';
         $values['projectRoleModel'] = '1';
         $values['categoryModel'] = '1';
         $values['tagDuplicationModel'] = '1';
         $values['actionModel'] = '1';
         $values['customFilterModel'] = '1';
-
-
 
         $selection = array();
 
