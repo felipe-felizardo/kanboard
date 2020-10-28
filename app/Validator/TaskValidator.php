@@ -48,6 +48,7 @@ class TaskValidator extends BaseValidator
             new Validators\Numeric('time_estimated', t('This value must be numeric')),
             new Validators\MaxLength('category', t('The maximum length is %d characters', 191), 191),
             new Validators\MaxLength('swimlane', t('The maximum length is %d characters', 191), 191),
+            new Validators\MaxLength('column', t('The maximum length is %d characters', 191), 191),
             new Validators\Integer('client', t('This value must be an integer')),
         );
     }
