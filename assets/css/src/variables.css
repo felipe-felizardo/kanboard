@@ -1,5 +1,5 @@
 :root {
-    --color-primary: #333;
+    --color-primary: #fff;
     --color-light: #999;
     --color-lighter: #dedede;
     --color-dark: #000;
@@ -8,7 +8,7 @@
 
     --link-color-primary: #3366CC;
     --link-color-focus: #DF5353;
-    --link-color-hover: #333;
+    --link-color-hover: #fff;
 
     --alert-color-default: #c09853;
     --alert-color-success: #468847;
@@ -32,7 +32,7 @@
     --button-default-background-color: #f5f5f5;
     --button-default-border-color: #ddd;
 
-    --button-default-color-focus: #000;
+    --button-default-color-focus: #fff;
     --button-default-background-color-focus: #fafafa;
     --button-default-border-color-focus: #bbb;
 
