@@ -50,7 +50,8 @@ $task-colors: (
     background-color: lighten($hex, 20);
 
     a {
-      color: darken($hex, 30);
+      font-weight: 500;
+      color: darken($hex, 40);
     }
 
     .tooltip .fa-info-circle {

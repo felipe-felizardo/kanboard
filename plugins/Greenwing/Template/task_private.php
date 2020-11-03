@@ -41,12 +41,11 @@
                     <?= $this->render('task/dropdown', array('task' => $task, 'redirect' => 'board')) ?>
 
                     <?php if ($this->projectRole->canUpdateTask($task)): ?>
-                        <?= $this->modal->large('edit', '', 'TaskModificationController', 'edit', array('task_id' => $task['id'], 'project_id' => $task['project_id'])) ?>
+                        <?= $this->render('board/task_avatar', array('task' => $task)) ?>
                     <?php endif ?>
                     <?php else: ?>
                         <strong><?= '#'.$task['id'] ?></strong>
                     <?php endif ?>
-
             </div>
 
             <?= $this->hook->render('template:board:private:task:before-title', array('task' => $task)) ?>
@@ -58,7 +57,6 @@
 
             <?php if (! empty($task['category_id'])): ?>
             <div class="task-board-category-container task-board-category-container-color">
-                <h4><?= t('Category'); ?></h4>
                 <span class="task-board-category category-<?= $this->text->e($task['category_name']) ?> <?= $task['category_color_id'] ? "color-{$task['category_color_id']}" : '' ?>">
                     <?php if ($not_editable): ?>
                         <?= $this->text->e($task['category_name']) ?>
@@ -90,7 +88,6 @@
                     </ul>
                 </div>
             <?php endif ?>
-            
 
             <?= $this->render('board/task_footer', array(
                 'task' => $task,

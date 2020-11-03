@@ -4,6 +4,15 @@
   margin-bottom: 0;
   padding: 15px;
 
+  a 
+  {
+    color: $secondary-color;
+    &:hover,
+    &:focus {
+      color: white;
+    }
+  }
+
   &:last-child {
     border-bottom: 1px solid $default-bg-color;
   }
