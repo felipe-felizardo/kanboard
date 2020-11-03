@@ -10,6 +10,14 @@
 <?= $this->hook->render('template:task:show:before-description', array('task' => $task, 'project' => $project)) ?>
 <?= $this->render('task/description', array('task' => $task)) ?>
 
+<?= $this->hook->render('template:task:show:before-subtasks', array('task' => $task, 'project' => $project)) ?>
+<?= $this->render('subtask/show', array(
+    'task' => $task,
+    'subtasks' => $subtasks,
+    'project' => $project,
+    'editable' => $this->user->hasProjectAccess('SubtaskController', 'edit', $project['id']),
+)) ?>
+
 <?= $this->hook->render('template:task:show:before-comments', array('task' => $task, 'project' => $project)) ?>
 <?= $this->render('task_comments/show', array(
     'task' => $task,
@@ -23,14 +31,6 @@
     'task' => $task,
     'files' => $files,
     'images' => $images
-)) ?>
-
-<?= $this->hook->render('template:task:show:before-subtasks', array('task' => $task, 'project' => $project)) ?>
-<?= $this->render('subtask/show', array(
-    'task' => $task,
-    'subtasks' => $subtasks,
-    'project' => $project,
-    'editable' => $this->user->hasProjectAccess('SubtaskController', 'edit', $project['id']),
 )) ?>
 
 <?= $this->hook->render('template:task:show:before-internal-links', array('task' => $task, 'project' => $project)) ?>
