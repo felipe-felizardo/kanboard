@@ -87,7 +87,7 @@ header {
     text-decoration: none;
 
     .fa {
-      color: white;
+      color: $default-bg-color;
     }
   }
 
@@ -146,7 +146,7 @@ header {
     .dropdown {
       .fa-plus,
       .fa-caret-down {
-        color: white;
+        color: $default-bg-color;
       }
     }
 
@@ -297,7 +297,7 @@ header {
 
     &:hover {
       i {
-        color: black;
+        color: $primary-color;
       }
     }
   }
