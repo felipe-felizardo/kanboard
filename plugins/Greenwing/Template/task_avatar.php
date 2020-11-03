@@ -1,5 +1,5 @@
 <?php if (! empty($task['owner_id'])): ?>
-    <?= $this->myAvatarHelper->small(
+    <?= $this->myAvatarHelper->tiny(
         $task['owner_id'],
         $task['assignee_username'],
         $task['assignee_name'],

@@ -47,6 +47,24 @@ class MyAvatarHelper extends Base
         return $this->render($user_id, $username, $name, $email, $avatar_path, $css, 38);
     }
 
+
+    /**
+     * Render tiny user avatar
+     *
+     * @access public
+     * @param  string $user_id
+     * @param  string $username
+     * @param  string $name
+     * @param  string $email
+     * @param  string $avatar_path
+     * @param  string $css
+     * @return string
+     */
+    public function tiny($user_id, $username, $name, $email, $avatar_path, $css = '')
+    {
+        return $this->render($user_id, $username, $name, $email, $avatar_path, $css, 20);
+    }    
+
     /**
      * Get a small avatar for the current user
      *
