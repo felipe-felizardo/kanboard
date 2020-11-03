@@ -1,6 +1,14 @@
+#modal-overlay {
+  background: rgba(0, 0, 0, 0.7);
+}
+
 #modal-box {
   background-color: $default-bg-color;
-  
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
   .alert {
     margin: 15px;
     border-radius: 5px;
@@ -33,10 +41,6 @@
     margin-left: auto;
     align-items: center;
     justify-content: center;
-  }
-
-  @media (min-width: 1350px) {
-    width: 1140px !important;
   }
 
   #modal-header {
@@ -269,17 +273,16 @@
 
     .form-actions {
       padding: 0;
-      text-align: right;
-      display: flex;
+      text-align: center;
       flex-direction: row-reverse;
       align-items: center;
 
       .btn {
-        margin-left: 10px;
+        margin-right: 10px;
       }
 
       a {
-        margin-right: 10px;
+        margin-left: 10px;
       }
     }
   }
