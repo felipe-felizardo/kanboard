@@ -54,7 +54,11 @@
 .dropdown-menu-link-text,
 .dropdown-menu-link-icon {
     color: white;
-    text-decoration: none
+    text-decoration: none;
+}
+
+.dropdown-menu-link-id {
+  color: $secondary-color;
 }
 
 td a.dropdown-menu strong {
