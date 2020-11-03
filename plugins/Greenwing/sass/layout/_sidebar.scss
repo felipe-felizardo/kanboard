@@ -71,8 +71,7 @@
       &:hover,
       &:focus {
         padding-left: 0;
-        border-left-color: $secondary-color;
-        border-left: 3px solid;
+        border-left: 3px solid $secondary-color;
 
         a,
         a:hover,
