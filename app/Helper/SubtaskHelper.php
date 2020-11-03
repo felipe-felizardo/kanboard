@@ -228,6 +228,50 @@ class SubtaskHelper extends Base
         return $html;
     }
 
+    public function renderStatus(array $subtask)
+    {
+        switch ($subtask['status']) {
+            case SubtaskModel::STATUS_TODO:
+                $html = '<span class="subtask-status-todo">';
+            break;
+            case SubtaskModel::STATUS_DEV_INPROGRESS:
+                $html = '<span class="subtask-status-dev-inprogress">';
+            break;
+            case SubtaskModel::STATUS_DEV_STOPPED:
+                $html = '<span class="subtask-status-dev-stopped">';
+            break;
+            case SubtaskModel::STATUS_DEV_DONE: 
+                $html = '<span class="subtask-status-dev-done">';
+            break;
+            case SubtaskModel::STATUS_TEST_INPROGRESS:
+                $html = '<span class="subtask-status-test-inprogress">';
+            break;
+            case SubtaskModel::STATUS_TEST_STOPPED: 
+                $html = '<span class="subtask-status-test-stopped">';
+            break;
+            case SubtaskModel::STATUS_TEST_FAILED;
+                $html = '<span class="subtask-status-test-failed">';
+            break;
+            case SubtaskModel::STATUS_TEST_FAILED_REQUIREMENTS;
+                $html = '<span class="subtask-status-test-failed">';
+            break;
+            case SubtaskModel::STATUS_TEST_FAILED_PARTLY_REQUIREMENTS;
+                $html = '<span class="subtask-status-test-failed">';
+            break;
+            case SubtaskModel::STATUS_TEST_FAILED_ANOTHER_PROBLEM;
+                $html = '<span class="subtask-status-test-failed">';
+            break;
+            case SubtaskModel::STATUS_DONE;
+                $html = '<span class="subtask-status-done">';
+            break;
+        }
+
+        $html .= $this->getSubtaskTooltip($subtask);
+        $html .= '</span>';
+
+        return $html;
+    }
+
     public function getSubtaskTooltip(array $subtask)
     {
         switch ($subtask['status']) {

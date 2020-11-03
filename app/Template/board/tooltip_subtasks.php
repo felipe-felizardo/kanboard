@@ -16,7 +16,7 @@
                     array('task_id' => $task['id'], 'project_id' => $task['project_id'], 'editable' => false, 'subtask_id' => $subtask['id'])) ?>
             </td>
             <td>
-                <?= $this->subtask->getSubtaskTooltip($subtask) ?> 
+                <?= $this->subtask->renderStatus($subtask) ?>
             </td>
             <?= $this->hook->render('template:board:tooltip:subtasks:rows', array('subtask' => $subtask)) ?>
             <td>
