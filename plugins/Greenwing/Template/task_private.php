@@ -19,18 +19,10 @@
             <div class="task-board-saving-icon" style="display: none;"><i class="fa fa-spinner fa-pulse"></i></div>
             <?php if ($this->user->hasProjectAccess('TaskModificationController', 'edit', $task['project_id'])): ?>
                 <?= $this->render('task/dropdown', array('task' => $task, 'redirect' => 'board')) ?>
-                <?php if ($this->projectRole->canUpdateTask($task)): ?>
-                    <?= $this->modal->large('edit', '', 'TaskModificationController', 'edit', array('task_id' => $task['id'], 'project_id' => $task['project_id'])) ?>
-                <?php endif ?>
             <?php else: ?>
                 <strong><?= '#'.$task['id'] ?></strong>
             <?php endif ?>
 
-            <?php if (! empty($task['assignee_username'])): ?>
-                <span title="<?= $this->text->e($task['assignee_name'] ?: $task['assignee_username']) ?>">
-                    <?= $this->text->e($this->user->getInitials($task['assignee_name'] ?: $task['assignee_username'])) ?>
-                </span> -
-            <?php endif ?>
             <?= $this->url->link($this->text->e($task['title']), 'TaskViewController', 'show', array('task_id' => $task['id'], 'project_id' => $task['project_id']), false, '', $this->text->e($task['title'])) ?>
         </div>
     <?php else: ?>

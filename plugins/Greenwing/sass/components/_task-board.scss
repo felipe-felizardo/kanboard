@@ -197,6 +197,15 @@
       padding-top: 10px;
       padding-bottom: 10px;
 
+      a
+      {
+        color: $primary-color;
+        &:hover,
+        &:focus {
+          color: white;
+        }   
+      }
+
       .dropdown {
         a {
           color: $secondary-color;
@@ -206,7 +215,7 @@
           color: $secondary-color;
 
           i {
-            color: #afafaf;
+            color: $secondary-color;
           }
         }
 
