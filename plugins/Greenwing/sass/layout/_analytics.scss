@@ -1,3 +1,29 @@
 .js-chart-task-time-column-rendered {
     margin-bottom: 1rem;
 }
+
+.c3 .c3-axis-x path,
+.c3 .c3-axis-x line,
+.c3 .c3-axis-y path,
+.c3 .c3-axis-y line {
+    stroke: white;
+}
+
+.c3 .c3-axis-x g,
+.c3 .c3-axis-y g,
+.c3 .c3-legend-item-data text,
+.c3 .c3-axis-y-label,
+.c3 .c3-axis-x-label,
+.c3 .c3-legend-item {
+    fill: whitesmoke;
+}
+
+.c3 text.c3-text { 
+    fill: $primary-color!important;
+    stroke: $primary-color!important;
+    stroke-opacity: 0.3!important;
+}
+
+.c3 .c3-tooltip-container {
+    color: black;
+}

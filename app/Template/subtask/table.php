@@ -5,11 +5,11 @@
     >
     <thead>
         <tr>
-            <th class="column-40"><?= t('Title') ?></th>
-            <th class="column-25"><?= t('Status') ?></th>
-            <th class="column-10"><?= t('Assignee') ?></th>
+            <th class="column-30"><?= t('Title') ?></th>
+            <th class="column-20"><?= t('Status') ?></th>
+            <th class="column-20"><?= t('Assignee') ?></th>
             <?= $this->hook->render('template:subtask:table:header:before-timetracking') ?>
-            <th class="column-25"><?= t('Time tracking') ?></th>
+            <th class="column-30"><?= t('Time tracking') ?></th>
         </tr>
     </thead>
     <tbody>
@@ -35,8 +35,10 @@
             </td>
             <td>
                 <div class="subtask-table-td">
-                    <?= $this->subtask->getSubtaskTooltip($subtask) ?>    
-                    <?= $this->subtask->renderChooseStatus($task, $subtask) ?>     
+                    <strong>
+                        <?= $this->subtask->renderStatus($subtask) ?>
+                    </strong>
+                    <?= $this->subtask->renderChooseStatus($task, $subtask) ?>
                 </div> 
             </td>          
             <td>

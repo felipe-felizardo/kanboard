@@ -33,8 +33,8 @@ $task-colors: (
 
     &.color-#{$name} {
       border-style: none;
-      color: $hex;
-      background-color: lighten($hex, 30);
+      color: darken($hex, 50);
+      background-color: lighten($hex, 20);
     }
   }
 
@@ -50,7 +50,13 @@ $task-colors: (
     background-color: lighten($hex, 20);
 
     a {
-      color: darken($hex, 30);
+      font-weight: 500;
+      color: darken($hex, 40);
+
+      &:hover,
+      &:focus {
+        color: darken($hex, 20)!important;
+      }   
     }
 
     .tooltip .fa-info-circle {

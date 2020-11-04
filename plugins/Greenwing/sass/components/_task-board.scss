@@ -10,10 +10,9 @@
 
     a
     {
-      color: white;
       &:hover,
       &:focus {
-        color: $primary-color;
+        color: white;
       }   
     }
 
@@ -32,7 +31,7 @@
           color: $secondary-color;
 
           i {
-            color: #afafaf;
+            color: $secondary-color;
           }
         }
 
@@ -138,6 +137,7 @@
           margin: 0 5px 0 0;
           padding: 0 5px 0 0;
           color: $primary-color;
+          opacity: 1;
 
           .fa.fa-comments-o {
             margin-right: 3px;
@@ -149,6 +149,11 @@
 
           &:first-child {
             padding-left: 0;
+          }
+
+          &:hover,
+          &:focus {
+            color: white;
           }
         }
 
@@ -192,6 +197,15 @@
       padding-top: 10px;
       padding-bottom: 10px;
 
+      a
+      {
+        color: $primary-color;
+        &:hover,
+        &:focus {
+          color: white;
+        }   
+      }
+
       .dropdown {
         a {
           color: $secondary-color;
@@ -201,7 +215,7 @@
           color: $secondary-color;
 
           i {
-            color: #afafaf;
+            color: $secondary-color;
           }
         }
 

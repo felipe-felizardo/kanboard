@@ -92,8 +92,6 @@
             <?= $this->hook->render('template:board:task:icons', array('task' => $task)) ?>
         </div>
     </div>
-
-    <?= $this->render('board/task_avatar', array('task' => $task)) ?>
 </div>  
 
 <?= $this->hook->render('template:board:task:footer', array('task' => $task)) ?>

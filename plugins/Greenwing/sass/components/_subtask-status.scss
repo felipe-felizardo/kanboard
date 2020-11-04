@@ -1,0 +1,31 @@
+.subtask-status-todo {
+    color: white;
+}
+
+.subtask-status-dev-inprogress {
+    color: #74b9ff;
+}
+
+.subtask-status-dev-stopped {
+    color: #a29bfe;
+}
+
+.subtask-status-dev-done {
+    color: #81ecec;
+}
+
+.subtask-status-test-inprogress {
+    color: #ffeaa7;
+}
+
+.subtask-status-test-stopped {
+    color: #fab1a0;
+}
+
+.subtask-status-test-failed {
+    color: #ff7675;
+}
+
+.subtask-status-done {
+    color: #00b894;
+}
