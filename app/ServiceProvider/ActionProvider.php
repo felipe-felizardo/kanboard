@@ -52,6 +52,7 @@ use Kanboard\Action\SubtaskTimerMoveTaskColumn;
 use Kanboard\Action\StopSubtaskTimerMoveTaskColumn;
 use Kanboard\Action\SubtaskCreationTaskCreationColumn;
 use Kanboard\Action\TaskMoveColumnOnStartDate;
+use Kanboard\Action\TaskAssignPriorityColumn;
 
 /**
  * Action Provider
@@ -112,6 +113,7 @@ class ActionProvider implements ServiceProviderInterface
         $container['actionManager']->register(new TaskAssignDueDateOnCreation($container));
         $container['actionManager']->register(new TaskAssignColorSwimlane($container));
         $container['actionManager']->register(new TaskAssignPrioritySwimlane($container));
+        $container['actionManager']->register(new TaskAssignPriorityColumn($container));
         $container['actionManager']->register(new TaskAssignColorOnDueDate($container));
         $container['actionManager']->register(new SubtaskTimerMoveTaskColumn($container));
         $container['actionManager']->register(new StopSubtaskTimerMoveTaskColumn($container));

@@ -1132,6 +1132,7 @@ return array(
     'Activity stream for %s' => 'Fluxo de atividade de %s',
     'Assign a color when the task is moved to a specific swimlane' => 'Atribuir uma cor quando a solicitação for movida para uma raia especifica',
     'Assign a priority when the task is moved to a specific swimlane' => 'Atribuir uma prioridade quando a solicitação for movida para uma raia especifica',
+    'Assign a priority when the task is moved to a specific column' => 'Atribuir uma prioridade quando a solicitação for movida para uma coluna especifica',
     'User unlocked successfully.' => 'Usuário desbloqueado com sucesso.',
     'Unable to unlock the user.' => 'Não foi possível desbloquear o usuário.',
     'Move a task to another swimlane' => 'Mover a solicitação para outra raia',
