@@ -19,8 +19,7 @@
     .task-board-header {
       display: flex;
       align-items: center;
-      margin-bottom: 10px;
-      padding: 5px 10px 2px;
+      padding: 5px 10px 5px 10px;
 
       .dropdown {
         a {
@@ -68,8 +67,9 @@
 
     .task-board-title {
       margin-top: 0;
-      margin-bottom: 10px;
-      padding: 2px 10px 5px;
+      margin-bottom: 0;
+      padding: 2px 10px 2px 10px;
+      border-top: 1px solid #1d223d;
 
       a
       {
@@ -91,24 +91,17 @@
       }
     }
 
-    .task-board-category-container {
-      text-align: initial;
-      margin: 0;
-      padding: 10px;
-      border-top: 1px solid $task-board-meta-border-color;
-      background-color: $task-board-meta-bg-color;
-
-      .task-board-category {
-        border-style: none;
-        padding: 2px 4px;
-        font-weight: 400;
-        font-size: 1em;
-        color: initial;
-      }
+    .task-board-category {
+      border-style: none;
+      padding: 2px 4px;
+      font-weight: 400;
+      color: initial;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .task-tags {
-      padding: 10px;
+      padding: 5px 10px 4px 10px;
       border-top: 1px solid $task-board-meta-border-color;
       background-color: $task-board-meta-bg-color;
 
@@ -123,21 +116,20 @@
       margin-top: 0;
       text-align: left;
       border-top: 1px solid $task-board-meta-border-color;
-      padding: 10px;
+      padding: 0px 10px 0px 10px;
       display: flex;
       align-items: center;
       background-color: $task-board-meta-bg-color;
 
       .task-board-icons-row {
-        margin-bottom: 5px;
-
         > span,
         div,
         a {
-          margin: 0 5px 0 0;
-          padding: 0 5px 0 0;
+          margin: 0 4px 0 0;
+          padding: 0 3px 0 0;
           color: $primary-color;
           opacity: 1;
+          margin-left: 0px;
 
           .fa.fa-comments-o {
             margin-right: 3px;
