@@ -39,7 +39,7 @@ $task-colors: (
   }
 
   .board-task-list .task-board.color-#{$name} {
-    border-top: 10px solid $hex;
+    border-top: 6px solid $hex;
     &:hover,
     &:focus {
       border-top-color: darken($hex, 10);
