@@ -1,1 +1,5 @@
 !/.gitignore
+/Greenwing/gulpfile.js
+/Greenwing/package-lock.json
+/Greenwing/package.json
+/Greenwing/yarn.lock
