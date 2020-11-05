@@ -7,7 +7,7 @@
 
     <?= $this->subtask->renderTitleField($values, $errors, array('autofocus')) ?>
     <?= $this->form->label(t('Analysis'), 'description') ?>
-    <?= $this->form->textEditor('description', $values, $errors, array('required' => true)) ?>
+    <?= $this->form->textEditor('description', $values, $errors, array('required' => true, 'tabindex' => 2)) ?>
     <?= $this->subtask->renderAssigneeField($users_list, $values, $errors) ?>
     <?= $this->subtask->renderTimeEstimatedField($values, $errors) ?>
     <?= $this->subtask->renderTimeSpentField($values, $errors) ?>
