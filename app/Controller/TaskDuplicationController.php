@@ -121,6 +121,7 @@ class TaskDuplicationController extends BaseController
 
             $values = $this->taskDuplicationModel->checkDestinationProjectValues($task);
             $values['project_id'] = $dst_project_id;
+            $values['category_id'] = $this->categoryModel->getIdByName($dst_project_id, $this->categoryModel->getNameById($task['category_id']));
         } else {
             $swimlanes_list = array();
             $columns_list = array();
