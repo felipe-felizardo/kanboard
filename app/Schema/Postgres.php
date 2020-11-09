@@ -8,7 +8,12 @@ use PDO;
 use Kanboard\Core\Security\Token;
 use Kanboard\Core\Security\Role;
 
-const VERSION = 118;
+const VERSION = 119;
+
+function version_119(PDO $pdo)
+{
+    $pdo->exec('ALTER TABLE "projects" ADD COLUMN is_backlog BOOLEAN DEFAULT FALSE');
+}
 
 function version_118(PDO $pdo)
 {

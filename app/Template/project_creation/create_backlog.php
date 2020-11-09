@@ -5,7 +5,7 @@
     <form id="project-creation-form" method="post" action="<?= $this->url->href('ProjectCreationController', 'save') ?>" autocomplete="off">
 
         <?= $this->form->csrf() ?>
-        <?= $this->form->hidden('is_private', $values) ?>
+        <?= $this->form->hidden('is_backlog', $values) ?>
 
         <?= $this->form->label(t('Id of the backlog (3 ~ 999)'), 'id') ?>
         <?= $this->form->number('id', $values, $errors, array('autofocus')) ?>

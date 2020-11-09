@@ -40,13 +40,12 @@ class ProjectCreationController extends BaseController
      */
     public function createBacklog(array $values = array(), array $errors = array())
     {
-        $is_private = isset($values['is_private']) && $values['is_private'] == 1;
+        $values['is_backlog'] = 1;
         $projects_list = array(0 => t('Do not duplicate anything')) + $this->projectUserRoleModel->getActiveProjectsByUser($this->userSession->getId());
 
         $this->response->html($this->helper->layout->app('project_creation/create_backlog', array(
             'values' => $values,
             'errors' => $errors,
-            'is_private' => $is_private,
             'projects_list' => $projects_list,
             'title' => t('New backlog'),
         )));
@@ -140,6 +139,12 @@ class ProjectCreationController extends BaseController
         if (!isset($values['hour_budget']))
             $values['hour_budget'] = 0;
 
+        if (!isset($values['is_private']))
+            $values['is_private'] = 0;
+
+        if (!isset($values['is_backlog']))
+            $values['is_backlog'] = 0;
+
         if (!isset($values['id']))
         {
             $values['id'] = 0;
@@ -173,6 +178,7 @@ class ProjectCreationController extends BaseController
             $values['identifier'],
             $values['hour_budget'],
             $values['id'],
+            $values['is_backlog'] == 1,
         );
     }
 }

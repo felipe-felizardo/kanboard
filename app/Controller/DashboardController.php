@@ -23,7 +23,8 @@ class DashboardController extends BaseController
             'title'              => t('Dashboard for %s', $this->helper->user->getFullname($user)),
             'user'               => $user,
             'overview_paginator' => $this->dashboardPagination->getOverview($user['id']),
-            'project_paginator'  => $this->projectPagination->getDashboardPaginator($user['id'], 'show', 10),
+            'project_paginator'  => $this->projectPagination->getDashboardPaginator($user['id'], 'projects', 10),
+            'backlog_paginator'  => $this->projectPagination->getDashboardPaginator($user['id'], 'backlogs', 10),
         )));
     }
 
@@ -75,4 +76,20 @@ class DashboardController extends BaseController
             'user' => $user,
         )));
     }
+
+    /**
+     * My backlogs
+     *
+     * @access public
+     */
+    public function backlogs()
+    {
+        $user = $this->getUser();
+
+        $this->response->html($this->helper->layout->dashboard('dashboard/backlogs', array(
+            'title' => t('Projects overview for %s', $this->helper->user->getFullname($user)),
+            'paginator' => $this->projectPagination->getDashboardPaginator($user['id'], 'backlogs', 25),
+            'user' => $user,
+        )));
+    }    
 }

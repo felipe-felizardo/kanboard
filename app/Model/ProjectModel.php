@@ -332,20 +332,35 @@ class ProjectModel extends Base
      *
      * @access public
      * @param  array      $project_ids     List of project id
+     * @param  bool       $is_backlog      Indicate if the project is backlog
      * @return \PicoDb\Table
      */
-    public function getQueryColumnStats(array $project_ids)
+    public function getQueryColumnStats(array $project_ids, $is_backlog = false)
     {
         if (empty($project_ids)) {
             return $this->db->table(ProjectModel::TABLE)->eq(ProjectModel::TABLE.'.id', 0);
         }
 
-        return $this->db
+        if ($is_backlog)
+        {
+            return $this->db
             ->table(ProjectModel::TABLE)
             ->columns(self::TABLE.'.*', UserModel::TABLE.'.username AS owner_username', UserModel::TABLE.'.name AS owner_name')
+            ->eq('is_backlog', 1)
             ->join(UserModel::TABLE, 'id', 'owner_id')
             ->in(self::TABLE.'.id', $project_ids)
             ->callback(array($this, 'applyColumnStats'));
+        }
+        else
+        {
+            return $this->db
+            ->table(ProjectModel::TABLE)
+            ->columns(self::TABLE.'.*', UserModel::TABLE.'.username AS owner_username', UserModel::TABLE.'.name AS owner_name')
+            ->eq('is_backlog', 0)
+            ->join(UserModel::TABLE, 'id', 'owner_id')
+            ->in(self::TABLE.'.id', $project_ids)
+            ->callback(array($this, 'applyColumnStats'));            
+        }
     }
 
     /**

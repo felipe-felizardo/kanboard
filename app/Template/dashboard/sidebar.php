@@ -3,6 +3,9 @@
         <li <?= $this->app->checkMenuSelection('DashboardController', 'show') ?>>
             <?= $this->url->link(t('Overview'), 'DashboardController', 'show', array('user_id' => $user['id'])) ?>
         </li>
+        <li <?= $this->app->checkMenuSelection('DashboardController', 'backlogs') ?>>
+            <?= $this->url->link(t('My backlogs'), 'DashboardController', 'backlogs', array('user_id' => $user['id'])) ?>
+        </li>
         <li <?= $this->app->checkMenuSelection('DashboardController', 'projects') ?>>
             <?= $this->url->link(t('My projects'), 'DashboardController', 'projects', array('user_id' => $user['id'])) ?>
         </li>
