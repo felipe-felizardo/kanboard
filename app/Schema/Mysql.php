@@ -8,7 +8,12 @@ use PDO;
 use Kanboard\Core\Security\Token;
 use Kanboard\Core\Security\Role;
 
-const VERSION = 140;
+const VERSION = 141;
+
+function version_141(PDO $pdo)
+{
+    $pdo->exec('ALTER TABLE `projects` ADD COLUMN `is_backlog` TINYINT(1) DEFAULT 0 NOT NULL');
+}
 
 function version_140(PDO $pdo)
 {

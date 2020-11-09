@@ -25,7 +25,8 @@ class ProjectPagination extends Base
      */
     public function getDashboardPaginator($user_id, $method, $max)
     {
-        $query = $this->projectModel->getQueryColumnStats($this->projectPermissionModel->getActiveProjectIds($user_id));
+        $is_backlog = $method === 'backlogs' ? true : false;
+        $query = $this->projectModel->getQueryColumnStats($this->projectPermissionModel->getActiveProjectIds($user_id), $is_backlog);
         $this->hook->reference('pagination:dashboard:project:query', $query);
 
         return $this->paginator
