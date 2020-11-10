@@ -126,7 +126,7 @@ class ProjectRoleModelTest extends Base
         $this->assertEquals(1, $projectModel->create(array('name' => 'Test')));
 
         $roles = $projectRoleModel->getList(1);
-        $this->assertCount(3, $roles);
+        $this->assertCount(4, $roles);
         $this->assertEquals('Project Manager', $roles[Role::PROJECT_MANAGER]);
     }
 
@@ -139,7 +139,7 @@ class ProjectRoleModelTest extends Base
         $this->assertEquals(1, $projectRoleModel->create(1, 'Role A'));
 
         $roles = $projectRoleModel->getList(1);
-        $this->assertCount(4, $roles);
+        $this->assertCount(5, $roles);
         $this->assertEquals('Role A', $roles['Role A']);
     }
 
