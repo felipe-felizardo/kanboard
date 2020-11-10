@@ -26,9 +26,10 @@ class AppProcedureTest extends BaseProcedureTest
     public function testGetProjectRoles()
     {
         $roles = $this->app->getProjectRoles();
-        $this->assertCount(3, $roles);
+        $this->assertCount(4, $roles);
         $this->assertEquals('Project Manager', $roles['project-manager']);
-        $this->assertEquals('Project Member', $roles['project-member']);
+        $this->assertEquals('Project Developer', $roles['project-member-dev']);
+        $this->assertEquals('Project Tester', $roles['project-member-test']);
         $this->assertEquals('Project Viewer', $roles['project-viewer']);
     }
 

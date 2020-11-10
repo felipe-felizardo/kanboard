@@ -11,6 +11,8 @@ class RoleTest extends Base
         $role = new Role();
         $this->assertFalse($role->isCustomProjectRole(Role::PROJECT_MANAGER));
         $this->assertFalse($role->isCustomProjectRole(Role::PROJECT_MEMBER));
+        $this->assertFalse($role->isCustomProjectRole(Role::PROJECT_MEMBER_DEV));
+        $this->assertFalse($role->isCustomProjectRole(Role::PROJECT_MEMBER_TEST));
         $this->assertFalse($role->isCustomProjectRole(Role::PROJECT_VIEWER));
         $this->assertFalse($role->isCustomProjectRole(''));
         $this->assertTrue($role->isCustomProjectRole('Custom Role'));
@@ -20,7 +22,8 @@ class RoleTest extends Base
     {
         $role = new Role();
         $this->assertEquals('Project Manager', $role->getRoleName(Role::PROJECT_MANAGER));
-        $this->assertEquals('Project Member', $role->getRoleName(Role::PROJECT_MEMBER));
+        $this->assertEquals('Project Developer', $role->getRoleName(Role::PROJECT_MEMBER_DEV));
+        $this->assertEquals('Project Tester', $role->getRoleName(Role::PROJECT_MEMBER_TEST));
         $this->assertEquals('Project Viewer', $role->getRoleName(Role::PROJECT_VIEWER));
         $this->assertEquals('Administrator', $role->getRoleName(Role::APP_ADMIN));
         $this->assertEquals('Manager', $role->getRoleName(Role::APP_MANAGER));
@@ -32,6 +35,6 @@ class RoleTest extends Base
     {
         $role = new Role();
         $this->assertCount(3, $role->getApplicationRoles());
-        $this->assertCount(3, $role->getProjectRoles());
+        $this->assertCount(4, $role->getProjectRoles());
     }
 }
