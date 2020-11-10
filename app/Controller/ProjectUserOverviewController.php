@@ -98,6 +98,24 @@ class ProjectUserOverviewController extends BaseController
     }
 
     /**
+     * Display the list of project developers
+     *
+     */
+    public function developers()
+    {
+        $this->role(Role::PROJECT_MEMBER_DEV, 'developers', t('People who are project developers'), 'Projects where "%s" is developer');
+    }
+
+    /**
+     * Display the list of project testers
+     *
+     */
+    public function testers()
+    {
+        $this->role(Role::PROJECT_MEMBER_TEST, 'testers', t('People who are project testers'), 'Projects where "%s" is tester');
+    }    
+
+    /**
      * Display the list of open taks
      *
      */

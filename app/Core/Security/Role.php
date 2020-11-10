@@ -10,14 +10,16 @@ namespace Kanboard\Core\Security;
  */
 class Role
 {
-    const APP_ADMIN       = 'app-admin';
-    const APP_MANAGER     = 'app-manager';
-    const APP_USER        = 'app-user';
-    const APP_PUBLIC      = 'app-public';
+    const APP_ADMIN           = 'app-admin';
+    const APP_MANAGER         = 'app-manager';
+    const APP_USER            = 'app-user';
+    const APP_PUBLIC          = 'app-public';
 
-    const PROJECT_MANAGER = 'project-manager';
-    const PROJECT_MEMBER  = 'project-member';
-    const PROJECT_VIEWER  = 'project-viewer';
+    const PROJECT_MANAGER     = 'project-manager';
+    const PROJECT_MEMBER      = 'project-member';
+    const PROJECT_MEMBER_DEV  = 'project-member-dev';
+    const PROJECT_MEMBER_TEST = 'project-member-test';
+    const PROJECT_VIEWER      = 'project-viewer';
 
     /**
      * Get application roles
@@ -44,7 +46,8 @@ class Role
     {
         return array(
             self::PROJECT_MANAGER => t('Project Manager'),
-            self::PROJECT_MEMBER => t('Project Member'),
+            self::PROJECT_MEMBER_DEV => t('Project Developer'),
+            self::PROJECT_MEMBER_TEST => t('Project Tester'),
             self::PROJECT_VIEWER => t('Project Viewer'),
         );
     }
@@ -58,7 +61,7 @@ class Role
      */
     public function isCustomProjectRole($role)
     {
-        return ! empty($role) && $role !== self::PROJECT_MANAGER && $role !== self::PROJECT_MEMBER && $role !== self::PROJECT_VIEWER;
+        return ! empty($role) && $role !== self::PROJECT_MANAGER && $role !== self::PROJECT_MEMBER && $role !== self::PROJECT_VIEWER && $role !== self::PROJECT_MEMBER_DEV && $role !== self::PROJECT_MEMBER_TEST;
     }
 
     /**

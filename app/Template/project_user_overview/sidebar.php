@@ -16,8 +16,11 @@
         <li <?= $this->app->checkMenuSelection('ProjectUserOverviewController', 'managers') ?>>
             <?= $this->url->link(t('Project managers'), 'ProjectUserOverviewController', 'managers', $filter) ?>
         </li>
-        <li <?= $this->app->checkMenuSelection('ProjectUserOverviewController', 'members') ?>>
-            <?= $this->url->link(t('Project members'), 'ProjectUserOverviewController', 'members', $filter) ?>
+        <li <?= $this->app->checkMenuSelection('ProjectUserOverviewController', 'testers') ?>>
+            <?= $this->url->link(t('Project testers'), 'ProjectUserOverviewController', 'testers', $filter) ?>
+        </li>
+        <li <?= $this->app->checkMenuSelection('ProjectUserOverviewController', 'developers') ?>>
+            <?= $this->url->link(t('Project developers'), 'ProjectUserOverviewController', 'developers', $filter) ?>
         </li>
         <li <?= $this->app->checkMenuSelection('ProjectUserOverviewController', 'opens') ?>>
             <?= $this->url->link(t('Open tasks'), 'ProjectUserOverviewController', 'opens', $filter) ?>

@@ -70,8 +70,10 @@ class AuthenticationProvider implements ServiceProviderInterface
     {
         $acl = new AccessMap;
         $acl->setDefaultRole(Role::PROJECT_VIEWER);
-        $acl->setRoleHierarchy(Role::PROJECT_MANAGER, array(Role::PROJECT_MEMBER, Role::PROJECT_VIEWER));
         $acl->setRoleHierarchy(Role::PROJECT_MEMBER, array(Role::PROJECT_VIEWER));
+        $acl->setRoleHierarchy(Role::PROJECT_MEMBER_DEV, array(Role::PROJECT_MEMBER, Role::PROJECT_VIEWER));
+        $acl->setRoleHierarchy(Role::PROJECT_MEMBER_TEST, array(Role::PROJECT_MEMBER, Role::PROJECT_VIEWER));
+        $acl->setRoleHierarchy(Role::PROJECT_MANAGER, array(Role::PROJECT_MEMBER, Role::PROJECT_VIEWER));
 
         $acl->add('ActionController', '*', Role::PROJECT_MANAGER);
         $acl->add('ProjectActionDuplicationController', '*', Role::PROJECT_MANAGER);
@@ -206,8 +208,10 @@ class AuthenticationProvider implements ServiceProviderInterface
     {
         $acl = new AccessMap;
         $acl->setDefaultRole(Role::PROJECT_VIEWER);
-        $acl->setRoleHierarchy(Role::PROJECT_MANAGER, array(Role::PROJECT_MEMBER, Role::PROJECT_VIEWER));
         $acl->setRoleHierarchy(Role::PROJECT_MEMBER, array(Role::PROJECT_VIEWER));
+        $acl->setRoleHierarchy(Role::PROJECT_MEMBER_DEV, array(Role::PROJECT_MEMBER, Role::PROJECT_VIEWER));
+        $acl->setRoleHierarchy(Role::PROJECT_MEMBER_TEST, array(Role::PROJECT_MEMBER, Role::PROJECT_VIEWER));
+        $acl->setRoleHierarchy(Role::PROJECT_MANAGER, array(Role::PROJECT_MEMBER, Role::PROJECT_VIEWER));
 
         $acl->add('ActionProcedure', array('removeAction', 'getActions', 'createAction'), Role::PROJECT_MANAGER);
         $acl->add('CategoryProcedure', array('removeCategory', 'createCategory', 'updateCategory'), Role::PROJECT_MANAGER);
