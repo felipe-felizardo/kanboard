@@ -163,14 +163,13 @@
       }
 
       td {
-        background-color: $default-bg-color-10;
+        background-color: $default-bg-color-15;
         border-style: none;
       }
 
       th:not(.board-swimlane-header) {
-        background-color: $default-bg-color-5;
+        background-color: $default-bg-color-15;
         border-style: none;
-        border-bottom: 1px solid white;
       }
 
       .board-swimlane-header {
