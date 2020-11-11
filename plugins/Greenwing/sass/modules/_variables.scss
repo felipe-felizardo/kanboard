@@ -3,7 +3,7 @@ $default-radius: 5px;
 $task-colors: (
   "yellow": #ffe35a,
   "blue": #4694ff,
-  "green": #14ff7d,
+  "green": #61bd4f,
   "purple": #856be2,
   "red": #ff2828,
   "orange": #fb9531,
@@ -33,8 +33,8 @@ $task-colors: (
 
     &.color-#{$name} {
       border-style: none;
-      color: darken($hex, 50);
-      background-color: lighten($hex, 20);
+      color: white;
+      background-color: $hex;
     }
   }
 
@@ -47,11 +47,11 @@ $task-colors: (
   }
   .task-board-category.color-#{$name} {
     border-style: none;
-    background-color: lighten($hex, 20);
+    background-color: $hex;
 
     a {
-      font-weight: 500;
-      color: darken($hex, 40);
+      font-weight: 700;
+      color: white;
 
       &:hover,
       &:focus {
@@ -76,14 +76,14 @@ $task-colors: (
   .table-list-category {
     background-color: $default-bg-color;
     color: white;
+    font-weight: 700;
 
     &.table-list-category.color-#{$name} {
-      background-color: lighten($hex, 20);
+      background-color: $hex;
       border-style: none;
-      color: darken($hex, 30);
 
       a {
-        color: darken($hex, 30);
+        color: white;
       }
     }
   }
