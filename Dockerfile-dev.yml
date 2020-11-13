@@ -1,0 +1,44 @@
+FROM ubuntu:20.04
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update -y -q && \
+    apt-get install -y \
+        apache2 \
+        libapache2-mod-php \
+        php-cli \
+        php-mbstring \
+        php-sqlite3 \
+        php-opcache \
+        php-json \
+        php-ldap \
+        php-gd \
+        php-zip \
+        php-curl \
+        php-xml \
+        php-mysql \
+        php-pgsql \
+        php-pear \
+        php-dev \
+        composer \
+        npm \
+        git \
+        make \
+        mariadb-client \
+        postgresql-client \
+        php-xdebug
+
+# Apache rewrite
+RUN a2enmod rewrite
+
+# xDebug
+RUN echo "zend_extension=/usr/lib/php/20190902/xdebug.so" > /etc/php/7.4/mods-available/xdebug.ini \
+    && echo "xdebug.remote_enable=1" >> /etc/php/7.4/mods-available/xdebug.ini \
+    && echo "xdebug.remote_handler=dbgp" >> /etc/php/7.4/mods-available/xdebug.ini \
+    && echo "xdebug.remote_port=9000" >> /etc/php/7.4/mods-available/xdebug.ini \
+    && echo "xdebug.remote_autostart=1" >> /etc/php/7.4/mods-available/xdebug.ini \
+    && echo "xdebug.remote_connect_back=0" >> /etc/php/7.4/mods-available/xdebug.ini \
+    && echo "xdebug.idekey=VSCODE" >> /etc/php/7.4/mods-available/xdebug.ini \
+    && echo "xdebug.remote_host=host.docker.internal" >> /etc/php/7.4/mods-available/xdebug.ini
+
+# Start apache
+CMD ["apachectl", "-D", "FOREGROUND"]
