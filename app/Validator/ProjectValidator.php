@@ -24,7 +24,6 @@ class ProjectValidator extends BaseValidator
     {
         return array(
             new Validators\Integer('id', t('This value must be an integer')),
-            new Validators\LessThan('id', t('This value must be less than 1000'), 1000),
             new Validators\Integer('priority_default', t('This value must be an integer')),
             new Validators\Integer('priority_start', t('This value must be an integer')),
             new Validators\Integer('priority_end', t('This value must be an integer')),
