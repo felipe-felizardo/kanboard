@@ -18,14 +18,14 @@
     <?= $this->subtask->renderTitleField($values, $errors, array('autofocus')) ?>
     
     <?= $this->form->label(t('Analysis'), 'description') ?>
-    <?= $this->form->textEditor('description', $values, $errors, array('required' => true)) ?>
+    <?= $this->form->textEditor('description', $values, $errors, array('required' => true, 'tabindex' => 2)) ?>
 
     <?= $this->subtask->renderAssigneeField($users_list, $values, $errors) ?>
     <?= $this->subtask->renderTimeEstimatedField($values, $errors) ?>
 
     <?= $this->hook->render('template:subtask:form:create', array('values' => $values, 'errors' => $errors)) ?>
     
-    <?= $this->form->checkbox('another_subtask', t('Create another sub-task'), 1, isset($values['another_subtask']) && $values['another_subtask'] == 1) ?>
+    <?= $this->form->checkbox('another_subtask', t('Create another sub-task'), 1, isset($values['another_subtask']) && $values['another_subtask'] == 1, '', array('tabindex' => 5)) ?>
 
-    <?= $this->modal->submitButtons() ?>
+    <?= $this->modal->submitButtons(array('tabindex' => 6)) ?>
 </form>
