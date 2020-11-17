@@ -26,9 +26,7 @@
             )
         )) ?>
 
-        <?= $this->form->label(t('Swimlane'), 'swimlane_id') ?>
-        <?= $this->form->select('swimlane_id', $swimlanes_list, $values) ?>
-        <p class="form-help"><?= t('Current swimlane: %s', $task['swimlane_name']) ?></p>
+        <?= $this->form->hidden('swimlane_id', $values) ?>
 
         <?= $this->form->label(t('Column'), 'column_id') ?>
         <?= $this->form->select('column_id', $columns_list, $values) ?>
@@ -42,7 +40,7 @@
         <?= $this->form->select('owner_id', $users_list, $values) ?>
         <p class="form-help"><?= t('Current assignee: %s', ($task['assignee_name'] ?: $task['assignee_username']) ?: e('not assigned')) ?></p>
 
-        <?= $this->modal->submitButtons() ?>
+        <?= $this->modal->submitButtons(array('submitLabel' => 'Move')) ?>
     </form>
 
 <?php endif ?>
