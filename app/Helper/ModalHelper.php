@@ -15,7 +15,7 @@ class ModalHelper extends Base
     public function submitButtons(array $params = array())
     {
         return $this->helper->app->component('submit-buttons', array(
-            'submitLabel' => isset($params['submitLabel']) ? $params['submitLabel'] : t('Save'),
+            'submitLabel' => isset($params['submitLabel']) ? t($params['submitLabel']) : t('Save'),
             'orLabel'     => t('or'),
             'cancelLabel' => t('cancel'),
             'color'       => isset($params['color']) ? $params['color'] : 'blue',

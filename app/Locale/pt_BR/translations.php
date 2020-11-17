@@ -309,6 +309,7 @@ return array(
     'Public access disabled' => 'Acesso público desabilitado',
     'Move the task to another project' => 'Mover a solicitação para outra sprint',
     'Move to another project' => 'Mover para outra sprint',
+    'Move' => 'Mover',
     'Do you really want to duplicate this task?' => 'Você realmente deseja duplicar esta solicitação?',
     'Duplicate a task' => 'Duplicar uma solicitação',
     'External accounts' => 'Contas externas',
