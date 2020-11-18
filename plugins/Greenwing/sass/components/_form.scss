@@ -67,12 +67,23 @@ textarea {
   margin-bottom: 1rem;
   font-size: .9rem;
   display: block;
-  color: #de4545;
+  color: $secondary-color;
 
   &::after {
     content: 'Campo requerido';
     margin-left: 8px;
   }
+}
+
+.form-errors {
+  color: $secondary-color;
+  margin-bottom: 1rem;
+}
+
+.form-help {
+  font-size: .8em;
+  color: #ff9b17;
+  margin-bottom: 15px;
 }
 
 .js-submit-buttons-rendered {
@@ -86,14 +97,3 @@ input#form-avatar {
 input[type="radio"] {
   margin-right: 5px;
 }
-
-.form-errors {
-  margin-bottom: 1rem;
-}
-
-.form-help {
-  font-size: .8em;
-  color: rgb(250, 100, 100);
-  margin-bottom: 15px;
-}
-

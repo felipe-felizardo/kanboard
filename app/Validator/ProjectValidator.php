@@ -37,6 +37,8 @@ class ProjectValidator extends BaseValidator
             new Validators\Unique('identifier', t('The identifier must be unique'), $this->db->getConnection(), ProjectModel::TABLE),
             new Validators\Email('email', t('Email address invalid')) ,
             new Validators\Unique('email', t('The project email must be unique across all projects'), $this->db->getConnection(), ProjectModel::TABLE),
+            new Validators\Date('start_date', t('Invalid date'), $this->dateParser->getParserFormats()),
+            new Validators\Date('end_date', t('Invalid date'), $this->dateParser->getParserFormats()),
         );
     }
 
@@ -55,6 +57,7 @@ class ProjectValidator extends BaseValidator
 
         $rules = array(
             new Validators\Required('name', t('The project name is required')),
+            new Validators\Required('hour_budget', t('The hour budget is required')),
         );
 
         $v = new Validator($values, array_merge($rules, $this->commonValidationRules()));

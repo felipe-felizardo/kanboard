@@ -14,8 +14,11 @@
         <?= $this->form->text('identifier', $values, $errors, array('autofocus')) ?>
         <p class="form-help"><?= t('The project identifier is optional and must be alphanumeric, example: MYPROJECT.') ?></p>
 
+        <?= $this->form->date(t('Start date'), 'start_date', $values, $errors) ?>
+        <?= $this->form->date(t('End date'), 'end_date', $values, $errors) ?>
+
         <?= $this->form->label(t('Programming hours budget'), 'hour_budget') ?>
-        <?= $this->form->number('hour_budget', $values, $errors, array('autofocus')) ?>
+        <?= $this->form->number('hour_budget', $values, $errors, array('autofocus', 'required')) ?>
 
         <?= $this->modal->submitButtons() ?>
     </form>

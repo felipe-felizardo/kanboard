@@ -152,7 +152,8 @@
 
       &[id="project-creation-form"],
       &[action="/?controller=GroupCreationController&action=save"] {
-        #form-name {
+        #form-name,
+        #form-hour_budget {
           width: 98%;
           display: inline;
           margin-right: 10px;
@@ -161,6 +162,7 @@
             width: 94%;
           }
         }
+        
       }
 
       &[action^="/?controller=TaskDuplicationController&action=move"],

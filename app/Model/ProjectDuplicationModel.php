@@ -90,12 +90,12 @@ class ProjectDuplicationModel extends Base
      * @param  boolean    $backlog              Force the project to be a backlog
      * @return integer                          Cloned Project Id
      */
-    public function duplicate($src_project_id, $selection = array('projectPermissionModel', 'categoryModel', 'actionModel'), $owner_id = 0, $name = null, $private = null, $identifier = null, $hour_budget = null, $id = null, $backlog = null)
+    public function duplicate($src_project_id, $selection = array('projectPermissionModel', 'categoryModel', 'actionModel'), $owner_id = 0, $name = null, $private = null, $identifier = null, $hour_budget = null, $id = null, $backlog = null, $start_date = null, $end_date = null)
     {
         $this->db->startTransaction();
 
         // Get the cloned project Id
-        $dst_project_id = $this->copy($src_project_id, $owner_id, $name, $private, $identifier, $hour_budget, $id, $backlog);
+        $dst_project_id = $this->copy($src_project_id, $owner_id, $name, $private, $identifier, $hour_budget, $id, $backlog, $start_date, $end_date);
 
         if ($dst_project_id === false) {
             $this->db->cancelTransaction();
@@ -145,7 +145,7 @@ class ProjectDuplicationModel extends Base
      * @param  boolean    $backlog
      * @return integer
      */
-    private function copy($src_project_id, $owner_id = 0, $name = null, $private = null, $identifier = null, $hour_budget = null, $id = 0, $backlog = null)
+    private function copy($src_project_id, $owner_id = 0, $name = null, $private = null, $identifier = null, $hour_budget = null, $id = 0, $backlog = null, $start_date = null, $end_date = null)
     {
         $project = $this->projectModel->getById($src_project_id);
         $is_private = empty($project['is_private']) ? 0 : 1;
@@ -171,6 +171,8 @@ class ProjectDuplicationModel extends Base
             'identifier' => $identifier,
             'hour_budget' => $hour_budget,
             'is_backlog' => $backlog ? 1 : $is_backlog,
+            'start_date' => $this->dateParser->getIsoDate($start_date),
+            'end_date' => $this->dateParser->getIsoDate($end_date),
         );
 
         if ($id != 0)

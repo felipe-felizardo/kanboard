@@ -1332,6 +1332,8 @@ return array(
     'My projects' => 'Minhas sprints',
     'My backlogs' => 'Meus backlogs',
     'You are not a member of any project.' => 'Você não é membro de nenhuma sprint.',
+    'You are not a member of any backlog.' => 'Você não é membro de nenhum backlog.',
+    'The hour budget is required' => 'O orçamento de horas de programação é obrigatório',
     'My subtasks' => 'Meus requisitos',
     '%d subtasks' => '%d requisitos',
     '%d subtask' => '%d requisito',
