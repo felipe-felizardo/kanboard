@@ -12,6 +12,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Validate composer.json and composer.lock
       run: composer validate
+    - name: Delete vendor
+      run: rm -r vendor      
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
     - name: Unit tests with Sqlite
@@ -37,6 +39,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Validate composer.json and composer.lock
       run: composer validate
+    - name: Delete vendor
+      run: rm -r vendor      
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
     - name: Integration tests with Mysql
