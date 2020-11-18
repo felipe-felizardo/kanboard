@@ -90,11 +90,25 @@
 
                     <?= $this->hook->render('template:dashboard:project:after-title', array('project' => $project)) ?>
                 </div>
-                <div>
-                    <span class="table-list-details">
+
+                <span class="table-list-details">
                     <?= t('Scope:') ?> <strong><?= $project['scope_is_open'] ? t('OPEN') : t('CLOSED') ?></strong>
+                </span>
+
+                <?php if ($project['start_date']): ?>
+                    <span class="table-list-details">
+                        <?= t('Start date: ').$this->dt->date($project['start_date']) ?>
                     </span>
-                </div>
+                <?php endif ?>
+                <?php if ($project['end_date']): ?>
+                    <span class="table-list-details                     
+                        <?php if (date('Y-m-d') > $project['end_date']): ?>
+                            task-date-overdue
+                        <?php endif ?>">
+                        <?= t('End date: ').$this->dt->date($project['end_date']) ?>
+                    </span>
+                <?php endif ?>
+
                 <div class="table-list-details">
                     <?php foreach ($project['columns'] as $column): ?>
                         <strong title="<?= t('Task count') ?>"><?= $column['nb_open_tasks'] ?></strong>

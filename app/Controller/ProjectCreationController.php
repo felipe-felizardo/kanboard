@@ -21,6 +21,14 @@ class ProjectCreationController extends BaseController
     {
         $is_private = isset($values['is_private']) && $values['is_private'] == 1;
         $projects_list = array(0 => t('Do not duplicate anything')) + $this->projectUserRoleModel->getActiveProjectsByUser($this->userSession->getId());
+        if (!isset($values['hour_budget']))
+            $values['hour_budget'] = 0;
+
+        if (!isset($values['start_date']))
+            $values['start_date'] = date('d/m/Y');
+
+        if (!isset($values['end_date']))
+            $values['end_date'] = date('d/m/Y');            
 
         $this->response->html($this->helper->layout->app('project_creation/create', array(
             'values' => $values,
@@ -179,6 +187,8 @@ class ProjectCreationController extends BaseController
             $values['hour_budget'],
             $values['id'],
             $values['is_backlog'] == 1,
+            $values['start_date'],
+            $values['end_date'],
         );
     }
 }
