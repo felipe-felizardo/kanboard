@@ -24,7 +24,7 @@ jobs:
         chown -R www-data:www-data /var/www/html/data
         ls -l /var/www/html/
     - name: Integration tests with Sqlite
-      run: php ./vendor/bin/phpunit -c tests/integration.sqlite.xml
+      run: ./vendor/bin/phpunit -c tests/integration.sqlite.xml
       
   Mysql:
     runs-on: ubuntu-latest
@@ -60,7 +60,7 @@ jobs:
         chown -R www-data:www-data /var/www/html/data
         ls -l /var/www/html/
     - name: Integration tests with Mysql
-      run: php ./vendor/bin/phpunit -c tests/integration.mysql.xml
+      run: ./vendor/bin/phpunit -c tests/integration.mysql.xml
       env:
         DB_HOSTNAME: mysql
         DB_PORT: ${{ job.services.mysql.ports[3306] }}
