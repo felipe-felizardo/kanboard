@@ -112,7 +112,7 @@ class SubtaskController extends BaseController
                 'project_id' => $task['project_id'],
                 'task_id' => $task['id'],
                 'user_id' => $values['user_id'],
-                'another_subtask' => 1,
+                'another_subtask' => 0,
                 'subtasks_added' => $subtasksAdded,
             ));
         } else if ($subtasksAdded > 0) {
