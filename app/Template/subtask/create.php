@@ -27,5 +27,11 @@
     
     <?= $this->form->checkbox('another_subtask', t('Create another sub-task'), 1, isset($values['another_subtask']) && $values['another_subtask'] == 1, '', array('tabindex' => 5)) ?>
 
-    <?= $this->modal->submitButtons(array('tabindex' => 6)) ?>
+    <div class="js-submit-buttons-rendered">
+        <div class="form-actions">
+            <button type="submit" class="btn btn-blue" tabindex="6"><?=t('Save')?></button> 
+            <?=t('or')?>
+            <a href="<?= $this->url->href('TaskViewController', 'show', ['task_id' => $task['id']], false, '', true) ?>" tabindex="7"><?=t('cancel')?></a>
+        </div>
+    </div>
 </form>
