@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInita9ee955f8dd378cbb9556dda44173827
+class ComposerStaticInitebdda651101b2a7ae29970d2d5a46c3b
 {
     public static $files = array (
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
@@ -303,6 +303,7 @@ class ComposerStaticInita9ee955f8dd378cbb9556dda44173827
         'Kanboard\\Action\\TaskAssignCurrentUser' => __DIR__ . '/../..' . '/app/Action/TaskAssignCurrentUser.php',
         'Kanboard\\Action\\TaskAssignCurrentUserColumn' => __DIR__ . '/../..' . '/app/Action/TaskAssignCurrentUserColumn.php',
         'Kanboard\\Action\\TaskAssignDueDateOnCreation' => __DIR__ . '/../..' . '/app/Action/TaskAssignDueDateOnCreation.php',
+        'Kanboard\\Action\\TaskAssignPriorityColumn' => __DIR__ . '/../..' . '/app/Action/TaskAssignPriorityColumn.php',
         'Kanboard\\Action\\TaskAssignPrioritySwimlane' => __DIR__ . '/../..' . '/app/Action/TaskAssignPrioritySwimlane.php',
         'Kanboard\\Action\\TaskAssignSpecificUser' => __DIR__ . '/../..' . '/app/Action/TaskAssignSpecificUser.php',
         'Kanboard\\Action\\TaskAssignUser' => __DIR__ . '/../..' . '/app/Action/TaskAssignUser.php',
@@ -1723,6 +1724,7 @@ class ComposerStaticInita9ee955f8dd378cbb9556dda44173827
         'SimpleValidator\\Validators\\Integer' => __DIR__ . '/../..' . '/libs/SimpleValidator/Validators/Integer.php',
         'SimpleValidator\\Validators\\Ip' => __DIR__ . '/../..' . '/libs/SimpleValidator/Validators/Ip.php',
         'SimpleValidator\\Validators\\Length' => __DIR__ . '/../..' . '/libs/SimpleValidator/Validators/Length.php',
+        'SimpleValidator\\Validators\\LessThan' => __DIR__ . '/../..' . '/libs/SimpleValidator/Validators/LessThan.php',
         'SimpleValidator\\Validators\\MaxLength' => __DIR__ . '/../..' . '/libs/SimpleValidator/Validators/MaxLength.php',
         'SimpleValidator\\Validators\\MinLength' => __DIR__ . '/../..' . '/libs/SimpleValidator/Validators/MinLength.php',
         'SimpleValidator\\Validators\\NotEmpty' => __DIR__ . '/../..' . '/libs/SimpleValidator/Validators/NotEmpty.php',
@@ -2021,11 +2023,11 @@ class ComposerStaticInita9ee955f8dd378cbb9556dda44173827
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInita9ee955f8dd378cbb9556dda44173827::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInita9ee955f8dd378cbb9556dda44173827::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInita9ee955f8dd378cbb9556dda44173827::$prefixesPsr0;
-            $loader->fallbackDirsPsr0 = ComposerStaticInita9ee955f8dd378cbb9556dda44173827::$fallbackDirsPsr0;
-            $loader->classMap = ComposerStaticInita9ee955f8dd378cbb9556dda44173827::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitebdda651101b2a7ae29970d2d5a46c3b::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitebdda651101b2a7ae29970d2d5a46c3b::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitebdda651101b2a7ae29970d2d5a46c3b::$prefixesPsr0;
+            $loader->fallbackDirsPsr0 = ComposerStaticInitebdda651101b2a7ae29970d2d5a46c3b::$fallbackDirsPsr0;
+            $loader->classMap = ComposerStaticInitebdda651101b2a7ae29970d2d5a46c3b::$classMap;
 
         }, null, ClassLoader::class);
     }

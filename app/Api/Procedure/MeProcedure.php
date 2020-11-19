@@ -31,7 +31,7 @@ class MeProcedure extends BaseProcedure
         return $this->helper->projectActivity->getProjectsEvents($project_ids, 100);
     }
 
-    public function createMyPrivateProject($name, $description = null)
+    public function createMyPrivateProject($name, $description = null, $hour_budget = 0)
     {
         if ($this->configModel->get('disable_private_project', 0) == 1) {
             return false;
@@ -39,6 +39,7 @@ class MeProcedure extends BaseProcedure
 
         $values = array(
             'name' => $name,
+            'hour_budget' => $hour_budget,
             'description' => $description,
             'is_private' => 1,
         );
