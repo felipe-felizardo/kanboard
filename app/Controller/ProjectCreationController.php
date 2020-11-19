@@ -25,10 +25,10 @@ class ProjectCreationController extends BaseController
             $values['hour_budget'] = 0;
 
         if (!isset($values['start_date']))
-            $values['start_date'] = date('d/m/Y');
+            $values['start_date'] = date($this->dateParser->getUserDateFormat());
 
         if (!isset($values['end_date']))
-            $values['end_date'] = date('d/m/Y');            
+            $values['end_date'] = date($this->dateParser->getUserDateFormat());            
 
         $this->response->html($this->helper->layout->app('project_creation/create', array(
             'values' => $values,
