@@ -91,10 +91,11 @@ class ProjectProcedure extends BaseProcedure
         return $this->helper->projectActivity->getProjectEvents($project_id);
     }
 
-    public function createProject($name, $description = null, $owner_id = 0, $identifier = null, $start_date = null, $end_date = null)
+    public function createProject($name, $description = null, $owner_id = 0, $identifier = null, $start_date = null, $end_date = null, $hour_budget = 0)
     {
         $values = $this->filterValues(array(
             'name' => $name,
+            'hour_budget' => $hour_budget,
             'description' => $description,
             'identifier' => $identifier,
             'start_date' => $start_date,
