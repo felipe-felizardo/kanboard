@@ -32,7 +32,9 @@ class ProjectActivityProjectIdFilter extends BaseFilter implements FilterInterfa
      */
     public function apply()
     {
-        $this->query->eq(ProjectActivityModel::TABLE.'.project_id', $this->value);
+        $this->query->eq(ProjectActivityModel::TABLE.'.project_id', $this->value)
+                    ->neq(ProjectActivityModel::TABLE.'.event_name', 'subtask.status.update')
+                    ->neq(ProjectActivityModel::TABLE.'.event_name', 'subtask.update');
         return $this;
     }
 }

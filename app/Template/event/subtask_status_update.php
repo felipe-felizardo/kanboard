@@ -1,11 +1,15 @@
 <p class="activity-title">
-    <?= e('%s updated the subtask to the status %s', $this->text->e($author), strtoupper(t($subtask['status_name']))) ?>
+    <?= e('%s updated the subtask status', $this->text->e($author)) ?>
     <small class="activity-date"><?= $this->dt->datetime($date_creation) ?></small>
 </p>
 <div class="activity-description">
-    <p class="activity-task-title"><?= t('Task: %s', $this->text->e($task['title'])) ?></p>
 
     <ul>
+        <li>   
+            <strong>
+                <?= $this->subtask->renderStatus($subtask) ?>     
+            </strong>    
+        </li>        
         <?php if ($subtask['username']): ?>
         <li>   
             <?= t('Assigned to %s', $subtask['name'] ?: $subtask['username']) ?>         
@@ -19,7 +23,9 @@
         <?php if (isset($changes['comment'])): ?>
         <li>         
             <?= t('Comments:') ?>
-            <p><strong><?= $this->text->e($changes['comment']) ?></strong></p>
+            <article class="markdown subtask-summary-markdown markdown-activity">
+                <?= $this->text->markdown($changes['comment']) ?>
+            </article>
         </li>
         <?php endif ?>
     </ul>

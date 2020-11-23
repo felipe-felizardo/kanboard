@@ -13,7 +13,7 @@
 }
 
 .markdown p {
-  margin-bottom: 10px
+  margin-bottom: 0px
 }
 
 .markdown ol,
@@ -24,13 +24,14 @@
 }
 
 .markdown pre {
-  background: black;
+  background: #272727;
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid white;
+  border: 1px solid rgb(0, 0, 0);
   overflow: auto;
   overflow-wrap: initial;
-  color: yellow;
+  color: #00ff88;
+  width: fit-content;
 }
 
 .markdown blockquote {
@@ -45,4 +46,11 @@
   display: block;
   max-width: 80%;
   margin-top: 10px
+}
+
+.markdown-activity {
+  border: 3px solid $default-bg-color;
+  width: fit-content;
+  padding: 5px;
+  margin-top: 5px;
 }

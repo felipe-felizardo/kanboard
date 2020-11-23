@@ -213,6 +213,18 @@ header {
       background-color: $default-bg-color-1;
       border-bottom: 1px solid $default-bg-color-5;
     }
+    
+    span {
+      a {
+        color: $secondary-color;
+  
+        &:hover,
+        &:focus {
+          color: white;
+          text-decoration: none;
+        }
+      }
+    }
 
     a {
       color: $primary-color;
