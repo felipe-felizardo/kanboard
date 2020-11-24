@@ -23,6 +23,14 @@ class SubtaskEventBuilder extends BaseEventBuilder
     protected $subtaskId = 0;
 
     /**
+     * Old values
+     *
+     * @access protected
+     * @var array
+     */
+    protected $subtask = array();
+
+    /**
      * Changed values
      *
      * @access protected
@@ -34,6 +42,18 @@ class SubtaskEventBuilder extends BaseEventBuilder
      * Set SubtaskId
      *
      * @param  int $subtaskId
+     * @return $this
+     */
+    public function withSubtask($subtask)
+    {
+        $this->subtask = $subtask;
+        return $this;
+    }
+
+    /**
+     * Set Subtask
+     *
+     * @param  array $subtask
      * @return $this
      */
     public function withSubtaskId($subtaskId)
@@ -71,7 +91,10 @@ class SubtaskEventBuilder extends BaseEventBuilder
         }
 
         if (! empty($this->values)) {
-            $eventData['changes'] = array_diff_assoc($this->values, $eventData['subtask']);
+            if (! empty($this->subtask))
+                $eventData['changes'] = array_diff_assoc($this->values, $this->subtask);
+            else
+                $eventData['changes'] = array_diff_assoc($this->values, $eventData['subtask']);
         }
 
         $eventData['task'] = $this->taskFinderModel->getDetails($eventData['subtask']['task_id']);

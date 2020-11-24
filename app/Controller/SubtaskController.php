@@ -18,7 +18,7 @@ class SubtaskController extends BaseController
      *
      * @access public
      */
-    public function show()
+    public function show(array $values = array(), array $errors = array())
     {
         $task = $this->getTask();
         $subtask = $this->getSubtaskWithDetails($task);
@@ -29,7 +29,11 @@ class SubtaskController extends BaseController
             'task' => $task,
             'subtask' => $subtask,
             'project' => $project,
-            'editable' => $editable
+            'editable' => $editable,
+            'values' => empty($values) ? $subtask : $values,
+            'errors' => $errors,
+            'users_list' => $this->projectUserRoleModel->getAssignableUsersList($task['project_id']),
+            'status_list' => $this->subtaskModel->getStatusList(),            
         )));
     }
 

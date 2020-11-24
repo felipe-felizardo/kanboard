@@ -1,0 +1,79 @@
+#subtask-summary {
+  .subtask-summary-title {
+    display: flex;
+
+    h2 {
+      color: $default-color;
+      margin-bottom: 15px;
+    }
+  }
+  .subtask-summary-container {
+    border: 1px solid white;
+    background-color: $default-bg-color-10;
+    padding: 15px;
+
+    .subtask-summary-columns {
+      margin: 0 -15px;
+
+      .subtask-summary-column {
+        color: inherit;
+        padding: 0 15px;
+      }
+
+      li {
+        padding-bottom: 5px;
+      }
+    }
+
+    .subtask-summary-markdown {
+      margin-top: 10px;
+      margin-left: 20px;
+    }
+
+    .subtask-summary-button {
+      margin-right: 15px;
+      text-align: right;
+    }
+
+    .subtask-summary-status {
+      display: flex;
+      span {
+        margin-right: 5px;
+        margin-left: 5px;
+      }
+    }
+  }
+}
+
+.subtask-status-todo {
+  color: #9e9e9e;
+}
+
+.subtask-status-dev-inprogress {
+  color: #03a9f4;
+}
+
+.subtask-status-dev-stopped {
+  color: #ffeb3b;
+}
+
+.subtask-status-dev-done {
+  color: #a06bff;
+}
+
+.subtask-status-test-inprogress {
+  color: #ff9800;
+}
+
+.subtask-status-test-stopped {
+  color: #ff5722;
+}
+
+.subtask-status-test-failed {
+  color: #ff483a;
+}
+
+.subtask-status-done {
+  color: #0f8;
+}
+

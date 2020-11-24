@@ -3,6 +3,7 @@
   align-items: center;
   margin-bottom: 0;
   padding: 15px;
+  border-radius: 5px;
 
   a 
   {
@@ -30,6 +31,11 @@
       border-bottom: 0 none;
       display: flex;
       font-weight: 500;
+      background-color: $default-bg-color-10;
+      border: 3px solid $default-bg-color-10;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      padding: 5px;
 
       @media (max-width: 767px) {
         flex-direction: column;
@@ -56,17 +62,31 @@
 
     .activity-description {
       color: $default-color;
+      border: 3px solid $default-bg-color-10;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      margin-top: 0px;
+      background-color: $default-bg-color-5;
+
+      p {
+        padding: 5px;
+        margin-left: 5px;
+      }
 
       ul {
+        li {
+          list-style-type: none;
+        }
         margin-top: 0;
-        margin-left: 35px;
+        margin-left: 5px;
+        padding: 5px;
       }
     }
   }
 
   &:hover,
   &:focus {
-    background-color: $default-bg-color-5;
+    background-color: $default-bg-color;
   }
 
   &:nth-child(even) {
@@ -74,7 +94,7 @@
 
     &:hover,
     &:focus {
-      background-color: $default-bg-color-5;
+      background-color: $default-bg-color;
     }
   }
 }

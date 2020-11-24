@@ -12,9 +12,9 @@ class SubtaskEventJobTest extends Base
     public function testJobParams()
     {
         $subtaskEventJob = new SubtaskEventJob($this->container);
-        $subtaskEventJob->withParams(123, array('foobar'), array('k' => 'v'));
+        $subtaskEventJob->withParams(123, array('foobar'), array('k' => 'v'), array('k' => 'x'));
 
-        $this->assertSame(array(123, array('foobar'), array('k' => 'v')), $subtaskEventJob->getJobParams());
+        $this->assertSame(array(123, array('foobar'), array('k' => 'v'), array('k' => 'x')), $subtaskEventJob->getJobParams());
     }
 
     public function testWithMissingSubtask()

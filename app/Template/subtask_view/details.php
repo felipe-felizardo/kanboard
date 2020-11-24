@@ -1,22 +1,21 @@
-<section id="task-summary">
-    <div class="task-summary-title color-<?= $task['color_id'] ?>"> 
-       <h2><?= $this->text->e($subtask['title']) ?></h2>
-    </div>
-
+<section id="subtask-summary">
     <?= $this->hook->render('template:task:details:top', array('task' => $task)) ?>
 
-    <div class="task-summary-container">
-        <div class="task-summary-columns">
-            <div class="task-summary-column">
+    <div class="subtask-summary-container">
+        <div class="subtask-summary-columns">
+            <div class="subtask-summary-column">
                 <ul class="no-bullet">
                     <li>
-                        <strong><?= t('Status:') ?></strong>
-                        <span><?= $this->subtask->getSubtaskTooltip($subtask) ?></span>
+                        <strong class="subtask-summary-status">
+                            <?= t('Status:') ?>
+                            <?= $this->subtask->renderStatus($subtask) ?>
+                            <?= $this->subtask->renderChooseStatus($task, $subtask) ?>
+                        </strong>
                     </li>
                     <?= $this->hook->render('template:task:details:first-column', array('task' => $task)) ?>
                 </ul>
             </div>
-            <div class="task-summary-column">
+            <div class="subtask-summary-column">
                 <ul class="no-bullet">
                     <li>
                         <strong><?= t('Time estimated:') ?></strong>
@@ -25,7 +24,7 @@
                     <?= $this->hook->render('template:task:details:second-column', array('task' => $task)) ?>
                 </ul>
             </div>
-            <div class="task-summary-column">
+            <div class="subtask-summary-column">
                 <ul class="no-bullet">
                     <li>
                         <?php if ($task['time_spent']): ?>
@@ -39,7 +38,7 @@
                     <?= $this->hook->render('template:task:details:third-column', array('task' => $task)) ?>
                 </ul>
             </div>
-            <div class="task-summary-column">
+            <div class="subtask-summary-column">
                 <ul class="no-bullet">
                     <li>
                         <strong><?= t('Assignee:') ?></strong>
@@ -54,6 +53,22 @@
                     <?= $this->hook->render('template:task:details:third-column', array('task' => $task)) ?>
                 </ul>
             </div>
+            <div class="subtask-summary-column">
+                <ul class="no-bullet">
+                    <li>
+                        <strong><?= t('Analysis:') ?></strong>
+                        <article class="markdown subtask-summary-markdown">
+                            <?= $this->text->markdown($subtask['description'], isset($is_public) && $is_public) ?>
+                        </article>
+                    </li>
+                    <?= $this->hook->render('template:task:details:third-column', array('task' => $task)) ?>
+                </ul>
+            </div>
+            <?php if ($editable): ?>
+                <div class="subtask-summary-button" >
+                    <?= $this->modal->mediumButton('edit', t('Edit'), 'SubtaskController', 'edit', array('task_id' => $task['id'], 'project_id' => $task['project_id'], 'subtask_id' => $subtask['id'])) ?>
+                </div>
+            <?php endif ?>
         </div>
     </div>
 

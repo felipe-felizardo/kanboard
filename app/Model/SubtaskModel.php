@@ -252,6 +252,7 @@ class SubtaskModel extends Base
      */
     public function update(array $values, $fireEvent = true)
     {
+        $old_subtask = $this->getByIdWithDetails($values['id']);
         $this->prepare($values);
         $result = $this->db->table(self::TABLE)->eq('id', $values['id'])->save($values);
 
@@ -263,7 +264,8 @@ class SubtaskModel extends Base
                 $this->queueManager->push($this->subtaskEventJob->withParams(
                     $subtask['id'], 
                     array(self::EVENT_CREATE_UPDATE, self::EVENT_UPDATE),
-                    $values
+                    $values,
+                    $old_subtask
                 ));
             }
         }
