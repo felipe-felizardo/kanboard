@@ -51,20 +51,6 @@
                 </div>
             </div>
             <?php endif ?>
-
-            <div class="input-addon-item">
-                <div class="dropdown">
-                    <a href="#" class="dropdown-menu dropdown-menu-link-icon" title="<?= t('Category filters') ?>"><i class="fa fa-paint-brush fa-fw"></i><i class="fa fa-caret-down"></i></a>
-                    <ul>
-                        <?php foreach ($colors_list as $color): ?>
-                            <li>
-                                <div class="color-picker-square color-<?= str_replace(' ', '_', strtolower($color)) ?>"></div>
-                                <a href="#" class="filter-helper" data-unique-filter='color:"<?= $this->text->e($color) ?>"'><?= $this->text->e($color) ?></a>
-                            </li>
-                        <?php endforeach ?>
-                    </ul>
-                </div>
-            </div>
         </div>
 
     </form>

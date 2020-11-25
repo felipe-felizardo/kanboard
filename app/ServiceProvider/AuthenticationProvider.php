@@ -75,7 +75,7 @@ class AuthenticationProvider implements ServiceProviderInterface
         $acl->setRoleHierarchy(Role::PROJECT_MEMBER_TEST, array(Role::PROJECT_MEMBER, Role::PROJECT_VIEWER));
         $acl->setRoleHierarchy(Role::PROJECT_MANAGER, array(Role::PROJECT_MEMBER, Role::PROJECT_VIEWER));
 
-        $acl->add('ActionController', '*', Role::PROJECT_MANAGER);
+        $acl->add('ActionController', '*', Role::APP_ADMIN);
         $acl->add('ProjectActionDuplicationController', '*', Role::PROJECT_MANAGER);
         $acl->add('ActionCreationController', '*', Role::PROJECT_MANAGER);
         $acl->add('AnalyticController', '*', Role::PROJECT_MANAGER);
@@ -84,7 +84,7 @@ class AuthenticationProvider implements ServiceProviderInterface
         $acl->add('TaskPopoverController', '*', Role::PROJECT_MEMBER);
         $acl->add('CalendarController', 'save', Role::PROJECT_MEMBER);
         $acl->add('CategoryController', '*', Role::PROJECT_MANAGER);
-        $acl->add('ColumnController', '*', Role::PROJECT_MANAGER);
+        $acl->add('ColumnController', '*', Role::APP_ADMIN);
         $acl->add('CommentController', array('create', 'save', 'edit', 'update', 'confirm', 'remove'), Role::PROJECT_MEMBER);
         $acl->add('CommentListController', array('save'), Role::PROJECT_MEMBER);
         $acl->add('CommentMailController', '*', Role::PROJECT_MEMBER);
@@ -100,7 +100,8 @@ class AuthenticationProvider implements ServiceProviderInterface
         $acl->add('PredefinedTaskDescriptionController', '*', Role::PROJECT_MANAGER);
         $acl->add('ProjectFileController', '*', Role::PROJECT_MEMBER);
         $acl->add('ProjectUserOverviewController', '*', Role::PROJECT_MANAGER);
-        $acl->add('ProjectStatusController', '*', Role::PROJECT_MANAGER);
+        $acl->add('ProjectStatusController', '*', Role::APP_ADMIN);
+        $acl->add('ProjectStatusController', array('confirmEnable', 'enable', 'confirmDisable', 'disable'), Role::PROJECT_MANAGER);
         $acl->add('ProjectScopeController', '*', Role::PROJECT_MANAGER);
         $acl->add('ProjectTagController', '*', Role::PROJECT_MANAGER);
         $acl->add('SubtaskController', 'show', Role::PROJECT_MEMBER);
@@ -108,7 +109,7 @@ class AuthenticationProvider implements ServiceProviderInterface
         $acl->add('SubtaskConverterController', '*', Role::APP_ADMIN);
         $acl->add('SubtaskRestrictionController', '*', Role::PROJECT_MEMBER);
         $acl->add('SubtaskStatusController', '*', Role::PROJECT_MEMBER);
-        $acl->add('SwimlaneController', '*', Role::PROJECT_MANAGER);
+        $acl->add('SwimlaneController', '*', Role::APP_ADMIN);
         $acl->add('TaskSuppressionController', '*', Role::PROJECT_MANAGER);
         $acl->add('TaskCreationController', '*', Role::APP_ADMIN);
         $acl->add('TaskBulkController', '*', Role::PROJECT_MANAGER);

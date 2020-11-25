@@ -56,12 +56,6 @@
                             <span><?= $this->text->e($task['category_name']) ?></span>
                         </li>
                     <?php endif ?>
-                    <?php if (! empty($task['swimlane_name'])): ?>
-                        <li>
-                            <strong><?= t('Swimlane:') ?></strong>
-                            <span><?= $this->text->e($task['swimlane_name']) ?></span>
-                        </li>
-                    <?php endif ?>
                     <li>
                         <strong><?= t('Column:') ?></strong>
                         <span><?= $this->text->e($task['column_title']) ?></span>
