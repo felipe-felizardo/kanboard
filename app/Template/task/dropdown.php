@@ -33,24 +33,13 @@
         <li>
             <?= $this->modal->medium('file', t('Attach a document'), 'TaskFileController', 'create', array('task_id' => $task['id'], 'project_id' => $task['project_id'])) ?>
         </li>
-        <li>
-            <?= $this->modal->medium('camera', t('Add a screenshot'), 'TaskPopoverController', 'screenshot', array('task_id' => $task['id'], 'project_id' => $task['project_id'])) ?>
-        </li>
         <?php if ($this->user->hasProjectAccess('TaskDuplicationController', 'duplicate', $task['project_id'])): ?>
         <li>
             <?= $this->modal->small('files-o', t('Duplicate'), 'TaskDuplicationController', 'duplicate', array('task_id' => $task['id'], 'project_id' => $task['project_id'])) ?>
         </li>
         <?php endif ?>
-        <?php if ($this->user->hasProjectAccess('TaskDuplicationController', 'copy', $task['project_id'])): ?>
-        <li>
-            <?= $this->modal->small('clipboard', t('Duplicate to another project'), 'TaskDuplicationController', 'copy', array('task_id' => $task['id'], 'project_id' => $task['project_id'])) ?>
-        </li>
-        <?php endif ?>
         <li>
             <?= $this->modal->small('clone', t('Move to another project'), 'TaskDuplicationController', 'move', array('task_id' => $task['id'], 'project_id' => $task['project_id'])) ?>
-        </li>
-        <li>
-            <?= $this->modal->small('paper-plane', t('Send by email'), 'TaskMailController', 'create', array('task_id' => $task['id'], 'project_id' => $task['project_id'])) ?>
         </li>
         <?php if ($this->projectRole->canRemoveTask($task)): ?>
             <li>
