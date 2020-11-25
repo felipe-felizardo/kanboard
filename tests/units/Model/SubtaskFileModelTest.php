@@ -26,7 +26,7 @@ class SubtaskFileModelTest extends Base
         $this->assertEquals('test', $file['name']);
         $this->assertEquals('/tmp/foo', $file['path']);
         $this->assertEquals(0, $file['is_image']);
-        $this->assertEquals(1, $file['task_id']);
+        $this->assertEquals(1, $file['subtask_id']);
         $this->assertEquals(time(), $file['date'], '', 2);
         $this->assertEquals(0, $file['user_id']);
         $this->assertEquals(10, $file['size']);
@@ -141,7 +141,7 @@ class SubtaskFileModelTest extends Base
     public function testGeneratePath()
     {
         $fileModel = new SubtaskFileModel($this->container);
-        $this->assertStringStartsWith('tasks'.DIRECTORY_SEPARATOR.'34'.DIRECTORY_SEPARATOR, $fileModel->generatePath(34, 'test.png'));
+        $this->assertStringStartsWith('subtasks'.DIRECTORY_SEPARATOR.'34'.DIRECTORY_SEPARATOR, $fileModel->generatePath(34, 'test.png'));
         $this->assertNotEquals($fileModel->generatePath(34, 'test1.png'), $fileModel->generatePath(34, 'test2.png'));
     }
 
@@ -205,7 +205,7 @@ class SubtaskFileModelTest extends Base
         $this->assertEquals(1, $files[0]['id']);
         $this->assertEquals('file1.png', $files[0]['name']);
         $this->assertEquals(1, $files[0]['is_image']);
-        $this->assertEquals(1, $files[0]['task_id']);
+        $this->assertEquals(1, $files[0]['subtask_id']);
         $this->assertEquals(0, $files[0]['user_id']);
         $this->assertEquals(123, $files[0]['size']);
         $this->assertEquals(time(), $files[0]['date'], '', 2);
@@ -213,7 +213,7 @@ class SubtaskFileModelTest extends Base
         $this->assertEquals(2, $files[1]['id']);
         $this->assertEquals('file2.doc', $files[1]['name']);
         $this->assertEquals(0, $files[1]['is_image']);
-        $this->assertEquals(1, $files[1]['task_id']);
+        $this->assertEquals(1, $files[1]['subtask_id']);
         $this->assertEquals(0, $files[1]['user_id']);
         $this->assertEquals(456, $files[1]['size']);
         $this->assertEquals(time(), $files[1]['date'], '', 2);
@@ -311,7 +311,7 @@ class SubtaskFileModelTest extends Base
         $this->assertEquals(1, $files[0]['id']);
         $this->assertEquals('test.doc', $files[0]['name']);
         $this->assertEquals(0, $files[0]['is_image']);
-        $this->assertEquals(1, $files[0]['task_id']);
+        $this->assertEquals(1, $files[0]['subtask_id']);
         $this->assertEquals(0, $files[0]['user_id']);
         $this->assertEquals(4, $files[0]['size']);
         $this->assertEquals(time(), $files[0]['date'], '', 2);
