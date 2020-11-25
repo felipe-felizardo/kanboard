@@ -29,6 +29,8 @@ class SubtaskController extends BaseController
             'task' => $task,
             'subtask' => $subtask,
             'project' => $project,
+            'files' => $this->subtaskFileModel->getAllDocuments($subtask['id']),
+            'images' => $this->subtaskFileModel->getAllImages($subtask['id']),
             'editable' => $editable,
             'values' => empty($values) ? $subtask : $values,
             'errors' => $errors,

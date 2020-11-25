@@ -1,4 +1,12 @@
 .file-thumbnail {
+  width: 250px;
+  border: 0px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  box-shadow: 8px 8px 8px -6px rgba(0,0,0,.55);
+  margin-right: 15px;
+  background-color: $default-bg-color-5;
+  
   .js-image-slideshow-rendered {
     margin-bottom: 5px;
   }
@@ -13,10 +21,10 @@
 
       &:hover {
         text-decoration: none;
-        color: black;
+        color: $primary-color;
 
         i {
-          color: black;
+          color: $primary-color;
         }
       }
     }

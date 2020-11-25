@@ -8,7 +8,24 @@ use PDO;
 use Kanboard\Core\Security\Token;
 use Kanboard\Core\Security\Role;
 
-const VERSION = 141;
+const VERSION = 142;
+
+function version_142(PDO $pdo)
+{
+    $pdo->exec("CREATE TABLE `subtask_has_files` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `name` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+        `path` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+        `is_image` tinyint(1) DEFAULT '0',
+        `subtask_id` int(11) NOT NULL,
+        `date` bigint(20) DEFAULT NULL,
+        `user_id` int(11) NOT NULL DEFAULT '0',
+        `size` int(11) NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `files_subtask_idx` (`subtask_id`),
+        CONSTRAINT `subtask_has_files_ibfk_1` FOREIGN KEY (`subtask_id`) REFERENCES `subtasks` (`id`) ON DELETE CASCADE) ENGINE=InnoDB CHARSET=utf8"
+        );
+}
 
 function version_141(PDO $pdo)
 {

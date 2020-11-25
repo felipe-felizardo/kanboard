@@ -96,6 +96,7 @@ use Pimple\Container;
  * @property \Kanboard\Model\CurrencyModel                           $currencyModel
  * @property \Kanboard\Model\CustomFilterModel                       $customFilterModel
  * @property \Kanboard\Model\TaskFileModel                           $taskFileModel
+ * @property \Kanboard\Model\SubtaskFileModel                        $subtaskFileModel
  * @property \Kanboard\Model\ProjectFileModel                        $projectFileModel
  * @property \Kanboard\Model\GroupModel                              $groupModel
  * @property \Kanboard\Model\GroupMemberModel                        $groupMemberModel
