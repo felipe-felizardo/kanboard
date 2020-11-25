@@ -28,8 +28,8 @@
                         <?= $this->url->link(
                             $this->text->e($subtask['title']),
                             'SubtaskController',
-                            'show',                           
-                            array('task_id' => $task['id'], 'project_id' => $task['project_id'], 'editable' => $editable, 'subtask_id' => $subtask['id'])) ?>                       
+                            'show',
+                            array('task_id' => $task['id'], 'project_id' => $task['project_id'], 'editable' => $editable, 'subtask_id' => $subtask['id'])) ?>
                     </span>
                 </div>
             </td>

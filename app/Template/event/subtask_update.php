@@ -10,7 +10,7 @@
                 <?= t('Title: %s', $changes['title']) ?>
             </li>
         <?php endif ?>
-        <?php if ($changes['time_estimated']): ?>
+        <?php if (isset($changes['time_estimated'])): ?>
             <li>
                 <?= t('Time estimated: %sh', $changes['time_estimated']) ?>
             </li>
