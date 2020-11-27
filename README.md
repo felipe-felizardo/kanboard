@@ -2,17 +2,6 @@
 
 ### Kanboard é um software de gerenciamento de projetos que se concentra na metodologia Kanban.
 
-## Config File
-- Config utilizado no ambiente de desenvolvimento deve ficar em ``./config.php``
-- Config que é utilizado no container de produção fica em: ``./docker/var/www/app/config.php``
-
-## Volumes
-| Caminho                  | Descrição                                     |
-| -----------------------  | --------------------------------------------- |
-| ``/var/www/app/data``    | Dados da (Sqlite database, attachments, etc.) |
-| ``/var/www/app/plugins`` | Plugins                                       |
-| ``/etc/nginx/ssl``       | Certificados SSL                              |
-
 ## Docker
 | Tag     | Descrição                                       |
 | ------- | ----------------------------------------------- |
@@ -35,6 +24,17 @@ Contém:
 - ``phpmyadmin:latest``
 
 [Docker Hub](https://hub.docker.com/repository/docker/felipefelizardo/kanboard)
+
+## Config File
+- Config utilizado no ambiente de desenvolvimento deve ficar em ``./config.php``
+- Config que é utilizado no container de produção fica em: ``./docker/var/www/app/config.php``
+
+## Volumes
+| Caminho                  | Descrição                                     |
+| -----------------------  | --------------------------------------------- |
+| ``/var/www/app/data``    | Dados da (Sqlite database, attachments, etc.) |
+| ``/var/www/app/plugins`` | Plugins                                       |
+| ``/etc/nginx/ssl``       | Certificados SSL                              |
 
 ## Banco de dados
 O Kanboard suporta os seguintes banco de dados:
@@ -148,4 +148,5 @@ Os testes automatizados serão executados em cada ```Pull Request```
 - Criador: Frédéric Guillot
 - Port: Felipe Felizardo Gonçalves
 - [Contribuidores](https://github.com/kanboard/kanboard/graphs/contributors)
+- [Repo](https://github.com/kanboard/kanboard)
 - Licença [MIT License](https://github.com/kanboard/kanboard/blob/master/LICENSE)
